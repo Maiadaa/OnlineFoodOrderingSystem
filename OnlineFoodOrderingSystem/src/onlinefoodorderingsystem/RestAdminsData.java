@@ -16,9 +16,11 @@ public class RestAdminsData {
 	public static boolean Remove_Rest_Admin(Restaurant_Admin ra){
             for(Restaurant_Admin RA : restAdmins){
                 if(ra == RA){
-                    return restAdmins.remove(RA);
+                    restAdmins.remove(RA);
+                    return true;
                 }
             }
+            return false;
 	}
 
         public static ArrayList<Restaurant_Admin> getRestAdmins() {

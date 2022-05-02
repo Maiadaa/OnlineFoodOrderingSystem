@@ -57,9 +57,11 @@ public class FoodOrderingSysRests implements SysRests_Interface, New_Rests {
     public boolean Remove_RObserver(New_Rests_Observer subs) {
         for(New_Rests_Observer currObs: Customers){
             if(currObs == subs){
-                return Customers.remove(currObs);
+                Customers.remove(currObs);
+                return true;
             }
         }
+        return false;
     }
 
 
