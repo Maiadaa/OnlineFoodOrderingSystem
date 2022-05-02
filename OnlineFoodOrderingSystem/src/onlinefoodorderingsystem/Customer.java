@@ -121,12 +121,14 @@ public class Customer extends Person implements New_Rests_Observer {
 	}
 
 	public void View_Notifications(){
-
+            for(String msg: NewRestsNotifs){
+                System.out.println(msg);
+            }
 	}
 
 
 	public void Update(String msg){
-
+             NewRestsNotifs.add(msg);
 	}
 
 }

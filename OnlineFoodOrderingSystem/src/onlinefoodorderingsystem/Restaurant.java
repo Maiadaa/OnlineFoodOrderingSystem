@@ -18,16 +18,11 @@ public class Restaurant {
 	private boolean Rest_Open;
 	private Menu  Rest_Menu;
 	private double Rest_Rating;
-	public Menu  m_Menu ;
-	public Restaurant_Admin m_Restaurant_Admin;
 
 	public Restaurant(){
 
 	}
 
-	public void finalize() throws Throwable {
-
-	}
 	public void View_Menu(){
 
 	}
@@ -84,14 +79,6 @@ public class Restaurant {
             this.Rest_Rating = Rest_Rating;
         }
 
-        public void setM_Menu(Menu m_Menu) {
-            this.m_Menu = m_Menu;
-        }
-
-        public void setM_Restaurant_Admin(Restaurant_Admin m_Restaurant_Admin) {
-            this.m_Restaurant_Admin = m_Restaurant_Admin;
-        }
-
         public int getRest_Id() {
             return Rest_Id;
         }
@@ -128,13 +115,6 @@ public class Restaurant {
             return Rest_Rating;
         }
 
-        public Menu getM_Menu() {
-            return m_Menu;
-        }
-
-        public Restaurant_Admin getM_Restaurant_Admin() {
-            return m_Restaurant_Admin;
-        }
 
         
 }//end Restaurant

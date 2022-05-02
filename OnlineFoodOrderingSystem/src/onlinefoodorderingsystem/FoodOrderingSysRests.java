@@ -67,12 +67,14 @@ public class FoodOrderingSysRests implements SysRests_Interface, New_Rests {
 
     public void Notify_All(String notif_msg) {
         for(New_Rests_Observer currObs : Customers){
-            //currObs.Update(notif_msg);
+            currObs.Update(notif_msg);
         }
     }
 
-    @Override
-    public void getRests_Avail() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public ArrayList<Restaurant> getRests_Avail() {
+        return Rests_Avail;
     }
-}//end FoodOrderingSysRests
+
+
+
+}

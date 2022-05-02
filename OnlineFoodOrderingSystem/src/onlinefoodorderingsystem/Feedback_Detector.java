@@ -9,7 +9,5 @@ public interface Feedback_Detector
 
 	public void Handle_Feedback(Feedback f);
 
-	public void setters();
-
 
 }
