@@ -10,16 +10,16 @@ public class Admin extends Person implements Feedback_Detector {
 	public Admin(){
 
 	}
-
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
-	/**
-	 * 
-	 * @param Username
-	 * @param Pwd
-	 */
-	public Admin Login(String Username, String Pwd){
+	
+	public Admin AdminLogin(String Username, String Pwd)
+        {
+            for (Admin sysAdmin : adminData.getSysAdmins()) 
+            {
+                if(sysAdmin.getUsername().equals(Username) && sysAdmin.getPassword().equals(Pwd))
+                {
+                    return sysAdmin;
+                }
+            }
 		return null;
 	}
 
