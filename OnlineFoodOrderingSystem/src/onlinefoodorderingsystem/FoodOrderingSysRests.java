@@ -67,7 +67,7 @@ public class FoodOrderingSysRests implements SysRests_Interface, New_Rests {
 
     public void Notify_All(String notif_msg) {
         for(New_Rests_Observer currObs : Customers){
-            currObs.Update(notif_msg);
+            //currObs.Update(notif_msg);
         }
     }
 
