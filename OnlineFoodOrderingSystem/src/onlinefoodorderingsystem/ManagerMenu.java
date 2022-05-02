@@ -8,16 +8,14 @@ package onlinefoodorderingsystem;
  *
  * @author mahmo
  */
-public class AdminMenu extends javax.swing.JFrame {
-    static Admin tempAdmin = new Admin();
+public class ManagerMenu extends javax.swing.JFrame {
+    static Manager tempManager;
     /**
-     * Creates new form AdminMenu
-     * @param a1
+     * Creates new form ManagerMenu
      */
-       
-    public AdminMenu(Admin a1) 
+    public ManagerMenu(Manager m1)
     {
-        tempAdmin = a1;
+        tempManager = m1;
         initComponents();
     }
 
@@ -63,21 +61,20 @@ public class AdminMenu extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdminMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManagerMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdminMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManagerMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdminMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManagerMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdminMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManagerMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() 
-            {
-                new AdminMenu(tempAdmin).setVisible(true);
+            public void run() {
+                new ManagerMenu(tempManager).setVisible(true);
             }
         });
     }

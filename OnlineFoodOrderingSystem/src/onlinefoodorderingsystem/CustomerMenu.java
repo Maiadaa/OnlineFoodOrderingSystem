@@ -8,16 +8,15 @@ package onlinefoodorderingsystem;
  *
  * @author mahmo
  */
-public class AdminMenu extends javax.swing.JFrame {
-    static Admin tempAdmin = new Admin();
+public class CustomerMenu extends javax.swing.JFrame {
+    static Customer tempCust = new Customer();
     /**
-     * Creates new form AdminMenu
-     * @param a1
+     * Creates new form CustomerMenu
      */
-       
-    public AdminMenu(Admin a1) 
+  
+    public CustomerMenu(Customer c1)
     {
-        tempAdmin = a1;
+        tempCust = c1;
         initComponents();
     }
 
@@ -63,21 +62,20 @@ public class AdminMenu extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdminMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomerMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdminMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomerMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdminMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomerMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdminMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomerMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() 
-            {
-                new AdminMenu(tempAdmin).setVisible(true);
+            public void run() {
+                new CustomerMenu(tempCust).setVisible(true);
             }
         });
     }

@@ -21,7 +21,15 @@ public class Customer extends Person implements New_Rests_Observer {
 	}
 
 
-	public Customer Login(String Username, String Pwd){
+	public Customer CustomerLogin(String Username, String Pwd)
+        {
+            for (Customer sysCust : CustomersData.getSysCusts()) 
+            {
+                if(sysCust.getUsername().equals(Username) && sysCust.getPassword().equals(Pwd))
+                {
+                    return sysCust;
+                }
+            }
 		return null;
 	}
 

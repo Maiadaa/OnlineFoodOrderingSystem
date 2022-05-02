@@ -10,15 +10,15 @@ public class Restaurant_Admin extends Person implements Feedback_Detector {
 
 	}
 
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
-	/**
-	 * 
-	 * @param Username
-	 * @param Pwd
-	 */
-	public Restaurant_Admin Login(String Username, String Pwd){
+	public Restaurant_Admin RestAdminLogin(String Username, String Pwd)
+        {
+            for (Restaurant_Admin sysRestAdmin : RestAdminsData.getRestAdmins()) 
+            {
+                if(sysRestAdmin.getUsername().equals(Username) && sysRestAdmin.getPassword().equals(Pwd))
+                {
+                    return sysRestAdmin;
+                }
+            }
 		return null;
 	}
 
@@ -30,16 +30,14 @@ public class Restaurant_Admin extends Person implements Feedback_Detector {
 
 	}
 
-	public void setters(){
+    public void setRest(Restaurant Rest) {
+        this.Rest = Rest;
+    }
 
-	}
+    @Override
+    public void setters() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
-	/*public getters(){
-
-	}*/
-
-    /*@Override
-    public void getters() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }*/
+ 
 }//end Restaurant_Admin

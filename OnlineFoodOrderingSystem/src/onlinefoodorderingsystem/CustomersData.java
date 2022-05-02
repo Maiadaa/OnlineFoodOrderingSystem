@@ -10,6 +10,12 @@ public class CustomersData {
 	public CustomersData(){
 
 	}
+
+    public static ArrayList<Customer> getSysCusts() 
+    {
+        return sysCusts;
+    }
+        
 	public static void SignUp(Customer cust){
 
 	}	

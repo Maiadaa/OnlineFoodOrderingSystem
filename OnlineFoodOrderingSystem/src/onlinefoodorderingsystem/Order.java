@@ -17,10 +17,6 @@ public class Order {
 	public Order(){
 
 	}
-
-	public void finalize() throws Throwable {
-
-	}
 	public void View_Order_Details(){
 
 	}
@@ -107,9 +103,6 @@ public class Order {
             this.m_Payment_Method = m_Payment_Method;
         }
 
-        public void setM_Status(Status m_Status) {
-            this.m_Status = m_Status;
-        }
 
         public int getOrder_Id() {
             return Order_Id;
@@ -147,7 +140,4 @@ public class Order {
             return m_Payment_Method;
         }
 
-        public Status getM_Status() {
-            return m_Status;
-        }   
 }//end Order

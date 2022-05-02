@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class AdminsData 
 {
 
-	private static ArrayList<Admin> sysAdmins;
+	private static ArrayList<Admin> sysAdmins = new ArrayList<Admin>();
         
 	public AdminsData()
         {
@@ -19,6 +19,7 @@ public class AdminsData
 	
 	public void SignUp(Admin a)
         {
-
+            sysAdmins.add(a);
+            System.out.println("Admin added succsessfully");
 	}
 }

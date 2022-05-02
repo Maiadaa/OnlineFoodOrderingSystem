@@ -8,16 +8,16 @@ package onlinefoodorderingsystem;
  *
  * @author mahmo
  */
-public class AdminMenu extends javax.swing.JFrame {
-    static Admin tempAdmin = new Admin();
+public class RestaurantAdminMenu extends javax.swing.JFrame {
+    static Restaurant_Admin tempRA = new Restaurant_Admin();
     /**
-     * Creates new form AdminMenu
-     * @param a1
+     * Creates new form RestaurantAdminMenu
+     * @ temp
      */
-       
-    public AdminMenu(Admin a1) 
+    
+    public RestaurantAdminMenu(Restaurant_Admin temp) 
     {
-        tempAdmin = a1;
+        tempRA = temp;
         initComponents();
     }
 
@@ -63,21 +63,20 @@ public class AdminMenu extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdminMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RestaurantAdminMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdminMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RestaurantAdminMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdminMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RestaurantAdminMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdminMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RestaurantAdminMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() 
-            {
-                new AdminMenu(tempAdmin).setVisible(true);
+            public void run() {
+                new RestaurantAdminMenu(tempRA).setVisible(true);
             }
         });
     }

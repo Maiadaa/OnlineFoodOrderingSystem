@@ -23,7 +23,15 @@ public class Manager extends Admin {
 	public static Manager getTheSuperAdmin(){
             return theSuperAdmin;
 	}
-
+        
+        public static Manager ManagerLogin(String username , String pw)
+        {
+            if(username.equals("manager") && pw.equals("m1234"))
+            {
+                return theSuperAdmin;
+            }
+            return null;
+        }
 
 	public void Add_Rest_Admin(Restaurant_Admin ra){
             /* test:

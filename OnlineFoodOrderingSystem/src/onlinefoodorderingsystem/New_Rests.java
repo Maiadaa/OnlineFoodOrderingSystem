@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public interface New_Rests {
 
-	public New_Rests_Observer m_New_Rests_Observer ;
+	//public New_Rests_Observer m_New_Rests_Observer ;
 	/**
 	 * 
 	 * @param subs
