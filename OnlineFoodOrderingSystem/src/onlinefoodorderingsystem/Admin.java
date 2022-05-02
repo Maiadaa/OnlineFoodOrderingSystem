@@ -5,7 +5,8 @@ public class Admin extends Person implements Feedback_Detector {
 
 	public FoodOrderingSysCoupons m_FoodOrderingSysCoupons;
 	public SysRests_Interface m_SysRests;
-
+        public AdminsData adminData;
+        
 	public Admin(){
 
 	}

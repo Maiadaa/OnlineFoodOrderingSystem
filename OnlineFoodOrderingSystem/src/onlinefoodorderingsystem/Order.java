@@ -13,7 +13,6 @@ public class Order {
 	private Status Order_status;
 	public Order_Item m_Order_Item;
 	public Payment_Method m_Payment_Method;
-	public Status m_Status;
 
 	public Order(){
 
