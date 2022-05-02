@@ -40,11 +40,16 @@ public class Manager extends Admin {
             ra.setPassword("hardees1234");
             */
             sysRestsAdmins.Add_Rest_Admin(ra);
+            sysRests.Add_Rest(ra.getRest());
 	}
 
 
 	public boolean Remove_Rest_Admin(Restaurant_Admin ra){
-            return sysRestsAdmins.Remove_Rest_Admin(ra);
+            if(sysRestsAdmins.Remove_Rest_Admin(ra)){
+                 sysRests.Remove_Rest(ra.getRest());
+                 return true;
+            }
+            return false;
 	}
         
 }

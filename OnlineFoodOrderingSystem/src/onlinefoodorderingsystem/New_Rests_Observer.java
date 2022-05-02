@@ -10,7 +10,9 @@ public interface New_Rests_Observer {
 	 * 
 	 * @param msg
 	 */
-	public void Update(String msg);
+	public void Update(String msg){
+            NewRestsNotifs.add(msg);
+        }
 
 	/*public getters(){
 
