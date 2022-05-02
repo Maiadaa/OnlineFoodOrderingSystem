@@ -62,15 +62,6 @@ public class Order {
 
 	}
 
-	public void setters(){
-
-	}
-
-        
-	/*public getters(){
-
-	}*/
-
         public void setOrder_Id(int Order_Id) {
             this.Order_Id = Order_Id;
         }
@@ -105,10 +96,6 @@ public class Order {
 
         public void setM_Payment_Method(Payment_Method m_Payment_Method) {
             this.m_Payment_Method = m_Payment_Method;
-        }
-
-        public void setM_Status(Status m_Status) {
-            this.m_Status = m_Status;
         }
 
         public int getOrder_Id() {
@@ -146,8 +133,5 @@ public class Order {
         public Payment_Method getM_Payment_Method() {
             return m_Payment_Method;
         }
-
-        public Status getM_Status() {
-            return m_Status;
-        }   
+ 
 }//end Order
