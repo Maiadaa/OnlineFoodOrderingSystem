@@ -5,22 +5,20 @@ import java.util.ArrayList;
 public class Manager extends Admin {
 
 	private static Manager theSuperAdmin;
-	private ArrayList<Restaurant_Admin> Rest_Admins;
-	public Manager m_Manager;
-	public FoodOrderingSysRests m_FoodOrderingSysRests;
-	public Restaurant_Admin m_Restaurant_Admin;
+	
+        private ArrayList<Restaurant_Admin> Rest_Admins;
+	public FoodOrderingSysRests sysRests;
+	public Restaurant_Admin restAdmin;
 
-
-
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
 	private Manager(){
-
+            theSuperAdmin.setID(203398);
+            theSuperAdmin.setUsername("manager");
+            theSuperAdmin.setPassword("m1234");
+            theSuperAdmin.setName("Maiada");
 	}
 
 	public static Manager getTheSuperAdmin(){
-		return null;
+            return null;
 	}
 
 	/**
