@@ -10,7 +10,7 @@ public class Customer extends Person implements New_Rests_Observer {
 	public Feedback m_Feedback;
 	public Order m_Order;
 	public SysRests_Interface m_SysRests;
-        public CustomersData custdata;
+        //public CustomersData custdata;
         
 	public Customer(){
 
@@ -85,6 +85,11 @@ public class Customer extends Person implements New_Rests_Observer {
 
 
 	public void View_Order_Details(Order o){
+            Order orders = new Order();
+            orders.setOrder_Id(100);
+            orders.setOrder_Price(200);
+            orders.setOrder_Date("202132");
+            Orders_History.add(orders);
             for(int i = 0; i < Orders_History.size(); i++){
                 System.out.println(Orders_History.get(i).toString());
             }
