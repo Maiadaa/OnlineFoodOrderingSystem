@@ -13,39 +13,21 @@ public class Customer extends Person implements New_Rests_Observer {
 
 	}
 
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
-	/**
-	 * 
-	 * @param Username
-	 * @param Pwd
-	 */
 	public void Sign_Up(String Username, String Pwd){
 
 	}
 
-	/**
-	 * 
-	 * @param Username
-	 * @param Pwd
-	 */
+
 	public Customer Login(String Username, String Pwd){
 		return null;
 	}
 
-	/**
-	 * 
-	 * @param acc
-	 */
+
 	public void Manage_Account(Customer acc){
 
 	}
 
-	/**
-	 * 
-	 * @param Order_Id
-	 */
+
 	public void Create_Feedback(int Order_Id){
 
 	}
@@ -54,26 +36,17 @@ public class Customer extends Person implements New_Rests_Observer {
 
 	}
 
-	/**
-	 * 
-	 * @param o
-	 */
+
 	public void Cancel_Order(Order o){
 
 	}
 
-	/**
-	 * 
-	 * @param o
-	 */
+
 	public void Reorder(Order o){
 
 	}
 
-	/**
-	 * 
-	 * @param o
-	 */
+
 	public void View_Order_Details(Order o){
 
 	}
@@ -86,15 +59,9 @@ public class Customer extends Person implements New_Rests_Observer {
 
 	}
 
-	/**
-	 * 
-	 * @param msg
-	 */
+
 	public void Update(String msg){
 
 	}
 
-	/*public getters(){
-
-	}*/
-}//end Customer
+}
