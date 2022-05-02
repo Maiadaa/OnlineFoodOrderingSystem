@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Premium_Customer extends Customer implements Coupon_Observer {
 
+    public FoodOrderingSysCoupons m_FoodOrderingSysCoupons;
 
 	public Premium_Customer(){
 
