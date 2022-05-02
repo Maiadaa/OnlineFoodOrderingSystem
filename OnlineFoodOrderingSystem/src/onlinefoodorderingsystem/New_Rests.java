@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public interface New_Rests {
 
-	public New_Rests_Observer m_New_Rests_Observer ;
+	public New_Rests_Observer restsObs ;
 	/**
 	 * 
 	 * @param subs
@@ -15,7 +15,7 @@ public interface New_Rests {
 	 * 
 	 * @param subs
 	 */
-	public void Remove_RObserver(New_Rests_Observer subs);
+	public boolean Remove_RObserver(New_Rests_Observer subs);
 
 	/**
 	 * 
