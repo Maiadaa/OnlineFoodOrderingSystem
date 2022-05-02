@@ -8,13 +8,16 @@ public class Manager extends Admin {
 	
         private ArrayList<Restaurant_Admin> Rest_Admins;
 	public FoodOrderingSysRests sysRests;
-	public Restaurant_Admin restAdmin;
 
 	private Manager(){
             theSuperAdmin.setID(203398);
             theSuperAdmin.setUsername("manager");
             theSuperAdmin.setPassword("m1234");
             theSuperAdmin.setName("Maiada");
+            theSuperAdmin.setGender('F');
+            theSuperAdmin.setEmail("mai@gmail.com");
+            theSuperAdmin.setPhone_number("01010101010");
+            theSuperAdmin.setAddress("Rehab");
 	}
 
 	public static Manager getTheSuperAdmin(){
