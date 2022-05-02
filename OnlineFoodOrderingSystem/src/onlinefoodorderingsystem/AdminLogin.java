@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
  * @author mahmo
  */
 public class AdminLogin extends javax.swing.JFrame {
-
+    Admin tempAdmin = new Admin();
     /**
      * Creates new form AdminLogin
      */
@@ -135,10 +135,12 @@ public class AdminLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
         String uname = Username.getText();
         String password = String.valueOf(Password.getPassword());
-        Admin tempAdmin = new Admin();
+        
         if(tempAdmin.AdminLogin(uname, password) != null)
         {
-            Admin readAdmin = tempAdmin.AdminLogin(uname, password);
+           tempAdmin = tempAdmin.AdminLogin(uname, password);
+           AdminMenu obj = new AdminMenu(tempAdmin);
+           obj.setVisible(true);
             
             this.dispose();
         }

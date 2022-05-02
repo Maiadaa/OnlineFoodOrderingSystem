@@ -9,14 +9,20 @@ package onlinefoodorderingsystem;
  * @author mahmo
  */
 public class AdminMenu extends javax.swing.JFrame {
-
+    Admin temp = new Admin();
     /**
      * Creates new form AdminMenu
      * @param a1
      */
+    
+     public AdminMenu() 
+    {
+        initComponents();
+    }
+        
     public AdminMenu(Admin a1) 
     {
-        Admin temp = a1;
+        temp = a1;
         initComponents();
     }
 
