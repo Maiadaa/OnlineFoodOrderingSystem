@@ -13,8 +13,21 @@ public class Person {
     private String Password;
     private char Gender;
 
-    public Person() {
+    public Person() 
+    {
 
+    }
+
+    public Person(int ID, String Name, String Email, String Phone_number, String Address, String Username, String Password, char Gender) 
+    {
+        this.ID = ID;
+        this.Name = Name;
+        this.Email = Email;
+        this.Phone_number = Phone_number;
+        this.Address = Address;
+        this.Username = Username;
+        this.Password = Password;
+        this.Gender = Gender;
     }
 
     public void setID(int ID) {

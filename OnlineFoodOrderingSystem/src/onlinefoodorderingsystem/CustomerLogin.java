@@ -4,12 +4,14 @@
  */
 package onlinefoodorderingsystem;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author mahmo
  */
 public class CustomerLogin extends javax.swing.JFrame {
-
+        Customer tempCustomer = new Customer();
     /**
      * Creates new form AdminLogin
      */
@@ -30,8 +32,8 @@ public class CustomerLogin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        Username = new javax.swing.JTextField();
+        Password = new javax.swing.JPasswordField();
         SignIn = new javax.swing.JButton();
         SignUp = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
@@ -47,6 +49,11 @@ public class CustomerLogin extends javax.swing.JFrame {
         jLabel4.setText("Password:");
 
         SignIn.setText("Sign-In");
+        SignIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SignInActionPerformed(evt);
+            }
+        });
 
         SignUp.setText("Sign-Up");
 
@@ -69,12 +76,12 @@ public class CustomerLogin extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField1))
+                                .addComponent(Username))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jPasswordField1)
+                                    .addComponent(Password)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(SignIn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -102,11 +109,11 @@ public class CustomerLogin extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SignIn)
@@ -123,6 +130,28 @@ public class CustomerLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void SignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignInActionPerformed
+        // TODO add your handling code here:
+        String uname = Username.getText();
+        String password = String.valueOf(Password.getPassword());
+        if(uname.equals("") || password.equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "Please fill in your login credentials");
+        }
+        if(tempCustomer.CustomerLogin(uname, password) != null)
+        {
+           tempCustomer = tempCustomer.CustomerLogin(uname, password);
+           CustomerMenu obj = new CustomerMenu(tempCustomer);
+           obj.setVisible(true);
+            
+            this.dispose();
+        }
+        else
+        {
+           JOptionPane.showMessageDialog(null, "Wrong Login Credentials");
+        }
+    }//GEN-LAST:event_SignInActionPerformed
 
     /**
      * @param args the command line arguments
@@ -161,14 +190,14 @@ public class CustomerLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPasswordField Password;
     private javax.swing.JButton SignIn;
     private javax.swing.JButton SignUp;
+    private javax.swing.JTextField Username;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

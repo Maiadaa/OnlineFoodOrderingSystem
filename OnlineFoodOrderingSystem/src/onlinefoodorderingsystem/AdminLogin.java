@@ -129,13 +129,18 @@ public class AdminLogin extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         this.dispose();
+        HomePage home = new HomePage();
+        home.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void SignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignInActionPerformed
         // TODO add your handling code here:
         String uname = Username.getText();
         String password = String.valueOf(Password.getPassword());
-        
+        if(uname.equals("") || password.equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "Please fill in your login credentials");
+        }
         if(tempAdmin.AdminLogin(uname, password) != null)
         {
            tempAdmin = tempAdmin.AdminLogin(uname, password);

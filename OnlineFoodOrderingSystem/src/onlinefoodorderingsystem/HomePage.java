@@ -103,6 +103,9 @@ public class HomePage extends javax.swing.JFrame {
 
     private void AdminRedirectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminRedirectActionPerformed
         // TODO add your handling code here:
+        AdminLogin obj = new AdminLogin();
+        obj.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_AdminRedirectActionPerformed
 
     private void ManagerRedirectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManagerRedirectActionPerformed

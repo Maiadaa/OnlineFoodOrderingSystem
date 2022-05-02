@@ -5,11 +5,17 @@ public class Admin extends Person implements Feedback_Detector {
 
 	public FoodOrderingSysCoupons m_FoodOrderingSysCoupons;
 	public SysRests_Interface m_SysRests;
-        public AdminsData adminData;
-        
-	public Admin(){
+        public static AdminsData adminData = new AdminsData();
 
-	}
+    public Admin() {
+    }
+
+    public Admin(int ID, String Name, String Email, String Phone_number, String Address, String Username, String Password, char Gender)
+    {
+        super(ID, Name, Email, Phone_number, Address, Username, Password, Gender);
+    }
+        
+	
 	
 	public Admin AdminLogin(String Username, String Pwd)
         {
