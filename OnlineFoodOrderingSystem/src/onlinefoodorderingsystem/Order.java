@@ -67,7 +67,88 @@ public class Order {
 
 	}
 
+        
 	/*public getters(){
 
 	}*/
+
+        public void setOrder_Id(int Order_Id) {
+            this.Order_Id = Order_Id;
+        }
+
+        public void setOrder_Rest(Restaurant Order_Rest) {
+            this.Order_Rest = Order_Rest;
+        }
+
+        public void setOrdered_Items(ArrayList<Order_Item> Ordered_Items) {
+            this.Ordered_Items = Ordered_Items;
+        }
+
+        public void setOrder_Date(String Order_Date) {
+            this.Order_Date = Order_Date;
+        }
+
+        public void setOrder_Promo(Coupon Order_Promo) {
+            this.Order_Promo = Order_Promo;
+        }
+
+        public void setOrder_Price(double Order_Price) {
+            this.Order_Price = Order_Price;
+        }
+
+        public void setOrder_status(Status Order_status) {
+            this.Order_status = Order_status;
+        }
+
+        public void setM_Order_Item(Order_Item m_Order_Item) {
+            this.m_Order_Item = m_Order_Item;
+        }
+
+        public void setM_Payment_Method(Payment_Method m_Payment_Method) {
+            this.m_Payment_Method = m_Payment_Method;
+        }
+
+        public void setM_Status(Status m_Status) {
+            this.m_Status = m_Status;
+        }
+
+        public int getOrder_Id() {
+            return Order_Id;
+        }
+
+        public Restaurant getOrder_Rest() {
+            return Order_Rest;
+        }
+
+        public ArrayList<Order_Item> getOrdered_Items() {
+            return Ordered_Items;
+        }
+
+        public String getOrder_Date() {
+            return Order_Date;
+        }
+
+        public Coupon getOrder_Promo() {
+            return Order_Promo;
+        }
+
+        public double getOrder_Price() {
+            return Order_Price;
+        }
+
+        public Status getOrder_status() {
+            return Order_status;
+        }
+
+        public Order_Item getM_Order_Item() {
+            return m_Order_Item;
+        }
+
+        public Payment_Method getM_Payment_Method() {
+            return m_Payment_Method;
+        }
+
+        public Status getM_Status() {
+            return m_Status;
+        }   
 }//end Order
