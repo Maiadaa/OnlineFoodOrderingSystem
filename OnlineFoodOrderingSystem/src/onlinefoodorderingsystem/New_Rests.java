@@ -15,7 +15,7 @@ public interface New_Rests {
 	 * 
 	 * @param subs
 	 */
-	public void Remove_RObserver(New_Rests_Observer subs);
+	public boolean Remove_RObserver(New_Rests_Observer subs);
 
 	/**
 	 * 
