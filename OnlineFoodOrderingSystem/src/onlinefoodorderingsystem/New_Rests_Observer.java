@@ -8,7 +8,7 @@ public interface New_Rests_Observer {
 
 	public void Update(String msg);
         
-        
+        public ArrayList<String> getNewRestsNotifs();
 
 
 
