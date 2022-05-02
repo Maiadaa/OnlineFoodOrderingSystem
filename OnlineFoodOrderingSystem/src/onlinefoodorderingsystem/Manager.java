@@ -25,11 +25,13 @@ public class Manager extends Admin {
 	}
 
 
-	public void Add_Rest_Admin(){
-            Restaurant_Admin a = new Restaurant_Admin();
-            a.setUsername("Hardees");
-            a.setPassword("hardees1234");
-            sysRestsAdmins.Add_Rest_Admin(a);
+	public void Add_Rest_Admin(Restaurant_Admin ra){
+            /* test:
+            Restaurant_Admin ra = new Restaurant_Admin();
+            ra.setUsername("Hardees");
+            ra.setPassword("hardees1234");
+            */
+            sysRestsAdmins.Add_Rest_Admin(ra);
 	}
 
 

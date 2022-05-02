@@ -23,4 +23,10 @@ public class RestAdminsData {
             return false;
 	}
 
+        public static ArrayList<Restaurant_Admin> getRestAdmins() {
+            return restAdmins;
+        }
+        
+        
+
 }
