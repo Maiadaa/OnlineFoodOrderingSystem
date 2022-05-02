@@ -6,8 +6,8 @@ public class Manager extends Admin {
 
 	private static Manager theSuperAdmin;
 	
-        private ArrayList<Restaurant_Admin> Rest_Admins;
 	public FoodOrderingSysRests sysRests;
+        public RestAdminsData sysRestsAdmins;
 
 	private Manager(){
             theSuperAdmin.setID(203398);
@@ -21,22 +21,22 @@ public class Manager extends Admin {
 	}
 
 	public static Manager getTheSuperAdmin(){
-            return null;
+            return theSuperAdmin;
 	}
 
-	/**
-	 * 
-	 * @param ra
-	 */
-	public void Add_Rest_Admin(Restaurant_Admin ra){
 
+	public void Add_Rest_Admin(){
+            Restaurant_Admin a = new Restaurant_Admin();
+            a.setUsername("Hardees");
+            a.setPassword("hardees1234");
+            sysRestsAdmins.Add_Rest_Admin(a);
 	}
 
-	/**
-	 * 
-	 * @param ra
-	 */
+
 	public boolean Remove_Rest_Admin(Restaurant_Admin ra){
-		return false;
+            return sysRestsAdmins.Remove_Rest_Admin(ra);
 	}
-}//end Manager
+        
+}
+
+
