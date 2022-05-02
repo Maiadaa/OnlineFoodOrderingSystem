@@ -48,7 +48,93 @@ public class Restaurant {
 
 	}
 
-	public void setters(){
+        public void setRest_Id(int Rest_Id) {
+            this.Rest_Id = Rest_Id;
+        }
 
-	}
+        public void setRest_Incoming_Orders(ArrayList<Order> Rest_Incoming_Orders) {
+            this.Rest_Incoming_Orders = Rest_Incoming_Orders;
+        }
+
+        public void setRest_Accepted_Orders_History(ArrayList<Order> Rest_Accepted_Orders_History) {
+            this.Rest_Accepted_Orders_History = Rest_Accepted_Orders_History;
+        }
+
+        public void setRest_Location(String Rest_Location) {
+            this.Rest_Location = Rest_Location;
+        }
+
+        public void setRest_Categ(String Rest_Categ) {
+            this.Rest_Categ = Rest_Categ;
+        }
+
+        public void setRest_Name(String Rest_Name) {
+            this.Rest_Name = Rest_Name;
+        }
+
+        public void setRest_Open(boolean Rest_Open) {
+            this.Rest_Open = Rest_Open;
+        }
+
+        public void setRest_Menu(Menu Rest_Menu) {
+            this.Rest_Menu = Rest_Menu;
+        }
+
+        public void setRest_Rating(double Rest_Rating) {
+            this.Rest_Rating = Rest_Rating;
+        }
+
+        public void setM_Menu(Menu m_Menu) {
+            this.m_Menu = m_Menu;
+        }
+
+        public void setM_Restaurant_Admin(Restaurant_Admin m_Restaurant_Admin) {
+            this.m_Restaurant_Admin = m_Restaurant_Admin;
+        }
+
+        public int getRest_Id() {
+            return Rest_Id;
+        }
+
+        public ArrayList<Order> getRest_Incoming_Orders() {
+            return Rest_Incoming_Orders;
+        }
+
+        public ArrayList<Order> getRest_Accepted_Orders_History() {
+            return Rest_Accepted_Orders_History;
+        }
+
+        public String getRest_Location() {
+            return Rest_Location;
+        }
+
+        public String getRest_Categ() {
+            return Rest_Categ;
+        }
+
+        public String getRest_Name() {
+            return Rest_Name;
+        }
+
+        public boolean isRest_Open() {
+            return Rest_Open;
+        }
+
+        public Menu getRest_Menu() {
+            return Rest_Menu;
+        }
+
+        public double getRest_Rating() {
+            return Rest_Rating;
+        }
+
+        public Menu getM_Menu() {
+            return m_Menu;
+        }
+
+        public Restaurant_Admin getM_Restaurant_Admin() {
+            return m_Restaurant_Admin;
+        }
+
+        
 }//end Restaurant

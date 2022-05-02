@@ -1,6 +1,8 @@
 package onlinefoodorderingsystem;
 import java.util.ArrayList;
-
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
 
 public class Customer extends Person implements New_Rests_Observer {
 
@@ -29,7 +31,41 @@ public class Customer extends Person implements New_Rests_Observer {
 
 
 	public void Create_Feedback(int Order_Id){
-
+            for(int i = 0; i < Orders_History.size(); i++){
+                System.out.println(Orders_History.get(i).toString());
+            }
+            int OrderID;
+            Scanner Choice = new Scanner(System.in);
+            System.out.println("Enter your order ID.");
+            OrderID = Choice.nextInt();
+            Order_Id = OrderID;
+            m_Feedback = new Feedback();
+            m_Feedback.setFeedback_Id(Order_Id+20);
+            m_Feedback.setFeedback_Date(java.time.LocalDate.now());
+            int choice = -1;
+            Scanner feedbackTypeChoice = new Scanner(System.in);
+            System.out.println("Enter Your feedback Type(Complaint or rating).");
+            System.out.println("For complaint press 0.");
+            System.out.println("For rating press 1.");
+            choice = feedbackTypeChoice.nextInt();
+            if(choice == 0){
+                m_Feedback.setFeedback_Type("complaint");
+            }else if(choice == 1){
+                m_Feedback.setFeedback_Type("complaint");
+            }
+            String description;
+            Scanner feedbackdesc = new Scanner(System.in);
+            System.out.println("Enter Feedback description.");
+            description = feedbackdesc.nextLine();
+            m_Feedback.setFeedback_Desc(description);
+            m_Feedback.setFeedback_State("Pending");
+            m_Feedback.setOrder_Id(Order_Id);
+            m_Feedback.getF_Type().Handle_Feedback(m_Feedback);
+            if("pending".equals(m_Feedback.getFeedback_State())){
+                System.out.println("Still handling it.");
+            }else {
+                System.out.println("done");
+            }
 	}
 
 	public void Create_Order(){
@@ -48,7 +84,16 @@ public class Customer extends Person implements New_Rests_Observer {
 
 
 	public void View_Order_Details(Order o){
-
+            for(int i = 0; i < Orders_History.size(); i++){
+                System.out.println(Orders_History.get(i).toString());
+            }
+            System.out.println("Select your order.");
+            int choice;
+            Scanner enterchoice = new Scanner(System.in);
+            choice = enterchoice.nextInt();
+            System.out.println("Your order ID is " + Orders_History.get(choice).getOrder_Id());
+            System.out.println("Your order restaurant is " + Orders_History.get(choice).getOrder_Rest().);
+            
 	}
 
 	public ArrayList<Order> getOrders_History(){
