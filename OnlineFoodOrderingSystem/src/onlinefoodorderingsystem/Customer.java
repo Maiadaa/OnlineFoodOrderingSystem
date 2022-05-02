@@ -10,7 +10,8 @@ public class Customer extends Person implements New_Rests_Observer {
 	public Feedback m_Feedback;
 	public Order m_Order;
 	public SysRests_Interface m_SysRests;
-
+        public CustomersData custdata;
+        
 	public Customer(){
 
 	}
@@ -92,8 +93,14 @@ public class Customer extends Person implements New_Rests_Observer {
             Scanner enterchoice = new Scanner(System.in);
             choice = enterchoice.nextInt();
             System.out.println("Your order ID is " + Orders_History.get(choice).getOrder_Id());
-            System.out.println("Your order restaurant is " + Orders_History.get(choice).getOrder_Rest().);
-            
+            System.out.println("Your order restaurant is " + Orders_History.get(choice).getOrder_Rest().getRest_Name());
+            System.out.println("Your order date is " + Orders_History.get(choice).getOrder_Date());
+            System.out.println("Your order coupon is " + Orders_History.get(choice).getOrder_Promo());
+            System.out.println("Your order price is " + Orders_History.get(choice).getOrder_Price());
+            for (int i = 0; i < Orders_History.get(choice).getOrdered_Items().size(); i++) {
+                System.out.println("your order item number " + i + " is " + Orders_History.get(choice).getOrdered_Items().get(i));
+            }
+            System.out.println("Your order status is " + Orders_History.get(choice).getOrder_status());
 	}
 
 	public ArrayList<Order> getOrders_History(){
