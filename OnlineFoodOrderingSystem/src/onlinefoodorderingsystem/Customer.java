@@ -85,18 +85,7 @@ public class Customer extends Person implements New_Rests_Observer {
     }
 
     public void View_Order_Details(Order o) {
-        Order orders = new Order();
-        orders.setOrder_Id(100);
-        orders.setOrder_Price(200);
-        orders.setOrder_Date("202132");
-        Orders_History.add(orders);
-        for (int i = 0; i < Orders_History.size(); i++) {
-            System.out.println(Orders_History.get(i).toString());
-        }
-        System.out.println("Select your order.");
-        int choice;
-        Scanner enterchoice = new Scanner(System.in);
-        choice = enterchoice.nextInt();
+        int choice = o.getOrder_Id();
         System.out.println("Your order ID is " + Orders_History.get(choice).getOrder_Id());
         System.out.println("Your order restaurant is " + Orders_History.get(choice).getOrder_Rest().getRest_Name());
         System.out.println("Your order date is " + Orders_History.get(choice).getOrder_Date());
