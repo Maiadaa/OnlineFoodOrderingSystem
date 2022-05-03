@@ -24,11 +24,12 @@ public class Manager extends Admin {
         return theSuperAdmin;
     }
 
-    public static Manager ManagerLogin(String username, String pw) {
-        if (username.equals("manager") && pw.equals("m1234")) {
-            return theSuperAdmin;
+    public static boolean ManagerLogin(String username, String pw) {
+        if (username.equals("manager") && pw.equals("m1234")) 
+        {
+            return true;
         }
-        return null;
+        return false;
     }
 
     public void Add_Rest_Admin(Restaurant_Admin ra) {
@@ -39,12 +40,12 @@ public class Manager extends Admin {
          */
 
         sysRestsAdmins.Add_Rest_Admin(ra);
-        sysRests.Add_Rest(ra.getRest());
+        //sysRests.Add_Rest(ra.getRest());
     }
 
     public boolean Remove_Rest_Admin(Restaurant_Admin ra) {
         if (sysRestsAdmins.Remove_Rest_Admin(ra)) {
-            sysRests.Remove_Rest(ra.getRest());
+            //sysRests.Remove_Rest(ra.getRest());
             return true;
         }
         return false;

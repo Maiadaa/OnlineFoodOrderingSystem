@@ -144,4 +144,9 @@ public class Customer extends Person implements New_Rests_Observer {
 
 	}
 
+    @Override
+    public ArrayList<String> getNewRestsNotifs() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }

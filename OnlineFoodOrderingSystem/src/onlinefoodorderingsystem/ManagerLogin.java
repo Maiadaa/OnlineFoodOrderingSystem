@@ -139,7 +139,8 @@ public class ManagerLogin extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(null, "Please fill in your login credentials");
         }
-        if(Manager.ManagerLogin(uname, uname)!= null)
+        
+        if(Manager.ManagerLogin(uname, password))
         {
             ManagerMenu menu = new ManagerMenu(Manager.getTheSuperAdmin());
             menu.setVisible(true);

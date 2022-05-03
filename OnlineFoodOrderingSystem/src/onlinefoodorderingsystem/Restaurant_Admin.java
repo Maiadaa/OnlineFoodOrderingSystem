@@ -42,10 +42,5 @@ public class Restaurant_Admin extends Person implements Feedback_Detector {
         this.Rest = Rest;
     }
 
-    @Override
-    public void setters() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
  
 }//end Restaurant_Admin
