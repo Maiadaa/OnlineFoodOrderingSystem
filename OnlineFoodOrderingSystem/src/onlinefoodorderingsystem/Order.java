@@ -18,19 +18,26 @@ public class Order {
 
 	}
 
+    public Order(int Order_Id, Restaurant Order_Rest, ArrayList<Order_Item> Ordered_Items, String Order_Date, Coupon Order_Promo, double Order_Price, Status Order_status, Order_Item m_Order_Item, Payment_Method m_Payment_Method) {
+        this.Order_Id = Order_Id;
+        this.Order_Rest = Order_Rest;
+        this.Ordered_Items = Ordered_Items;
+        this.Order_Date = Order_Date;
+        this.Order_Promo = Order_Promo;
+        this.Order_Price = Order_Price;
+        this.Order_status = Order_status;
+        this.m_Order_Item = m_Order_Item;
+        this.m_Payment_Method = m_Payment_Method;
+    }
+        
+        
+
 	public void finalize() throws Throwable {
 
 	}
-	public void View_Order_Details(){
-
-	}
-
-	/**
-	 * 
-	 * @param item
-	 */
+        
 	public void Add_To_Cart(Order_Item item){
-
+            Ordered_Items.add(item);
 	}
 
 	/**
@@ -38,6 +45,11 @@ public class Order {
 	 * @param item
 	 */
 	public boolean Remove_From_Cart(Order_Item item){
+            for (int i = 0 ; i > Ordered_Items.size();i++){
+                if (Ordered_Items.get(i) ==  item){
+                  Ordered_Items.remove(item);
+                }
+            }
 		return false;
 	}
 
@@ -47,7 +59,11 @@ public class Order {
 	 * @param new_quant
 	 */
 	public void Modify_Cart_Item(Order_Item item, int new_quant){
-
+            for (int i = 0 ; i > Ordered_Items.size();i++){
+                if (Ordered_Items.get(i) == item){
+                  Ordered_Items.remove(item);
+                }
+            }
 	}
 
 	/**
@@ -55,11 +71,11 @@ public class Order {
 	 * @param c
 	 */
 	public void Redeem_Coupon(Coupon c){
-
+            
 	}
 
-	public void Checkout(){
-
+	public void Checkout(Order o){
+            o.setOrder_status(Order_status.Preparing);
 	}
 
         public void setOrder_Id(int Order_Id) {
