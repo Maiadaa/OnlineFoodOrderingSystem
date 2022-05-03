@@ -13,6 +13,11 @@ public class Menu  {
             
         }
 
+    Menu() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+        
+
 	
         public ArrayList<Menu_Item> getItems_In_Menu() {
             return Items_In_Menu;
@@ -33,9 +38,9 @@ public class Menu  {
 
 	
 	public boolean Remove_Menu_Item(Menu_Item mi){
-            for (int i =0 ;i> Items_In_Menu.size();i++){
+            for (int i =0 ;i< Items_In_Menu.size();i++){
                 if(Items_In_Menu.get(i).getItem_Id() == mi.getItem_Id()){
-                    Items_In_Menu.remove(mi);
+                    Items_In_Menu.remove(mi.getItem_Id());
                     return true;
                 }
             }
