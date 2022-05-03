@@ -4,6 +4,8 @@
  */
 package onlinefoodorderingsystem;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author mahmo
@@ -55,8 +57,18 @@ public class HomePage extends javax.swing.JFrame {
         });
 
         RestaurantAdminRedirect.setText("Restaurant Admin");
+        RestaurantAdminRedirect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RestaurantAdminRedirectActionPerformed(evt);
+            }
+        });
 
         CustomerRedirect.setText("Customer");
+        CustomerRedirect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CustomerRedirectActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -110,7 +122,24 @@ public class HomePage extends javax.swing.JFrame {
 
     private void ManagerRedirectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManagerRedirectActionPerformed
         // TODO add your handling code here:
+        ManagerLogin login = new ManagerLogin();
+        login.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_ManagerRedirectActionPerformed
+
+    private void CustomerRedirectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CustomerRedirectActionPerformed
+        // TODO add your handling code here:
+        CustomerLogin obj = new CustomerLogin();
+        obj.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_CustomerRedirectActionPerformed
+
+    private void RestaurantAdminRedirectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RestaurantAdminRedirectActionPerformed
+        // TODO add your handling code here:
+        RestaurantAdminLogin obj = new RestaurantAdminLogin();
+        obj.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_RestaurantAdminRedirectActionPerformed
 
     /**
      * @param args the command line arguments

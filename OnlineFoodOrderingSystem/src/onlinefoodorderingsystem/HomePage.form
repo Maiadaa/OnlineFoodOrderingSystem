@@ -102,11 +102,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Restaurant Admin"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RestaurantAdminRedirectActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="CustomerRedirect">
       <Properties>
         <Property name="text" type="java.lang.String" value="Customer"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CustomerRedirectActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

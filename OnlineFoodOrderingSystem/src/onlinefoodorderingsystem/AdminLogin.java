@@ -11,11 +11,12 @@ import javax.swing.JOptionPane;
  * @author mahmo
  */
 public class AdminLogin extends javax.swing.JFrame {
-    Admin tempAdmin = new Admin();
+    static Admin tempAdmin = new Admin();
     /**
      * Creates new form AdminLogin
      */
-    public AdminLogin() {
+    public AdminLogin() 
+    {
         initComponents();
     }
 

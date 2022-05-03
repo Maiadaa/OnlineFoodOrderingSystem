@@ -3,14 +3,17 @@ import java.util.ArrayList;
 
 public class RestAdminsData {
 
-	private static ArrayList<Restaurant_Admin> restAdmins;
+	private static ArrayList<Restaurant_Admin> restAdmins = new ArrayList<Restaurant_Admin>();
 
-	public RestAdminsData(){
+	public RestAdminsData()
+        {
 
 	}
 
-	public static void Add_Rest_Admin(Restaurant_Admin ra){
+	public void Add_Rest_Admin(Restaurant_Admin ra)
+        {
             restAdmins.add(ra);
+            System.out.println("Restaurant Admin Added Successfully");
 	}
 
 	public static boolean Remove_Rest_Admin(Restaurant_Admin ra){

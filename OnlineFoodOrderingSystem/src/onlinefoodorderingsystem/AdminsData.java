@@ -6,7 +6,6 @@ public class AdminsData
 {
 
 	private static ArrayList<Admin> sysAdmins = new ArrayList<Admin>();
-        
 	public AdminsData()
         {
 

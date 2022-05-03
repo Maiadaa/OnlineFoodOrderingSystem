@@ -5,18 +5,20 @@ import java.util.ArrayList;
 
 public class CustomersData {
 
-	private static ArrayList<Customer> sysCusts;
+	private static ArrayList<Customer> sysCusts = new ArrayList<Customer>();
 
 	public CustomersData(){
 
 	}
 
-    public static ArrayList<Customer> getSysCusts() 
-    {
-        return sysCusts;
-    }
+        public static ArrayList<Customer> getSysCusts() 
+        {
+            return sysCusts;
+        }
         
-	public static void SignUp(Customer cust){
-
+	public void SignUp(Customer cust)
+        {
+            sysCusts.add(cust);
+            System.out.println("Customer Added Successsfully");
 	}	
 }

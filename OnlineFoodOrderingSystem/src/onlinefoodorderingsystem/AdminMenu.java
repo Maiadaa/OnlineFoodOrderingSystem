@@ -16,6 +16,7 @@ public class AdminMenu extends javax.swing.JFrame {
     public AdminMenu(Admin a1) 
     {
         tempAdmin = a1;
+        System.out.println(tempAdmin.getName());
         initComponents();
     }
 
@@ -28,29 +29,25 @@ public class AdminMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        NameField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        BackButton = new javax.swing.JButton();
+        LogOutButton = new javax.swing.JButton();
+        NameLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        NameField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NameFieldActionPerformed(evt);
-            }
-        });
 
         jLabel1.setText("Welcome");
 
         jLabel2.setText("Admin Menu");
 
-        BackButton.setText("Back");
-        BackButton.addActionListener(new java.awt.event.ActionListener() {
+        LogOutButton.setText("Log Out");
+        LogOutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BackButtonActionPerformed(evt);
+                LogOutButtonActionPerformed(evt);
             }
         });
+
+        NameLabel.setText("jLabel3");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -60,47 +57,40 @@ public class AdminMenu extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(NameField, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
+                .addComponent(NameLabel)
+                .addGap(60, 60, 60)
                 .addComponent(jLabel2)
-                .addContainerGap(154, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(BackButton)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                .addComponent(LogOutButton)
+                .addGap(17, 17, 17))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 363, Short.MAX_VALUE)
-                .addComponent(BackButton)
-                .addGap(15, 15, 15))
+                    .addComponent(jLabel2)
+                    .addComponent(NameLabel)
+                    .addComponent(LogOutButton))
+                .addContainerGap(407, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void NameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameFieldActionPerformed
-        // TODO add your handling code here:
-        String tempname = tempAdmin.getName();
-        NameField.setText(tempname);
-        
-    }//GEN-LAST:event_NameFieldActionPerformed
-
-    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
+    private void LogOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutButtonActionPerformed
         // TODO add your handling code here:
         this.dispose();
-    }//GEN-LAST:event_BackButtonActionPerformed
+        HomePage obj = new HomePage();
+        obj.setVisible(true);
+    }//GEN-LAST:event_LogOutButtonActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -133,8 +123,8 @@ public class AdminMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BackButton;
-    private javax.swing.JTextField NameField;
+    private javax.swing.JButton LogOutButton;
+    private javax.swing.JLabel NameLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
