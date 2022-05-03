@@ -21,14 +21,12 @@ public class FoodOrderingSysRests implements SysRests_Interface, New_Rests {
      *
      * @param rest
      */
-    public boolean Remove_Rest(Restaurant rest) {
+    public void Remove_Rest(Restaurant rest) {
         for (Restaurant R : Rests_Avail) {
             if (rest == R) {
                 Rests_Avail.remove(R);
-                return true;
             }
         }
-        return false;
     }
 
     public HashMap Generate_Sales_Report() {

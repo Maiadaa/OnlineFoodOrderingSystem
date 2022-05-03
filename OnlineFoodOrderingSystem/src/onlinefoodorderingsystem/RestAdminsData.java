@@ -16,14 +16,12 @@ public class RestAdminsData {
             System.out.println("Restaurant Admin Added Successfully");
 	}
 
-	public static boolean Remove_Rest_Admin(Restaurant_Admin ra){
+	public static void Remove_Rest_Admin(Restaurant_Admin ra){
             for(Restaurant_Admin RA : restAdmins){
                 if(ra == RA){
                     restAdmins.remove(RA);
-                    return true;
                 }
             }
-            return false;
 	}
 
         public static ArrayList<Restaurant_Admin> getRestAdmins() {

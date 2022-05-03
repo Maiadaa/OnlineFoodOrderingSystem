@@ -31,25 +31,6 @@ public class Manager extends Admin {
         return false;
     }
 
-    public void Add_Rest_Admin(Restaurant_Admin ra) {
-        /* test:
-            Restaurant_Admin ra = new Restaurant_Admin();
-            ra.setUsername("Hardees");
-            ra.setPassword("hardees1234");
-         */
-
-        sysRestsAdmins.Add_Rest_Admin(ra);
-        sysRests.Add_Rest(ra.getRest());
-    }
-
-    public boolean Remove_Rest_Admin(Restaurant_Admin ra) {
-        if (sysRestsAdmins.Remove_Rest_Admin(ra)) {
-            sysRests.Remove_Rest(ra.getRest());
-            return true;
-        }
-        return false;
-    }
-
     public FoodOrderingSysRests getSysRests() {
         return sysRests;
     }

@@ -4,6 +4,7 @@
  */
 package onlinefoodorderingsystem;
 
+import com.sun.org.apache.xalan.internal.xsltc.compiler.util.StringStack;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -16,18 +17,17 @@ public class Manager_RemoveRest_GUI extends javax.swing.JFrame {
      * Creates new form Manager_RemoveRestAdmin_GUI
      */
     public Manager_RemoveRest_GUI() {
-        DefaultTableModel tblModel = (DefaultTableModel) jTable1.getModel();
-        
-        /*
-        // upon selecting a row 
-        Manager.getTheManager().Remove_Rest_Admin(ra);
-        */
+        DefaultTableModel tblModel = (DefaultTableModel) jTable1.getModel();     
         
         for (Restaurant rest: Manager.getTheManager().getSysRests().getRests_Avail()) {
-            for(Restaurant_Admin ra: Manager.getTheManager().getSysRestsAdmins().getRestAdmins())
-                String data[] = {rest.getRest_Name(), ra.getName()};
-                jTable1.addRow(data[0], data[1]);
+            for(Restaurant_Admin ra: Manager.getTheManager().getSysRestsAdmins().getRestAdmins()){
+                String[] row = { //If you wish to separate the headers array from columns array
+                    rest.getRest_Name(),
+                     ra.getName()
+                };
+                tblModel.addRow(new Object[] { row[0], row[1] });
                 break;
+            }
         }
         
         initComponents();
@@ -44,8 +44,9 @@ public class Manager_RemoveRest_GUI extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        backBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        AddGUI = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,21 +61,45 @@ public class Manager_RemoveRest_GUI extends javax.swing.JFrame {
                 "Restaurant Admin", "Restaurant"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
         jTable1.setColumnSelectionAllowed(true);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTable1MousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
         jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        jButton1.setText("jButton1");
+        backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Select a row to remove ");
+
+        AddGUI.setText("Add");
+        AddGUI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddGUIActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -87,26 +112,55 @@ public class Manager_RemoveRest_GUI extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1))
+                        .addComponent(backBtn))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(135, 135, 135)
-                        .addComponent(jLabel1)))
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(167, 167, 167)
+                        .addComponent(AddGUI)))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
+                .addComponent(backBtn)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(AddGUI)
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void AddGUIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddGUIActionPerformed
+        // TODO add your handling code here:
+        Manager_AddRest_GUI addGUI = new Manager_AddRest_GUI();
+        addGUI.setVisible(true);
+            
+        this.dispose();
+    }//GEN-LAST:event_AddGUIActionPerformed
+
+    private void jTable1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MousePressed
+        // TODO add your handling code here:
+        int viewRow = jTable1.getSelectedRow();
+        
+        Manager.getTheManager().getSysRestsAdmins().Remove_Rest_Admin(Manager.getTheManager().getSysRestsAdmins().getRestAdmins().get(viewRow - 1 ));
+        Manager.getTheManager().getSysRests().Remove_Rest((Manager.getTheManager().getSysRestsAdmins().getRestAdmins().get(viewRow - 1 )).getRestaurant());
+        
+        DefaultTableModel tblModel = (DefaultTableModel) jTable1.getModel();
+        tblModel.removeRow(viewRow);
+    }//GEN-LAST:event_jTable1MousePressed
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_backBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,7 +199,8 @@ public class Manager_RemoveRest_GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton AddGUI;
+    private javax.swing.JButton backBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

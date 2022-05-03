@@ -158,7 +158,10 @@ public class Manager_AddRest_GUI extends javax.swing.JFrame {
             if(!restName.equals("")){
                 ra.getRestaurant.setRest_Name(restName);
             }
-            Manager.getTheManager().Add_Rest_Admin(ra);
+            Manager.getTheManager().getSysRestsAdmins().Add_Rest_Admin(ra);
+            Manager.getTheManager().getSysRests().Add_Rest(ra.getRestaurant());
+            
+            JOptionPane.showMessageDialog(null, "Restaurant and it's admin were added successfully.");
         }
         
     }//GEN-LAST:event_submitActionPerformed
