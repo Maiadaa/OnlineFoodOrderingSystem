@@ -31,9 +31,10 @@ public class Customer extends Person implements New_Rests_Observer {
 
         
 
-	public void Sign_Up(String Username, String Pwd){
-
-	}
+//	public void Sign_Up(Customer cust){
+//            custdata.SignUp(this);
+//            
+//	}
 
 
 	public Customer CustomerLogin(String Username, String Pwd)
@@ -50,7 +51,7 @@ public class Customer extends Person implements New_Rests_Observer {
 
 
 	public void Manage_Account(Customer acc){
-
+            
 	}
 
 

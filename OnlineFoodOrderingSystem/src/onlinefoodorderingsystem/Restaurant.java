@@ -16,7 +16,7 @@ public class Restaurant {
 	private String Rest_Categ;
 	private String Rest_Name;
 	private boolean Rest_Open;
-	private Menu  Rest_Menu;
+	private Menu Rest_Menu;
 	private double Rest_Rating;
 
 	public Restaurant(){
@@ -24,7 +24,9 @@ public class Restaurant {
 	}
 
 	public void View_Menu(){
-            
+            for(int i =0; i < Rest_Menu.getItems_In_Menu().size(); i++){
+                System.out.println(Rest_Menu.getItems_In_Menu().get(i));
+            }
 	}
 
 	/**
@@ -32,15 +34,22 @@ public class Restaurant {
 	 * @param o
 	 */
 	public void Accept_Order(Order o){
-
+            
+            for(int i = 0; i< Rest_Incoming_Orders.size(); i++){
+                if (Rest_Incoming_Orders.get(i).getOrder_Id() == o.getOrder_Id()){
+                    Rest_Accepted_Orders_History.add(o);
+                }
+            }
 	}
 
 	/**
 	 * 
-	 * @param f
+	 * @param 
 	 */
 	public void Handle_Feedback(Feedback f){
-
+            this.setRest_Rating(this.getRest_Rating() + f.getRating());
+            
+            // mehtag attribute f class feedback esmo rating double
 	}
 
         public void setRest_Id(int Rest_Id) {

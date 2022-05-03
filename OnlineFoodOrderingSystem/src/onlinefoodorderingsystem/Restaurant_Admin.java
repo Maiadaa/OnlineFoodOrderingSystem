@@ -35,7 +35,7 @@ public class Restaurant_Admin extends Person implements Feedback_Detector {
 	 * @param f
 	 */
 	public void Handle_Feedback(Feedback f){
-
+            Rest.Handle_Feedback(f);
 	}
 
     public void setRest(Restaurant Rest) {
