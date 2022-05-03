@@ -8,6 +8,6 @@ import java.util.ArrayList;
  */
 public interface SysRests_Interface {
 
-    public ArrayList<Restaurant> getRests_Avail();
+    public abstract ArrayList<Restaurant> getRests_Avail();
 
 }

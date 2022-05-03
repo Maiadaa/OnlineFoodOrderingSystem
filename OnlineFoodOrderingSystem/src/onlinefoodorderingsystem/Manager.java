@@ -4,29 +4,28 @@ import java.util.ArrayList;
 
 public class Manager extends Admin {
 
-    private static Manager theSuperAdmin;
+    private static Manager theManager;
 
-    public FoodOrderingSysRests sysRests;
-    public RestAdminsData sysRestsAdmins;
+    private FoodOrderingSysRests sysRests;
+    private RestAdminsData sysRestsAdmins;
 
     private Manager() {
-        theSuperAdmin.setID(203398);
-        theSuperAdmin.setUsername("manager");
-        theSuperAdmin.setPassword("m1234");
-        theSuperAdmin.setName("Maiada");
-        theSuperAdmin.setGender('F');
-        theSuperAdmin.setEmail("mai@gmail.com");
-        theSuperAdmin.setPhone_number("01010101010");
-        theSuperAdmin.setAddress("Rehab");
+        theManager.setID(203398);
+        theManager.setUsername("manager");
+        theManager.setPassword("m1234");
+        theManager.setName("Maiada");
+        theManager.setGender('F');
+        theManager.setEmail("mai@gmail.com");
+        theManager.setPhone_number("01010101010");
+        theManager.setAddress("Rehab");
     }
 
-    public static Manager getTheSuperAdmin() {
-        return theSuperAdmin;
+    public static Manager getTheManager() {
+        return theManager;
     }
 
     public static boolean ManagerLogin(String username, String pw) {
-        if (username.equals("manager") && pw.equals("m1234")) 
-        {
+        if (username.equals("manager") && pw.equals("m1234")) {
             return true;
         }
         return false;
@@ -40,15 +39,31 @@ public class Manager extends Admin {
          */
 
         sysRestsAdmins.Add_Rest_Admin(ra);
-        //sysRests.Add_Rest(ra.getRest());
+        sysRests.Add_Rest(ra.getRest());
     }
 
     public boolean Remove_Rest_Admin(Restaurant_Admin ra) {
         if (sysRestsAdmins.Remove_Rest_Admin(ra)) {
-            //sysRests.Remove_Rest(ra.getRest());
+            sysRests.Remove_Rest(ra.getRest());
             return true;
         }
         return false;
+    }
+
+    public FoodOrderingSysRests getSysRests() {
+        return sysRests;
+    }
+
+    public void setSysRests(FoodOrderingSysRests sysRests) {
+        this.sysRests = sysRests;
+    }
+
+    public RestAdminsData getSysRestsAdmins() {
+        return sysRestsAdmins;
+    }
+
+    public void setSysRestsAdmins(RestAdminsData sysRestsAdmins) {
+        this.sysRestsAdmins = sysRestsAdmins;
     }
 
 }

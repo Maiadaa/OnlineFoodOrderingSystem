@@ -6,8 +6,7 @@ import java.util.HashMap;
 public class FoodOrderingSysRests implements SysRests_Interface, New_Rests {
 
     private ArrayList<New_Rests_Observer> Customers;
-    private ArrayList<Restaurant> Rests_Avail;
-    private SysRests_Interface RestsInterface;
+    private static ArrayList<Restaurant> Rests_Avail;
 
     public FoodOrderingSysRests() {
 

@@ -142,7 +142,7 @@ public class ManagerLogin extends javax.swing.JFrame {
         
         if(Manager.ManagerLogin(uname, password))
         {
-            ManagerMenu menu = new ManagerMenu(Manager.getTheSuperAdmin());
+            ManagerMenu menu = new ManagerMenu(Manager.getTheManager());
             menu.setVisible(true);
             this.dispose();
         }
