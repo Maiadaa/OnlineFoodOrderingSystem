@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 03, 2022 at 01:38 PM
+-- Generation Time: May 03, 2022 at 06:37 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -24,13 +24,30 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `ID` int(11) NOT NULL,
+  `Name` varchar(20) DEFAULT NULL,
+  `Email` varchar(20) DEFAULT NULL,
+  `Phone` varchar(11) DEFAULT NULL,
+  `Address` varchar(30) DEFAULT NULL,
+  `Username` varchar(15) NOT NULL,
+  `Password` varchar(15) NOT NULL,
+  `Gender` char(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `coupon`
 --
 
 CREATE TABLE `coupon` (
   `Coupon_ID` int(11) NOT NULL,
   `Coupon_code` int(11) NOT NULL,
-  `Coupon_desc` varchar(20) DEFAULT NULL,
+  `Coupon_desc` varchar(30) DEFAULT NULL,
   `Expiry_date` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -41,7 +58,14 @@ CREATE TABLE `coupon` (
 --
 
 CREATE TABLE `customer` (
-  `ID` int(11) NOT NULL
+  `ID` int(11) NOT NULL,
+  `Name` varchar(20) DEFAULT NULL,
+  `Email` varchar(20) DEFAULT NULL,
+  `Phone` varchar(11) DEFAULT NULL,
+  `Address` varchar(30) DEFAULT NULL,
+  `Username` varchar(15) NOT NULL,
+  `Password` varchar(15) NOT NULL,
+  `Gender` char(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -55,9 +79,26 @@ CREATE TABLE `feedback` (
   `Customer_ID` int(11) NOT NULL,
   `Order_ID` int(11) DEFAULT NULL,
   `Feedback_Date` varchar(15) DEFAULT NULL,
-  `Feedback_Type` varchar(10) NOT NULL,
-  `Feedback_Desc` varchar(10) NOT NULL,
-  `Feedback_State` varchar(10) NOT NULL DEFAULT 'Pending'
+  `Feedback_Type` varchar(15) NOT NULL,
+  `Feedback_Desc` varchar(30) NOT NULL,
+  `Feedback_State` varchar(15) NOT NULL DEFAULT 'Pending'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `manager`
+--
+
+CREATE TABLE `manager` (
+  `ID` int(11) NOT NULL,
+  `Name` varchar(20) DEFAULT NULL,
+  `Email` varchar(20) DEFAULT NULL,
+  `Phone` varchar(11) DEFAULT NULL,
+  `Address` varchar(30) DEFAULT NULL,
+  `Username` varchar(15) NOT NULL,
+  `Password` varchar(15) NOT NULL,
+  `Gender` char(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -79,8 +120,8 @@ CREATE TABLE `menu` (
 CREATE TABLE `menu_item` (
   `MenuItem_ID` int(11) NOT NULL,
   `Menu_ID` int(11) NOT NULL,
-  `Item_Name` varchar(15) NOT NULL,
-  `Item_Desc` varchar(20) NOT NULL,
+  `Item_Name` varchar(20) NOT NULL,
+  `Item_Desc` varchar(30) NOT NULL,
   `Item_Categ` varchar(15) NOT NULL,
   `Item_Price` double NOT NULL,
   `Item_Avail` tinyint(4) DEFAULT NULL
@@ -99,7 +140,7 @@ CREATE TABLE `order` (
   `Rest_ID` int(11) NOT NULL,
   `Order_Date` varchar(15) DEFAULT NULL,
   `Order_Price` double NOT NULL,
-  `Order_PayMethod` varchar(10) NOT NULL,
+  `Order_PayMethod` varchar(15) NOT NULL,
   `Order_status` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -120,23 +161,6 @@ CREATE TABLE `order_item` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `person`
---
-
-CREATE TABLE `person` (
-  `ID` int(11) NOT NULL,
-  `Name` varchar(20) DEFAULT NULL,
-  `Email` varchar(20) DEFAULT NULL,
-  `Phone` varchar(11) DEFAULT NULL,
-  `Address` varchar(20) DEFAULT NULL,
-  `Username` varchar(15) NOT NULL,
-  `Password` varchar(15) NOT NULL,
-  `Gender` char(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `premiumcust_coupon`
 --
 
@@ -152,7 +176,14 @@ CREATE TABLE `premiumcust_coupon` (
 --
 
 CREATE TABLE `premium_customer` (
-  `ID` int(11) NOT NULL
+  `ID` int(11) NOT NULL,
+  `Name` varchar(20) DEFAULT NULL,
+  `Email` varchar(20) DEFAULT NULL,
+  `Phone` varchar(11) DEFAULT NULL,
+  `Address` varchar(30) DEFAULT NULL,
+  `Username` varchar(15) NOT NULL,
+  `Password` varchar(15) NOT NULL,
+  `Gender` char(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -164,9 +195,9 @@ CREATE TABLE `premium_customer` (
 CREATE TABLE `restaurant` (
   `Rest_ID` int(11) NOT NULL,
   `Menu_ID` int(11) NOT NULL,
-  `Rest_Loc` varchar(15) NOT NULL,
+  `Rest_Loc` varchar(30) NOT NULL,
   `Rest_Categ` varchar(15) NOT NULL,
-  `Rest_Name` varchar(15) NOT NULL,
+  `Rest_Name` varchar(20) NOT NULL,
   `Rest_Open` tinyint(4) DEFAULT NULL,
   `Rest_Rating` double DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -179,12 +210,25 @@ CREATE TABLE `restaurant` (
 
 CREATE TABLE `rest_admin` (
   `ID` int(11) NOT NULL,
+  `Name` varchar(20) DEFAULT NULL,
+  `Email` varchar(20) DEFAULT NULL,
+  `Phone` varchar(11) DEFAULT NULL,
+  `Address` varchar(30) DEFAULT NULL,
+  `Username` varchar(15) NOT NULL,
+  `Password` varchar(15) NOT NULL,
+  `Gender` char(1) DEFAULT NULL,
   `Rest_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `coupon`
@@ -205,6 +249,12 @@ ALTER TABLE `feedback`
   ADD PRIMARY KEY (`Feedback_ID`,`Customer_ID`),
   ADD KEY `FK_Cust_feedback` (`Customer_ID`),
   ADD KEY `FK_Order_feedback` (`Order_ID`);
+
+--
+-- Indexes for table `manager`
+--
+ALTER TABLE `manager`
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `menu`
@@ -239,12 +289,6 @@ ALTER TABLE `order_item`
   ADD KEY `FK_Order_OrderItem` (`Order_ID`);
 
 --
--- Indexes for table `person`
---
-ALTER TABLE `person`
-  ADD PRIMARY KEY (`ID`);
-
---
 -- Indexes for table `premiumcust_coupon`
 --
 ALTER TABLE `premiumcust_coupon`
@@ -276,16 +320,34 @@ ALTER TABLE `rest_admin`
 --
 
 --
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `coupon`
 --
 ALTER TABLE `coupon`
   MODIFY `Coupon_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `customer`
+--
+ALTER TABLE `customer`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
   MODIFY `Feedback_ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `manager`
+--
+ALTER TABLE `manager`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `menu`
@@ -312,9 +374,9 @@ ALTER TABLE `order_item`
   MODIFY `OrderItem_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `person`
+-- AUTO_INCREMENT for table `premium_customer`
 --
-ALTER TABLE `person`
+ALTER TABLE `premium_customer`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -324,14 +386,14 @@ ALTER TABLE `restaurant`
   MODIFY `Rest_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Constraints for dumped tables
+-- AUTO_INCREMENT for table `rest_admin`
 --
+ALTER TABLE `rest_admin`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Constraints for table `customer`
+-- Constraints for dumped tables
 --
-ALTER TABLE `customer`
-  ADD CONSTRAINT `FK_Person_Cust` FOREIGN KEY (`ID`) REFERENCES `person` (`ID`);
 
 --
 -- Constraints for table `feedback`
@@ -366,13 +428,7 @@ ALTER TABLE `order_item`
 --
 ALTER TABLE `premiumcust_coupon`
   ADD CONSTRAINT `FK_Coupon_PremiumCust` FOREIGN KEY (`Coupon_ID`) REFERENCES `coupon` (`Coupon_ID`),
-  ADD CONSTRAINT `FK_Person_PremiumCust` FOREIGN KEY (`Premium_Cust_ID`) REFERENCES `person` (`ID`);
-
---
--- Constraints for table `premium_customer`
---
-ALTER TABLE `premium_customer`
-  ADD CONSTRAINT `FK_Customer_Premium` FOREIGN KEY (`ID`) REFERENCES `customer` (`ID`);
+  ADD CONSTRAINT `FK_Person_PremiumCust` FOREIGN KEY (`Premium_Cust_ID`) REFERENCES `premium_customer` (`ID`);
 
 --
 -- Constraints for table `restaurant`
@@ -384,7 +440,6 @@ ALTER TABLE `restaurant`
 -- Constraints for table `rest_admin`
 --
 ALTER TABLE `rest_admin`
-  ADD CONSTRAINT `FK_Person_RestAdmin` FOREIGN KEY (`ID`) REFERENCES `person` (`ID`),
   ADD CONSTRAINT `FK_Rest_RestAdmin` FOREIGN KEY (`Rest_ID`) REFERENCES `restaurant` (`Rest_ID`);
 COMMIT;
 
