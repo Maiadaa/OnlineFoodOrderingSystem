@@ -75,7 +75,7 @@ public class Order {
 	}
 
 	public void Checkout(Order o){
-            o.setOrder_status(Order_status.Preparing);
+            o.setOrder_status(Order_status.Accepted);
 	}
 
         public void setOrder_Id(int Order_Id) {
