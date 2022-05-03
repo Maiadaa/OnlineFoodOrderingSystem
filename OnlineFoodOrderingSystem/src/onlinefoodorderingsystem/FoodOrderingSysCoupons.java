@@ -23,16 +23,23 @@ public class FoodOrderingSysCoupons implements Premium_Coupon {
 	 * 
 	 * @param C
 	 */
-	public void Create_Coupon(Coupon C){
+	public void Create_Coupon(Coupon C)
+        {
+            Coupons_Avail.add(C);
+            System.out.println("Coupoun Added Successfully");
 
 	}
-
-	/**
-	 * 
-	 * @param C
-	 */
-	public void Remove_Coupon(Coupon C){
-
+	public void Remove_Coupon(int code)
+        {
+            for (int i =0; i < Coupons_Avail.size();i++)
+            {
+                if (Coupons_Avail.get(i).getCoupon_Code() == code)
+                {
+                    Coupons_Avail.remove(i);
+                    System.out.println("Coupon Removed Successfully");
+                }
+            }
+            System.out.println("Coupon code not found");
 	}
 
 	/**
@@ -40,7 +47,8 @@ public class FoodOrderingSysCoupons implements Premium_Coupon {
 	 * @param C
 	 * @param Cust_toChk
 	 */
-	public boolean Validate_Coupon(Coupon C, Customer Cust_toChk){
+	public boolean Validate_Coupon(Coupon C, Customer Cust_toChk)
+        {
 		return false;
 	}
 
