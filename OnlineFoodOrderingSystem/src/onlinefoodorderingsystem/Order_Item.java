@@ -1,9 +1,11 @@
 package onlinefoodorderingsystem;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 
 public class Order_Item {
-
 	private Menu_Item Item;
 	private int Item_Quantity;
 	private double Item_Total_Price;
@@ -41,8 +43,7 @@ public class Order_Item {
     public void setItem_Total_Price(double Item_Total_Price) {
         this.Item_Total_Price = Item_Total_Price;
     }
-        
-    
+
 
     public void finalize() throws Throwable {
 
