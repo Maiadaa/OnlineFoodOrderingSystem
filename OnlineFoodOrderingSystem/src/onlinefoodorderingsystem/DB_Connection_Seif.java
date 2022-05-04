@@ -73,7 +73,7 @@ public class DB_Connection_Seif {
     public JTable displayCartItems(JTable tbl,Order o) {
         try {
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select `Quantity`, `Total_ItemPrice`,`Item_Name`,'MenuItem_ID' from order_item , menu_item where Order_ID = '" + o.getOrder_Id() +"'");
+            ResultSet rs = stmt.executeQuery("select `Quantity`, `Total_ItemPrice`,`Item_Name`,`order_item`.`MenuItem_ID` from order_item , menu_item where Order_ID = '" + o.getOrder_Id() +"'");
 
             DefaultTableModel model;
             model = (DefaultTableModel) tbl.getModel();
@@ -81,7 +81,7 @@ public class DB_Connection_Seif {
 
             while (rs.next()) {
                 rowData[0] = rs.getInt("MenuItem_ID");
-                rowData[1] = rs.getInt("Item_Name");
+                rowData[1] = rs.getString("Item_Name");
                 rowData[2] = rs.getInt("Quantity");
                 rowData[3] = rs.getInt("Total_ItemPrice");
                 
