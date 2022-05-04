@@ -38,9 +38,9 @@ public class Order {
 
 	}
         
-//	public void Add_To_Cart(Order_Item item){
-//            Ordered_Items.add(item);
-//	}
+	public void Add_To_Cart(Order_Item item){
+            Ordered_Items.add(item);
+	}
 
 	/**
 	 * 
@@ -78,7 +78,7 @@ public class Order {
 
 	public void Checkout(Order o){
             o.getOrder_Id();
-            o.setOrderstatus(Orderstatus.Accepted);
+            o.setOrderstatus(Orderstatus = "Accepted");
 	}
 
         public void setOrder_Id(int Order_Id) {

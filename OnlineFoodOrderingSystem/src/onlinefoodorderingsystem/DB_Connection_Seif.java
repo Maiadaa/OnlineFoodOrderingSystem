@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * @author mostafa gado
  */
 public class DB_Connection_Seif {
-     private final String userName = "root";
+    private final String userName = "root";
     private final String password = "";
     private final String dbName = "food_ordering_system";
 
@@ -43,6 +43,4 @@ public class DB_Connection_Seif {
          }
             
     }
-     
-     
 }

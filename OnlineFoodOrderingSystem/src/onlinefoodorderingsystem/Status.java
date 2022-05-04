@@ -2,7 +2,7 @@ package onlinefoodorderingsystem;
 import java.util.ArrayList;
 
 
-public enum String {
+public enum Status {
 	Accepted,
 	Cancelled,
 	Preparing,
