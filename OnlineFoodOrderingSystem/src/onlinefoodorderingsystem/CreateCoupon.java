@@ -138,7 +138,7 @@ public class CreateCoupon extends javax.swing.JFrame {
 
     private void CreateCouponButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateCouponButtonActionPerformed
         // TODO add your handling code here:
-        DB_Connection_Assem conn = new DB_Connection_Assem();
+       
         int code = Integer.parseInt(CouponCode.getText());
         int value = Integer.parseInt(DiscountValue.getText());
         String description = CouponDescription.getText();
@@ -149,8 +149,13 @@ public class CreateCoupon extends javax.swing.JFrame {
         }
         else
         {
+            DB_Connection_Assem conn = new DB_Connection_Assem();
             Coupon tempCoupon = new Coupon(code,value,description,expiry);
             conn.CreateValidCoupon(tempCoupon);
+            JOptionPane.showMessageDialog(null, "Coupon Added Successfully");
+            this.dispose();
+            Coupons newmenu = new Coupons();
+            newmenu.setVisible(true);
         }
         
     }//GEN-LAST:event_CreateCouponButtonActionPerformed
