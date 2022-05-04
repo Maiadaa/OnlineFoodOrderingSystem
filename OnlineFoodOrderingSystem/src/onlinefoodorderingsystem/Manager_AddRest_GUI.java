@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 public class Manager_AddRest_GUI extends javax.swing.JFrame {
 
     Restaurant_Admin ra = new Restaurant_Admin();
+    DB_Connection_Maiada db = new DB_Connection_Maiada();
     
     public Manager_AddRest_GUI() {
         initComponents();
@@ -44,7 +45,7 @@ public class Manager_AddRest_GUI extends javax.swing.JFrame {
 
         jLabel2.setText("Set Restaurant Admin Login Credentials :");
 
-        jLabel3.setText("Optional: Set His Restaurant's Name:");
+        jLabel3.setText("Set Restaurant's Name:");
 
         jLabel4.setText("Username");
 
@@ -143,8 +144,7 @@ public class Manager_AddRest_GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
-        // TODO add your handling code here:
-        // TODO add your handling code here:
+        /* // --- USING ARRAY LISTS --- // 
         String uname = restAdminUname.getText();
         String pwd = String.valueOf(restAdminPwd.getPassword());
         String restName = RestName.getText();
@@ -163,7 +163,25 @@ public class Manager_AddRest_GUI extends javax.swing.JFrame {
             
             JOptionPane.showMessageDialog(null, "Restaurant and it's admin were added successfully.");
         }
+        */
         
+        // --- USING DB --- //
+        String uname = restAdminUname.getText();
+        String pwd = String.valueOf(restAdminPwd.getPassword());
+        String restName = RestName.getText();
+        
+        if(uname.equals("") || pwd.equals("") || restName.equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "Missing Restaurant Admin's login credentials or Restaurant name.");
+        }else{
+            ra.setUsername(uname);
+            ra.setPassword(pwd);
+            ra.getRestaurant().setRest_Name(restName);
+            
+            db.addRestAdmin(ra);
+            
+            JOptionPane.showMessageDialog(null, "Restaurant and it's admin were added successfully.");
+        }
     }//GEN-LAST:event_submitActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
