@@ -6,15 +6,19 @@ package onlinefoodorderingsystem;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author mostafa gado
  */
-public class DB_Connection_Assem {
+public class DB_Connection_Assem 
+{
     private final String userName = "root";
     private final String password = "";
     private final String dbName = "food_ordering_system";
@@ -27,20 +31,49 @@ public class DB_Connection_Assem {
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             //Get a connection to database
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + dbName, userName, password);
-        } catch (Exception e) {
+        } catch (Exception e) 
+        {
             System.err.println("DATABASE CONNECTION ERROR: " + e.toString());
         }
     }
+     public static Connection getConnection() 
+     {
+
+        Connection con = null;
+        try 
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/food_ordering_system", "root", "");
+        } catch (Exception ex) 
+        {
+            System.out.println(ex.getMessage());
+        }
+
+        return con;
+    }
     public void CreateValidCoupon(Coupon c)
     {
-          try 
-          {
+        try 
+        {
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("INSERT INTO coupon(Coupon_code, Coupon_desc, Expiry_date) values('" + c.getCoupon_Code() + "', " + c.getCoupon_Desc() + "', " + c.getCoupon_ExpiryDate() + ")");
-            System.out.println("Coupon added");
+            stmt.executeUpdate("INSERT INTO coupon(Coupon_code, Coupon_desc, Expiry_date) values('" + c.getCoupon_Code() + "',' " + c.getCoupon_Desc() + "', '" + c.getCoupon_ExpiryDate() + "')");
+            System.out.println("Coupon Added");
         } catch (Exception e) 
         {
             System.err.println("DATABASE COUPON INSERTION ERROR: " + e.toString());
+        }
+    }
+    public void DeleteCoupon(int code)
+    {
+           try 
+        {
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate("DELETE FROM `coupon` WHERE Coupon_code = '" +code+ "'");
+            System.out.println("Coupon Added");
+        } catch (Exception e) 
+        {
+            System.err.println("DATABASE COUPON DELETION ERROR: " + e.toString());
+            JOptionPane.showMessageDialog(null, "Invalid Coupon Code, please insert a valid one");
         }
     }
     public ArrayList<Admin> getAllAdmins()
