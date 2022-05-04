@@ -12,7 +12,7 @@ public class Order {
 	private String Order_Date;
 	private Coupon Order_Promo;
 	private double Order_Price;
-	private Status Orderstatus;
+	private String Orderstatus;
 	public Order_Item m_Order_Item;
 	public Payment_Method m_Payment_Method;
 
@@ -20,7 +20,7 @@ public class Order {
 
 	}
 
-    public Order(int Order_Id, Restaurant Order_Rest, ArrayList<Order_Item> Ordered_Items, String Order_Date, Coupon Order_Promo, double Order_Price, Status Order_status, Order_Item m_Order_Item, Payment_Method m_Payment_Method) {
+    public Order(int Order_Id, Restaurant Order_Rest, ArrayList<Order_Item> Ordered_Items, String Order_Date, Coupon Order_Promo, double Order_Price, String Order_status, Order_Item m_Order_Item, Payment_Method m_Payment_Method) {
         this.Order_Id = Order_Id;
         this.Order_Rest = Order_Rest;
         this.Ordered_Items = Ordered_Items;
@@ -105,7 +105,7 @@ public class Order {
             this.Order_Price = Order_Price;
         }
 
-        public void setOrderstatus(Status Orderstatus) {
+        public void setOrderstatus(String Orderstatus) {
             this.Orderstatus = Orderstatus;
         }
 
@@ -141,7 +141,7 @@ public class Order {
             return Order_Price;
         }
 
-        public Status getOrderstatus() {
+        public String getOrderstatus() {
             return Orderstatus;
         }
 
