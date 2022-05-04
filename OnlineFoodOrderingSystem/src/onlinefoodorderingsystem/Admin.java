@@ -2,10 +2,11 @@ package onlinefoodorderingsystem;
 import java.util.ArrayList;
 
 public class Admin extends Person implements Feedback_Detector {
-
+    private RestaurantAdminDataAccess restadmin;
     public FoodOrderingSysCoupons m_FoodOrderingSysCoupons;
     public SysRests_Interface m_SysRests;
     public static AdminsData adminData = new AdminsData();
+    private Feedback_Detector nextinchain;
 
     public Admin() {
     }
@@ -67,11 +68,25 @@ public class Admin extends Person implements Feedback_Detector {
     public void setPointOfContact(Feedback_Detector next) {
         //Next_In_Chain = new Restaurant_Admin();
     }
+    @Override       
+    public void setNextinchain(Restaurant_Admin x){
+        this.nextinchain = x;
+    }
+
+    @Override
     public void Handle_Feedback(Feedback f){
         if("Complaint".equals(f.getFeedback_Type())){
             f.setFeedback_State("Working on it(accepted)");
         }else if("Rating".equals(f.getFeedback_Type())){
-            
+            restadmin.getRestAdmin();
+            for(int i = 0; i < restadmin.getRestAdmin().size(); i++){
+                for(int j = 0; i < restadmin.getRestAdmin().get(i).getRest().getRest_Accepted_Orders_History().size(); j++ ){
+                    if(restadmin.getRestAdmin().get(i).getRest().getRest_Accepted_Orders_History().get(i).getOrder_Id() == f.getOrder_Id()){
+                            this.setNextinchain(restadmin.getRestAdmin().get(i));
+                            this.nextinchain.Handle_Feedback(f);
+                    }
+                }
+            }
         }
     }
 

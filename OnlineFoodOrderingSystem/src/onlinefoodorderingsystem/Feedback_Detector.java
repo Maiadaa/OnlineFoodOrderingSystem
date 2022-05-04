@@ -6,7 +6,7 @@ public interface Feedback_Detector
 {
         //public Feedback_Detector  Next_In_Chain;
         public ArrayList<Feedback> Feedback_History = new ArrayList<Feedback>();
-
+        
 	public void Handle_Feedback(Feedback f);
-
+        public void setNextinchain(Restaurant_Admin x);
 }
