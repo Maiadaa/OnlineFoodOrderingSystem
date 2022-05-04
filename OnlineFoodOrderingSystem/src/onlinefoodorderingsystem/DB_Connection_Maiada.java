@@ -9,6 +9,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -68,32 +70,29 @@ public class DB_Connection_Maiada {
         }
     }
 
-    public ArrayList<Restaurant> getAllRests() {
-        ArrayList<Restaurant> result = new ArrayList();
+    public JTable displayRests(JTable tbl) {
         try {
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from restaurant");
+            ResultSet rs = stmt.executeQuery("select * from restaurant, rest_admin where restaurant.RestAdmin_ID = rest_admin.ID");
+
+            DefaultTableModel model;
+            model = (DefaultTableModel) tbl.getModel();
+            Object rowData[] = new Object[4];
+
             while (rs.next()) {
-                result.add(new Restaurant(rs.getInt("Rest_ID"), rs.getString("Rest_Name"), rs.getInt("RestAdmin_ID")));
+                rowData[0] = rs.getInt("Rest_ID");
+                rowData[1] = rs.getString("Rest_Name");
+                rowData[2] = rs.getInt("ID");
+                rowData[3] = rs.getString("Name");
+                
+                model.addRow(rowData);
             }
         } catch (Exception e) {
-            System.err.println("DATABASE QUERY ERROR: " + e.toString());
+            System.err.println("DATABASE DISPLAY CART ITEMS QUERY ERROR: " + e.toString());
         }
-        return result;
+        return tbl;
     }
 
-    public int getRestAdminID(String restName) {
-        try {
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select RestAdmin_ID from restaurant where Rest_Name = '" + restName + "'");
-            while (rs.next()) {
-                return rs.getInt("RestAdmin_ID");
-            }
-        } catch (Exception e) {
-            System.err.println("DATABASE GET REST ADMIN ID QUERY ERROR: " + e.toString());
-        }
-        return 0;
-    }
     
     public void deleteRestAdmin(int id) {
         try {
@@ -106,12 +105,10 @@ public class DB_Connection_Maiada {
         }
     }
 
-    public void deleteRest(String restName) {
+    public void deleteRest(int id) {
         try {
-            this.deleteRestAdmin(this.getRestAdminID(restName));
-            
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("delete from restaurant where Rest_Name = '" + restName + "'");
+            stmt.executeUpdate("delete from restaurant where Rest_ID = '" + id + "'");
             System.out.println("Restaurant deleted");
             
         } catch (Exception e) {

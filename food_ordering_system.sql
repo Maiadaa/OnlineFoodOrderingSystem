@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 04, 2022 at 10:20 AM
+-- Generation Time: May 04, 2022 at 08:42 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -24,30 +24,13 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
---
-
-CREATE TABLE `admin` (
-  `ID` int(11) NOT NULL,
-  `Name` varchar(20) DEFAULT NULL,
-  `Email` varchar(20) DEFAULT NULL,
-  `Phone` varchar(11) DEFAULT NULL,
-  `Address` varchar(30) DEFAULT NULL,
-  `Username` varchar(15) NOT NULL,
-  `Password` varchar(15) NOT NULL,
-  `Gender` char(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `coupon`
 --
 
 CREATE TABLE `coupon` (
   `Coupon_ID` int(11) NOT NULL,
   `Coupon_code` int(11) NOT NULL,
-  `Coupon_desc` varchar(30) DEFAULT NULL,
+  `Coupon_desc` varchar(20) DEFAULT NULL,
   `Expiry_date` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -58,15 +41,15 @@ CREATE TABLE `coupon` (
 --
 
 CREATE TABLE `customer` (
-  `ID` int(11) NOT NULL,
-  `Name` varchar(20) DEFAULT NULL,
-  `Email` varchar(20) DEFAULT NULL,
-  `Phone` varchar(11) DEFAULT NULL,
-  `Address` varchar(30) DEFAULT NULL,
-  `Username` varchar(15) NOT NULL,
-  `Password` varchar(15) NOT NULL,
-  `Gender` char(1) DEFAULT NULL
+  `ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`ID`) VALUES
+(1);
 
 -- --------------------------------------------------------
 
@@ -79,28 +62,27 @@ CREATE TABLE `feedback` (
   `Customer_ID` int(11) NOT NULL,
   `Order_ID` int(11) DEFAULT NULL,
   `Feedback_Date` varchar(15) DEFAULT NULL,
-  `Feedback_Type` varchar(15) NOT NULL,
-  `Feedback_Desc` varchar(30) NOT NULL,
-  `Feedback_State` varchar(15) NOT NULL DEFAULT 'Pending',
-  `Rate` int(11) DEFAULT 0
+  `Feedback_Type` varchar(10) NOT NULL,
+  `Feedback_Desc` varchar(10) NOT NULL,
+  `Feedback_State` varchar(10) NOT NULL DEFAULT 'Pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `manager`
+-- Table structure for table `menu`
 --
 
-CREATE TABLE `manager` (
-  `ID` int(11) NOT NULL,
-  `Name` varchar(20) DEFAULT NULL,
-  `Email` varchar(20) DEFAULT NULL,
-  `Phone` varchar(11) DEFAULT NULL,
-  `Address` varchar(30) DEFAULT NULL,
-  `Username` varchar(15) NOT NULL,
-  `Password` varchar(15) NOT NULL,
-  `Gender` char(1) DEFAULT NULL
+CREATE TABLE `menu` (
+  `Menu_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `menu`
+--
+
+INSERT INTO `menu` (`Menu_ID`) VALUES
+(1);
 
 -- --------------------------------------------------------
 
@@ -110,13 +92,20 @@ CREATE TABLE `manager` (
 
 CREATE TABLE `menu_item` (
   `MenuItem_ID` int(11) NOT NULL,
-  `Rest_ID` int(11) NOT NULL,
-  `Item_Name` varchar(20) NOT NULL,
-  `Item_Desc` varchar(30) NOT NULL,
+  `Menu_ID` int(11) NOT NULL,
+  `Item_Name` varchar(15) NOT NULL,
+  `Item_Desc` varchar(20) NOT NULL,
   `Item_Categ` varchar(15) NOT NULL,
   `Item_Price` double NOT NULL,
   `Item_Avail` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `menu_item`
+--
+
+INSERT INTO `menu_item` (`MenuItem_ID`, `Menu_ID`, `Item_Name`, `Item_Desc`, `Item_Categ`, `Item_Price`, `Item_Avail`) VALUES
+(1, 1, 'Orange', 'Orange', 'food', 3, 10);
 
 -- --------------------------------------------------------
 
@@ -131,9 +120,16 @@ CREATE TABLE `order` (
   `Rest_ID` int(11) NOT NULL,
   `Order_Date` varchar(15) DEFAULT NULL,
   `Order_Price` double NOT NULL,
-  `Order_PayMethod` varchar(15) NOT NULL,
+  `Order_PayMethod` varchar(10) NOT NULL,
   `Order_status` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `order`
+--
+
+INSERT INTO `order` (`Order_ID`, `Customer_ID`, `Coupon_ID`, `Rest_ID`, `Order_Date`, `Order_Price`, `Order_PayMethod`, `Order_status`) VALUES
+(3, 1, NULL, 1, NULL, 12.99, 'cash', NULL);
 
 -- --------------------------------------------------------
 
@@ -148,6 +144,37 @@ CREATE TABLE `order_item` (
   `Quantity` int(11) NOT NULL,
   `Total_ItemPrice` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `order_item`
+--
+
+INSERT INTO `order_item` (`OrderItem_ID`, `Order_ID`, `MenuItem_ID`, `Quantity`, `Total_ItemPrice`) VALUES
+(1, 3, 1, 3, 12.99);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `person`
+--
+
+CREATE TABLE `person` (
+  `ID` int(11) NOT NULL,
+  `Name` varchar(20) DEFAULT NULL,
+  `Email` varchar(20) DEFAULT NULL,
+  `Phone` varchar(11) DEFAULT NULL,
+  `Address` varchar(20) DEFAULT NULL,
+  `Username` varchar(15) NOT NULL,
+  `Password` varchar(15) NOT NULL,
+  `Gender` char(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `person`
+--
+
+INSERT INTO `person` (`ID`, `Name`, `Email`, `Phone`, `Address`, `Username`, `Password`, `Gender`) VALUES
+(1, 'Seif', 'seif@gmail.com', '01019287807', 'Rehab', 'Seif', 'seif123', 'M');
 
 -- --------------------------------------------------------
 
@@ -167,14 +194,7 @@ CREATE TABLE `premiumcust_coupon` (
 --
 
 CREATE TABLE `premium_customer` (
-  `ID` int(11) NOT NULL,
-  `Name` varchar(20) DEFAULT NULL,
-  `Email` varchar(20) DEFAULT NULL,
-  `Phone` varchar(11) DEFAULT NULL,
-  `Address` varchar(30) DEFAULT NULL,
-  `Username` varchar(15) NOT NULL,
-  `Password` varchar(15) NOT NULL,
-  `Gender` char(1) DEFAULT NULL
+  `ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -185,13 +205,20 @@ CREATE TABLE `premium_customer` (
 
 CREATE TABLE `restaurant` (
   `Rest_ID` int(11) NOT NULL,
-  `Rest_Loc` varchar(30) NOT NULL,
+  `Menu_ID` int(11) NOT NULL,
+  `Rest_Loc` varchar(15) NOT NULL,
   `Rest_Categ` varchar(15) NOT NULL,
-  `Rest_Name` varchar(20) NOT NULL,
+  `Rest_Name` varchar(15) NOT NULL,
   `Rest_Open` tinyint(4) DEFAULT NULL,
-  `Rest_Rating` double DEFAULT 0,
-  `RestAdmin_ID` int(11) NOT NULL
+  `Rest_Rating` double DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `restaurant`
+--
+
+INSERT INTO `restaurant` (`Rest_ID`, `Menu_ID`, `Rest_Loc`, `Rest_Categ`, `Rest_Name`, `Rest_Open`, `Rest_Rating`) VALUES
+(1, 1, 'Rehab', 'Fastfood', 'Mac', 10, 0);
 
 -- --------------------------------------------------------
 
@@ -201,24 +228,12 @@ CREATE TABLE `restaurant` (
 
 CREATE TABLE `rest_admin` (
   `ID` int(11) NOT NULL,
-  `Name` varchar(20) DEFAULT NULL,
-  `Email` varchar(20) DEFAULT NULL,
-  `Phone` varchar(11) DEFAULT NULL,
-  `Address` varchar(30) DEFAULT NULL,
-  `Username` varchar(15) NOT NULL,
-  `Password` varchar(15) NOT NULL,
-  `Gender` char(1) DEFAULT NULL
+  `Rest_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `admin`
---
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `coupon`
@@ -241,18 +256,18 @@ ALTER TABLE `feedback`
   ADD KEY `FK_Order_feedback` (`Order_ID`);
 
 --
--- Indexes for table `manager`
+-- Indexes for table `menu`
 --
-ALTER TABLE `manager`
-  ADD PRIMARY KEY (`ID`);
+ALTER TABLE `menu`
+  ADD PRIMARY KEY (`Menu_ID`);
 
 --
 -- Indexes for table `menu_item`
 --
 ALTER TABLE `menu_item`
-  ADD PRIMARY KEY (`MenuItem_ID`),
+  ADD PRIMARY KEY (`MenuItem_ID`,`Menu_ID`),
   ADD UNIQUE KEY `MenuItem_ID` (`MenuItem_ID`),
-  ADD KEY `FK_Rest_MenuItem` (`Rest_ID`);
+  ADD KEY `FK_Menu_MenuItem` (`Menu_ID`);
 
 --
 -- Indexes for table `order`
@@ -273,6 +288,12 @@ ALTER TABLE `order_item`
   ADD KEY `FK_Order_OrderItem` (`Order_ID`);
 
 --
+-- Indexes for table `person`
+--
+ALTER TABLE `person`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `premiumcust_coupon`
 --
 ALTER TABLE `premiumcust_coupon`
@@ -290,23 +311,18 @@ ALTER TABLE `premium_customer`
 --
 ALTER TABLE `restaurant`
   ADD PRIMARY KEY (`Rest_ID`),
-  ADD KEY `FK_RestAdmin_Rest` (`RestAdmin_ID`);
+  ADD KEY `FK_Menu_Rest` (`Menu_ID`);
 
 --
 -- Indexes for table `rest_admin`
 --
 ALTER TABLE `rest_admin`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `FK_Rest_RestAdmin` (`Rest_ID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
-
---
--- AUTO_INCREMENT for table `admin`
---
-ALTER TABLE `admin`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `coupon`
@@ -315,62 +331,56 @@ ALTER TABLE `coupon`
   MODIFY `Coupon_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `customer`
---
-ALTER TABLE `customer`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
   MODIFY `Feedback_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `manager`
+-- AUTO_INCREMENT for table `menu`
 --
-ALTER TABLE `manager`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `menu`
+  MODIFY `Menu_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `menu_item`
 --
 ALTER TABLE `menu_item`
-  MODIFY `MenuItem_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `MenuItem_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-  MODIFY `Order_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Order_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `order_item`
 --
 ALTER TABLE `order_item`
-  MODIFY `OrderItem_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `OrderItem_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `premium_customer`
+-- AUTO_INCREMENT for table `person`
 --
-ALTER TABLE `premium_customer`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `person`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `restaurant`
 --
 ALTER TABLE `restaurant`
-  MODIFY `Rest_ID` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `rest_admin`
---
-ALTER TABLE `rest_admin`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Rest_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `customer`
+--
+ALTER TABLE `customer`
+  ADD CONSTRAINT `FK_Person_Cust` FOREIGN KEY (`ID`) REFERENCES `person` (`ID`);
 
 --
 -- Constraints for table `feedback`
@@ -383,7 +393,7 @@ ALTER TABLE `feedback`
 -- Constraints for table `menu_item`
 --
 ALTER TABLE `menu_item`
-  ADD CONSTRAINT `FK_Rest_MenuItem` FOREIGN KEY (`Rest_ID`) REFERENCES `restaurant` (`Rest_ID`);
+  ADD CONSTRAINT `FK_Menu_MenuItem` FOREIGN KEY (`Menu_ID`) REFERENCES `menu` (`Menu_ID`);
 
 --
 -- Constraints for table `order`
@@ -405,13 +415,26 @@ ALTER TABLE `order_item`
 --
 ALTER TABLE `premiumcust_coupon`
   ADD CONSTRAINT `FK_Coupon_PremiumCust` FOREIGN KEY (`Coupon_ID`) REFERENCES `coupon` (`Coupon_ID`),
-  ADD CONSTRAINT `FK_Person_PremiumCust` FOREIGN KEY (`Premium_Cust_ID`) REFERENCES `premium_customer` (`ID`);
+  ADD CONSTRAINT `FK_Person_PremiumCust` FOREIGN KEY (`Premium_Cust_ID`) REFERENCES `person` (`ID`);
+
+--
+-- Constraints for table `premium_customer`
+--
+ALTER TABLE `premium_customer`
+  ADD CONSTRAINT `FK_Customer_Premium` FOREIGN KEY (`ID`) REFERENCES `customer` (`ID`);
 
 --
 -- Constraints for table `restaurant`
 --
 ALTER TABLE `restaurant`
-  ADD CONSTRAINT `FK_RestAdmin_Rest` FOREIGN KEY (`RestAdmin_ID`) REFERENCES `rest_admin` (`ID`);
+  ADD CONSTRAINT `FK_Menu_Rest` FOREIGN KEY (`Menu_ID`) REFERENCES `menu` (`Menu_ID`);
+
+--
+-- Constraints for table `rest_admin`
+--
+ALTER TABLE `rest_admin`
+  ADD CONSTRAINT `FK_Person_RestAdmin` FOREIGN KEY (`ID`) REFERENCES `person` (`ID`),
+  ADD CONSTRAINT `FK_Rest_RestAdmin` FOREIGN KEY (`Rest_ID`) REFERENCES `restaurant` (`Rest_ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

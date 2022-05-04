@@ -5,6 +5,7 @@
 package onlinefoodorderingsystem;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -12,9 +13,6 @@ import javax.swing.table.DefaultTableModel;
  * @author LENOVO
  */
 public class Manager_RemoveRest_GUI extends javax.swing.JFrame {
-
-    DB_Connection_Maiada db = new DB_Connection_Maiada();
-    ArrayList<Restaurant> rests = db.getAllRests();
 
     public Manager_RemoveRest_GUI() {
         /* // --- USING ARRAY LISTS --- // 
@@ -33,26 +31,10 @@ public class Manager_RemoveRest_GUI extends javax.swing.JFrame {
          */
 
         // --- USING DATABASE --- // 
-        DefaultTableModel tblModel = (DefaultTableModel) restsTable.getModel();
-
-        /*for (Restaurant rest : rests) {
-            String[] row = {rest.getRest_Name()};
-
-            restsTable.getModel(ddRow(new Object[]{row[0]});
-            break;
-        }*/
-        Object rowData[] = new Object[4];
-
-        while (rs.next()) {
-            rowData[0] = rs.getInt("PROD_ID");
-            rowData[1] = rs.getDouble("PRICE");
-            rowData[2] = rs.getString("STATUS");
-            rowData[3] = add;
-
-            model.addRow(rowData);
-        }
-
         initComponents();
+        DB_Connection_Maiada db = new DB_Connection_Maiada();
+        restsTable = db.displayRests(restsTable);
+
     }
 
     /**
@@ -72,7 +54,7 @@ public class Manager_RemoveRest_GUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Title.setText("Select a restaurant to remove ");
+        Title.setText("Select a row to remove ");
 
         backBtn.setText("Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -83,20 +65,17 @@ public class Manager_RemoveRest_GUI extends javax.swing.JFrame {
 
         restsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
+
             },
             new String [] {
-                "Restaurants"
+                "Restaurant ID", "Restaurant Name", "Restaurant Admin ID", "Restaurant Admin Name"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -109,6 +88,7 @@ public class Manager_RemoveRest_GUI extends javax.swing.JFrame {
         });
         restsTable.setColumnSelectionAllowed(true);
         jScrollPane1.setViewportView(restsTable);
+        restsTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         Remove.setText("Remove");
         Remove.addActionListener(new java.awt.event.ActionListener() {
@@ -123,36 +103,35 @@ public class Manager_RemoveRest_GUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(62, 62, 62)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 748, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(Title)
-                            .addGap(56, 56, 56)
-                            .addComponent(backBtn))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(Remove, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(144, 144, 144))))
-                .addContainerGap())
+                        .addComponent(Title)
+                        .addGap(253, 253, 253)
+                        .addComponent(backBtn)
+                        .addGap(14, 14, 14))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(Remove, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(334, 334, 334))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(backBtn)
-                        .addGap(57, 57, 57))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(Title)
-                        .addGap(40, 40, 40)))
+                        .addGap(40, 40, 40)
+                        .addComponent(Title))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(backBtn)))
+                .addGap(40, 40, 40)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addGap(40, 40, 40)
                 .addComponent(Remove, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         pack();
@@ -175,11 +154,19 @@ public class Manager_RemoveRest_GUI extends javax.swing.JFrame {
          */
 
         // --- USING DATABASE --- // 
-        int column = 0;
         int row = restsTable.getSelectedRow();
-        String restName = restsTable.getModel().getValueAt(row, column).toString();
-
-
+        int restId  = Integer.parseInt(restsTable.getModel().getValueAt(row, 0).toString());
+        int restAdminId  = Integer.parseInt(restsTable.getModel().getValueAt(row, 2).toString());
+        
+        DB_Connection_Maiada db = new DB_Connection_Maiada();
+        db.deleteRest(restId);
+        db.deleteRestAdmin(restAdminId);
+        
+        //redisplay to view results
+        DB_Connection_Maiada db2 = new DB_Connection_Maiada();
+        restsTable = db2.displayRests(restsTable);
+        
+        JOptionPane.showMessageDialog(null, "Restaurant and it's admin were removed successfully.");
     }//GEN-LAST:event_RemoveActionPerformed
 
     /**
