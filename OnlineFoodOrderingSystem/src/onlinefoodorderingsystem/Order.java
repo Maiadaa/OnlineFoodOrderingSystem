@@ -38,9 +38,9 @@ public class Order {
 
 	}
         
-	public void Add_To_Cart(Order_Item item){
-            Ordered_Items.add(item);
-	}
+//	public void Add_To_Cart(Order_Item item){
+//            Ordered_Items.add(item);
+//	}
 
 	/**
 	 * 
