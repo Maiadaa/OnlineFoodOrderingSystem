@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 04, 2022 at 10:20 AM
+-- Generation Time: May 05, 2022 at 12:49 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -48,7 +48,8 @@ CREATE TABLE `coupon` (
   `Coupon_ID` int(11) NOT NULL,
   `Coupon_code` int(11) NOT NULL,
   `Coupon_desc` varchar(30) DEFAULT NULL,
-  `Expiry_date` varchar(15) NOT NULL
+  `Expiry_date` varchar(15) NOT NULL,
+  `discountVal` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -116,6 +117,19 @@ CREATE TABLE `menu_item` (
   `Item_Categ` varchar(15) NOT NULL,
   `Item_Price` double NOT NULL,
   `Item_Avail` tinyint(4) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `newrestnotif`
+--
+
+CREATE TABLE `newrestnotif` (
+  `Notif_ID` int(11) NOT NULL,
+  `msg` varchar(100) NOT NULL,
+  `Cust_ID` int(11) NOT NULL,
+  `Rest_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -255,6 +269,14 @@ ALTER TABLE `menu_item`
   ADD KEY `FK_Rest_MenuItem` (`Rest_ID`);
 
 --
+-- Indexes for table `newrestnotif`
+--
+ALTER TABLE `newrestnotif`
+  ADD PRIMARY KEY (`Notif_ID`),
+  ADD KEY `FK_Notif_Rest` (`Rest_ID`),
+  ADD KEY `FK_Notif_Cust` (`Cust_ID`);
+
+--
 -- Indexes for table `order`
 --
 ALTER TABLE `order`
@@ -339,6 +361,12 @@ ALTER TABLE `menu_item`
   MODIFY `MenuItem_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `newrestnotif`
+--
+ALTER TABLE `newrestnotif`
+  MODIFY `Notif_ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
@@ -384,6 +412,13 @@ ALTER TABLE `feedback`
 --
 ALTER TABLE `menu_item`
   ADD CONSTRAINT `FK_Rest_MenuItem` FOREIGN KEY (`Rest_ID`) REFERENCES `restaurant` (`Rest_ID`);
+
+--
+-- Constraints for table `newrestnotif`
+--
+ALTER TABLE `newrestnotif`
+  ADD CONSTRAINT `FK_Notif_Cust` FOREIGN KEY (`Cust_ID`) REFERENCES `customer` (`ID`),
+  ADD CONSTRAINT `FK_Notif_Rest` FOREIGN KEY (`Rest_ID`) REFERENCES `restaurant` (`Rest_ID`);
 
 --
 -- Constraints for table `order`

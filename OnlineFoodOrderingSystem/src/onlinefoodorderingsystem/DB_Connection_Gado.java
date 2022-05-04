@@ -13,6 +13,8 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -26,27 +28,27 @@ public class DB_Connection_Gado {
 
     private Connection con;
 
-//     public DB_Connection_Gado(){
-//        try {
-//            //Loading the jdbc driver
-//            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-//            //Get a connection to database
-//            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + dbName, userName, password);
-//        } catch (Exception e) {
-//            System.err.println("DATABASE CONNECTION ERROR: " + e.toString());
-//        }
-//    }
+     public DB_Connection_Gado(){
+        try {
+            //Loading the jdbc driver
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+            //Get a connection to database
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + dbName, userName, password);
+        } catch (Exception e) {
+            System.err.println("DATABASE CONNECTION ERROR: " + e.toString());
+        }
+    }
     public static Connection getConnection() {
 
-        Connection con = null;
+        Connection conn = null;
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost/food_ordering_system", "root", "");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/food_ordering_system", "root", "");
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
 
-        return con;
+        return conn;
     }
     
     public void addMenuItem(int id,String name, String description, String category, double price,int availability){
@@ -75,10 +77,10 @@ public class DB_Connection_Gado {
         try {
             Statement stmt = con.createStatement();
             stmt.executeUpdate("delete from menu_item where ID = '" + id + "'");
-            System.out.println("Restaurant Admin deleted");
+            JOptionPane.showMessageDialog(null, "Menu item deleted deleted");
             
         } catch (Exception e) {
-            System.err.println("DATABASE RESTAURANT ADMIN DELETION ERROR: " + e.toString());
+            System.err.println("DATABASE Menu item DELETION ERROR: " + e.toString());
         }
     }
 
@@ -120,5 +122,51 @@ public class DB_Connection_Gado {
         } catch (SQLException ex) {
             Logger.getLogger(ManageAccount.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public JTable displayMenuItems(JTable tbl, int id) {
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT `Item_Name`, `Item_Desc`, `Item_Categ`, `Item_Price` FROM `menu_item` WHERE MenuItem_ID  = '"+id+"' ");
+
+            DefaultTableModel model;
+            model = (DefaultTableModel) tbl.getModel();
+            Object rowData[] = new Object[4];
+
+            while (rs.next()) {
+                rowData[0] = rs.getString("Item_Name");
+                rowData[1] = rs.getString("Item_Desc");
+                rowData[2] = rs.getString("Item_Categ");
+                rowData[3] = rs.getString("Item_Price");
+                
+                model.addRow(rowData);
+            }
+        } catch (Exception e) {
+            System.err.println("DATABASE DISPLAY CART ITEMS QUERY ERROR: " + e.toString());
+        }
+        return tbl;
+    }
+    
+    public JTable displayRestuarant (JTable tbl, int id) {
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT `Rest_Loc`, `Rest_Categ`, `Rest_Name`, `Rest_Rating` FROM `restaurant` WHERE Rest_ID = '"+ id+"'");
+
+            DefaultTableModel model;
+            model = (DefaultTableModel) tbl.getModel();
+            Object rowData[] = new Object[4];
+
+            while (rs.next()) {
+                rowData[0] = rs.getString("Rest_Loc");
+                rowData[1] = rs.getString("Rest_Categ");
+                rowData[2] = rs.getString("Rest_Name");
+                rowData[3] = rs.getString("Rest_Rating");
+                
+                model.addRow(rowData);
+            }
+        } catch (Exception e) {
+            System.err.println("DATABASE DISPLAY CART ITEMS QUERY ERROR: " + e.toString());
+        }
+        return tbl;
     }
 }
