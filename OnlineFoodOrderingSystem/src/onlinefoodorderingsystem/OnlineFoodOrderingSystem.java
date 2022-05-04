@@ -23,6 +23,7 @@ public class OnlineFoodOrderingSystem {
         Restaurant_Admin.restAdminData.Add_Rest_Admin(r2);
         HomePage home = new HomePage();
         home.setVisible(true);
+
     }
     
 }

@@ -1,14 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package onlinefoodorderingsystem;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -31,20 +31,58 @@ public class DB_Connection_Hagrass {
             System.err.println("DATABASE CONNECTION ERROR: " + e.toString());
         }
     }   
-     
-    public ArrayList selectOrderHistory(int customer_ID){
-        ArrayList<Order> orders = new ArrayList<Order> ();
-        ArrayList<Order_Item> list = new ArrayList<Order>():
+    
+    public void createNewFeedback(int customerID, int OrderID, Feedback feedback){
+                    System.out.println(feedback.getFeedbackDate());
         try {
             Statement stmt = con.createStatement();
-            ResultSet select_order = stmt.executeQuery("SELECT * FROM `order` WHERE Customer_ID = " + customer_ID);
-            ResultSet select_restaurant = stmt.executeQuery("");
-            while(select_order.next()){
-                orders.add(new Order(select_order.getInt("Order_ID"), , Ordered_Items, userName, customer_ID, userName));
+
+            stmt.executeUpdate("INSERT INTO feedback (`Customer_ID`, `Order_ID`, `Feedback_Date`, `Feedback_Type`, `Feedback_Desc`, `Feedback_State`, `Rate`) VALUES ('"+ customerID +"','" + feedback.getOrder_Id() + "','" + feedback.getFeedbackDate() +"','"+ feedback.getFeedback_Type() +"','"+ feedback.getFeedback_Desc() +"','"+ feedback.getFeedback_State() +"','"+ feedback.getRate() + "')");
+            System.out.println("feedback added");
+            //return true;
+        } catch (Exception e) {
+            System.err.println("DATABASE INSERTION ERROR: " + e.toString());
+            //return false;
+        }
+    }
+    
+    public boolean Edit_Admin_Account(Admin admin){
+        try {
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate("UPDATE `admin` SET `Name`='" + admin.getName() + "',`Email`='" + admin.getEmail() + "',`Phone`='" + admin.getPhone_number() + "',`Address`='" + admin.getAddress() + "',`Username`='" + admin.getUsername() + "',`Password`='" + admin.getPassword() + "',`Gender`='" + admin.getGender() + "' where ID = " + admin.getID() + "");
+            System.out.println("feedback Updated");
+            return true;
+        } catch (Exception e) {
+            System.err.println("DATABASE INSERTION ERROR: " + e.toString());
+            return false;
+        }
+    }
+    
+    public JTable selectAllComplaintFeedback(JTable table){
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet selectFeedbacks = stmt.executeQuery("SELECT * FROM `feedback` Where Feedback_Type = 'complaint'");
+                //feedbacks.add(new Feedback(, , selectFeedbacks.getString("Feedback_Type"), selectFeedbacks.getString("Feedback_Desc"), selectFeedbacks.getString("Feedback_State"), selectFeedbacks.getInt("Order_ID")));
+            DefaultTableModel model;
+            model = (DefaultTableModel) table.getModel();
+            Object rowData[] = new Object[7];
+
+            while (selectFeedbacks.next()) {
+                rowData[0] = selectFeedbacks.getInt("Feedback_ID");
+                rowData[1] = selectFeedbacks.getInt("Customer_ID");
+                rowData[2] = selectFeedbacks.getInt("Order_ID");
+                rowData[3] = selectFeedbacks.getString("Feedback_Date");
+                rowData[4] = selectFeedbacks.getString("Feedback_Type");
+                rowData[5] = selectFeedbacks.getString("Feedback_Desc");
+                rowData[6] = selectFeedbacks.getString("Feedback_State");
+
+
+                model.addRow(rowData);
             }
+
         } catch (Exception e) {
             System.err.println("DATABASE QUERY ERROR: " + e.toString());
         }
-        return null;
+        return table;
     }
 }
