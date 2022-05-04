@@ -17,14 +17,28 @@ public class DB_Connection_Gado {
 
     private Connection con;
 
-     public DB_Connection_Gado(){
+//     public DB_Connection_Gado(){
+//        try {
+//            //Loading the jdbc driver
+//            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+//            //Get a connection to database
+//            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + dbName, userName, password);
+//        } catch (Exception e) {
+//            System.err.println("DATABASE CONNECTION ERROR: " + e.toString());
+//        }
+//    }
+     
+      public static Connection getConnection(){
+     
+        Connection con = null;
         try {
-            //Loading the jdbc driver
-            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-            //Get a connection to database
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + dbName, userName, password);
-        } catch (Exception e) {
-            System.err.println("DATABASE CONNECTION ERROR: " + e.toString());
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/food_ordering_system", "root", "");
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
         }
+        
+        return con;
     }
+    
 }
