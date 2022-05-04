@@ -70,19 +70,20 @@ public class DB_Connection_Seif {
         }
     }
 
-    public JTable displayCartItems(JTable tbl) {
+    public JTable displayCartItems(JTable tbl,Order o) {
         try {
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from order_item where Order_ID = '3'");
+            ResultSet rs = stmt.executeQuery("select `Quantity`, `Total_ItemPrice`,`Item_Name`,'MenuItem_ID' from order_item , menu_item where Order_ID = '" + o.getOrder_Id() +"'");
 
             DefaultTableModel model;
             model = (DefaultTableModel) tbl.getModel();
-            Object rowData[] = new Object[3];
+            Object rowData[] = new Object[4];
 
             while (rs.next()) {
-                rowData[0] = rs.getInt("Order_ID");
-                rowData[1] = 1;
-                rowData[2] = 1;
+                rowData[0] = rs.getInt("MenuItem_ID");
+                rowData[1] = rs.getInt("Item_Name");
+                rowData[2] = rs.getInt("Quantity");
+                rowData[3] = rs.getInt("Total_ItemPrice");
                 
                 model.addRow(rowData);
             }

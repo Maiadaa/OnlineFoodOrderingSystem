@@ -15,14 +15,23 @@ import javax.swing.table.DefaultTableModel;
 
 public class Cart_GUI extends javax.swing.JFrame {
 
-    Customer cust;
+    Customer cust = new Customer();
     Order o = new Order();
-    
 
     public Cart_GUI() {
         initComponents();
+        o.setOrder_Id(3);
         DB_Connection_Seif db = new DB_Connection_Seif();
-        table = db.displayCartItems(table);
+        table = db.displayCartItems(table,o);
+    }
+   
+    public Cart_GUI(Order o,Customer c) {
+        initComponents();
+        this.cust = c;
+        this.o = o;
+        o.setOrder_Id(3);
+        DB_Connection_Seif db = new DB_Connection_Seif();
+        table = db.displayCartItems(table,o);
 
     }
 
@@ -79,14 +88,14 @@ public class Cart_GUI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Item", "Price", "Quantity"
+                "Item_ID", "Name", "Price", "Quantity"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
