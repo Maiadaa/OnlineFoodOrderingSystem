@@ -9,8 +9,8 @@ package onlinefoodorderingsystem;
  * @author mostafa gado
  */
 public class Add__Menu_Item extends javax.swing.JPanel {
-    
-    Menu menuData = new Menu();
+    DB_Connection_Gado db;
+
     /**
      * Creates new form Add__Menu_Item
      */
@@ -40,7 +40,7 @@ public class Add__Menu_Item extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        RestaurantID = new javax.swing.JTextField();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -69,11 +69,11 @@ public class Add__Menu_Item extends javax.swing.JPanel {
             }
         });
 
-        jLabel7.setText("ID:");
+        jLabel7.setText("Restaurant ID:");
 
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        RestaurantID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                RestaurantIDActionPerformed(evt);
             }
         });
 
@@ -114,7 +114,7 @@ public class Add__Menu_Item extends javax.swing.JPanel {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(59, 59, 59)
-                                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(RestaurantID, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(361, 361, 361)
@@ -129,7 +129,7 @@ public class Add__Menu_Item extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(RestaurantID, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -162,22 +162,25 @@ public class Add__Menu_Item extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        int id = Integer.parseInt(jTextField6.getText());
+        int id = Integer.parseInt(RestaurantID.getText());
         String name = jTextField1.getText();
         String description = jTextField1.getText();
         String category = jTextField1.getText();
         double price = Double.parseDouble(jTextField1.getText());
         boolean availability = Boolean.parseBoolean(jTextField1.getText());
-        menuData.Add_Menu_Item(id,name,description,category,price,availability);
+        
+        db.addMenuItem(id, name, description, category, name, category);
+        
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void RestaurantIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RestaurantIDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_RestaurantIDActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField RestaurantID;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -191,6 +194,5 @@ public class Add__Menu_Item extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
 }
