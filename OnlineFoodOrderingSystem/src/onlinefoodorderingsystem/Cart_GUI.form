@@ -55,11 +55,6 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="208" max="-2" attributes="0"/>
-              <Component id="test" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -69,9 +64,7 @@
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="189" max="-2" attributes="0"/>
-              <EmptySpace pref="44" max="32767" attributes="0"/>
-              <Component id="test" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace pref="76" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="Cash" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="Card" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -105,8 +98,8 @@
               <Table columnCount="4" rowCount="0">
                 <Column editable="false" title="Item_ID" type="java.lang.Integer"/>
                 <Column editable="false" title="Name" type="java.lang.String"/>
-                <Column editable="false" title="Price" type="java.lang.Integer"/>
                 <Column editable="false" title="Quantity" type="java.lang.Integer"/>
+                <Column editable="false" title="Price" type="java.lang.Integer"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -162,11 +155,6 @@
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
         <Property name="text" type="java.lang.String" value="Checkout"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="test">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel2"/>
       </Properties>
     </Component>
   </SubComponents>

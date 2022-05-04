@@ -86,6 +86,11 @@ public class Coupons extends javax.swing.JFrame {
         });
 
         DeleteCopoun.setText("Delete Copoun");
+        DeleteCopoun.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteCopounActionPerformed(evt);
+            }
+        });
 
         UpdateCopoun.setText("Update Copoun");
 
@@ -153,6 +158,13 @@ public class Coupons extends javax.swing.JFrame {
         create.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_AddCopounActionPerformed
+
+    private void DeleteCopounActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteCopounActionPerformed
+        // TODO add your handling code here:
+        DeleteCoupon menu = new DeleteCoupon();
+        menu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_DeleteCopounActionPerformed
 
     /**
      * @param args the command line arguments

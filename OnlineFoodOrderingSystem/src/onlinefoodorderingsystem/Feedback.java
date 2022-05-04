@@ -7,16 +7,35 @@ public class Feedback {
 
 	private Feedback_Detector F_Type;
 	private int Feedback_Id;
-	private LocalDate Feedback_Date;
+	private String FeedbackDate;
 	private String Feedback_Type;
 	private String Feedback_Desc;
 	private String Feedback_State;
 	private int Order_Id;
+        int rate;
 
+        public Feedback(int Feedback_Id, String Feedback_Date, String Feedback_Type, String Feedback_Desc, String Feedback_State, int Order_Id) {
+            this.Feedback_Id = Feedback_Id;
+            this.FeedbackDate = Feedback_Date;
+            this.Feedback_Type = Feedback_Type;
+            this.Feedback_Desc = Feedback_Desc;
+            this.Feedback_State = Feedback_State;
+            this.Order_Id = Order_Id;
+            Set_POC();
+        }
+        
 	public Feedback(){
             Set_POC();
 	}
 
+        public void setRate(int rate) {
+            this.rate = rate;
+        }
+
+        public int getRate() {
+            return rate;
+        }
+        
         public void setF_Type(Feedback_Detector F_Type) {
             this.F_Type = F_Type;
         }
@@ -25,8 +44,8 @@ public class Feedback {
             this.Feedback_Id = Feedback_Id;
         }
 
-        public void setFeedback_Date(LocalDate Feedback_Date) {
-            this.Feedback_Date = Feedback_Date;
+        public void setFeedbackDate(String Feedback_Date) {
+            this.FeedbackDate = Feedback_Date;
         }
 
         public void setFeedback_Type(String Feedback_Type) {
@@ -53,8 +72,8 @@ public class Feedback {
             return Feedback_Id;
         }
 
-        public LocalDate getFeedback_Date() {
-            return Feedback_Date;
+        public String getFeedbackDate() {
+            return FeedbackDate;
         }
 
         public String getFeedback_Type() {

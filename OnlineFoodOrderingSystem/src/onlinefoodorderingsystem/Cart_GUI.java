@@ -76,7 +76,6 @@ public class Cart_GUI extends javax.swing.JFrame {
         Cash = new javax.swing.JRadioButton();
         Card = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
-        test = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,7 +87,7 @@ public class Cart_GUI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Item_ID", "Name", "Price", "Quantity"
+                "Item_ID", "Name", "Quantity", "Price"
             }
         ) {
             Class[] types = new Class [] {
@@ -121,8 +120,6 @@ public class Cart_GUI extends javax.swing.JFrame {
 
         jButton1.setText("Checkout");
 
-        test.setText("jLabel2");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -147,10 +144,6 @@ public class Cart_GUI extends javax.swing.JFrame {
                                 .addComponent(Card)))
                         .addGap(0, 118, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(208, 208, 208)
-                .addComponent(test)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,9 +152,7 @@ public class Cart_GUI extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addComponent(test)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Cash)
                     .addComponent(Card))
@@ -220,6 +211,5 @@ public class Cart_GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable table;
-    private javax.swing.JLabel test;
     // End of variables declaration//GEN-END:variables
 }
