@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 
 public class Order {
-        private Connection con;
 	private int Order_Id;
 	private Restaurant Order_Rest;
 	private ArrayList<Order_Item> Ordered_Items;

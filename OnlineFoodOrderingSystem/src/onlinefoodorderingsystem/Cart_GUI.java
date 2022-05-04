@@ -17,27 +17,13 @@ public class Cart_GUI extends javax.swing.JFrame {
 
     Customer cust;
     Order o = new Order();
-    private Connection con;
+    
 
     public Cart_GUI() {
         initComponents();
-        o.setOrder_Id(3);
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-        Object row[] = new Object[3];
+        DB_Connection_Seif db = new DB_Connection_Seif();
+        table = db.displayCartItems(table);
 
-        try {
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT MenuItem_ID, Quantity, Total_ItemPrice FROM order_item WHERE Order_ID =" + o.getOrder_Id() + "");
-            while (rs.next()){
-                row[0] = rs.getInt("MenuItem_ID");
-              
-                model.addRow(row);
-            }
-
-        } catch (Exception e) {
-            System.err.println("Error");
-        }
-        
     }
 
 //    public Cart_GUI(Customer cust, Order o) {
@@ -81,6 +67,7 @@ public class Cart_GUI extends javax.swing.JFrame {
         Cash = new javax.swing.JRadioButton();
         Card = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
+        test = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -125,6 +112,8 @@ public class Cart_GUI extends javax.swing.JFrame {
 
         jButton1.setText("Checkout");
 
+        test.setText("jLabel2");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -149,6 +138,10 @@ public class Cart_GUI extends javax.swing.JFrame {
                                 .addComponent(Card)))
                         .addGap(0, 118, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(208, 208, 208)
+                .addComponent(test)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,7 +150,9 @@ public class Cart_GUI extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addComponent(test)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Cash)
                     .addComponent(Card))
@@ -216,5 +211,6 @@ public class Cart_GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable table;
+    private javax.swing.JLabel test;
     // End of variables declaration//GEN-END:variables
 }
