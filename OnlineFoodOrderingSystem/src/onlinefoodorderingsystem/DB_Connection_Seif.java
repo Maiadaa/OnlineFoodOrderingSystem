@@ -6,8 +6,12 @@ package onlinefoodorderingsystem;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -43,4 +47,26 @@ public class DB_Connection_Seif {
          }
             
     }
+     
+     public void Modify_Cart_Item(Order_Item item){
+        try {
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate("update order_item set Quantity ='" + item.getItem_Quantity() + "where OrderItem_ID ='" + item.getItem().getItem_Id() + ")");
+        } catch (Exception e) {
+            System.err.println("DATABASE INSERTION ERROR: " + e.toString());
+	}
+     }
+     
+     public void Remove_From_Cart(Order o){
+           ArrayList <Order_Item> item = o.getOrdered_Items();
+            for(int i =0;i<item.size();i++){
+             try {
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate("delete from order_item values('" + item.get(i).getItem().getItem_Id() + "', " + item.get(i).getItem_Quantity() + "', " + item.get(i).getItem_Total_Price() + ")");
+        } catch (Exception e) {
+            System.err.println("DATABASE INSERTION ERROR: " + e.toString());
+        }
+         }
+    }
+     
 }

@@ -4,7 +4,6 @@
  */
 package onlinefoodorderingsystem;
 
-import com.sun.org.apache.xalan.internal.xsltc.compiler.util.StringStack;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -35,13 +34,24 @@ public class Manager_RemoveRest_GUI extends javax.swing.JFrame {
 
         // --- USING DATABASE --- // 
         DefaultTableModel tblModel = (DefaultTableModel) restsTable.getModel();
-        
-        for (Restaurant rest : rests) {
+
+        /*for (Restaurant rest : rests) {
             String[] row = {rest.getRest_Name()};
 
-            tblModel.addRow(new Object[]{row[0]});
+            restsTable.getModel(ddRow(new Object[]{row[0]});
             break;
+        }*/
+        Object rowData[] = new Object[4];
+
+        while (rs.next()) {
+            rowData[0] = rs.getInt("PROD_ID");
+            rowData[1] = rs.getDouble("PRICE");
+            rowData[2] = rs.getString("STATUS");
+            rowData[3] = add;
+
+            model.addRow(rowData);
         }
+
         initComponents();
     }
 
@@ -150,11 +160,11 @@ public class Manager_RemoveRest_GUI extends javax.swing.JFrame {
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
 
-         
+
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void RemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveActionPerformed
-                /* // --- USING ARRAY LISTS --- // 
+        /* // --- USING ARRAY LISTS --- // 
         int viewRow = jTable1.getSelectedRow();
         
         Manager.getTheManager().getSysRestsAdmins().Remove_Rest_Admin(Manager.getTheManager().getSysRestsAdmins().getRestAdmins().get(viewRow - 1 ));
@@ -162,10 +172,14 @@ public class Manager_RemoveRest_GUI extends javax.swing.JFrame {
         
         DefaultTableModel tblModel = (DefaultTableModel) jTable1.getModel();
         tblModel.removeRow(viewRow);
-        */
-         
+         */
+
         // --- USING DATABASE --- // 
-        
+        int column = 0;
+        int row = restsTable.getSelectedRow();
+        String restName = restsTable.getModel().getValueAt(row, column).toString();
+
+
     }//GEN-LAST:event_RemoveActionPerformed
 
     /**

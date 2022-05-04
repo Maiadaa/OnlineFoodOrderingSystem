@@ -20,6 +20,11 @@ public class AdminMenu extends javax.swing.JFrame {
         initComponents();
     }
 
+    public AdminMenu() 
+    {
+        
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,9 +37,7 @@ public class AdminMenu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         LogOutButton = new javax.swing.JButton();
-        NameLabel = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        CopounsMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,11 +52,12 @@ public class AdminMenu extends javax.swing.JFrame {
             }
         });
 
-        NameLabel.setText("jLabel3");
-
-        jButton1.setText("Create Coupon");
-
-        jButton2.setText("Remove Coupon");
+        CopounsMenu.setText("Coupons");
+        CopounsMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CopounsMenuActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -64,17 +68,13 @@ public class AdminMenu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(NameLabel)
-                        .addGap(60, 60, 60)
+                        .addGap(114, 114, 114)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                         .addComponent(LogOutButton)
                         .addGap(17, 17, 17))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(CopounsMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -84,13 +84,10 @@ public class AdminMenu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
-                    .addComponent(NameLabel)
                     .addComponent(LogOutButton))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
-                .addContainerGap(319, Short.MAX_VALUE))
+                .addComponent(CopounsMenu)
+                .addContainerGap(360, Short.MAX_VALUE))
         );
 
         pack();
@@ -102,6 +99,13 @@ public class AdminMenu extends javax.swing.JFrame {
         HomePage obj = new HomePage();
         obj.setVisible(true);
     }//GEN-LAST:event_LogOutButtonActionPerformed
+
+    private void CopounsMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopounsMenuActionPerformed
+        // TODO add your handling code here:
+        Coupons menu = new Coupons();
+        menu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_CopounsMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,10 +144,8 @@ public class AdminMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CopounsMenu;
     private javax.swing.JButton LogOutButton;
-    private javax.swing.JLabel NameLabel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables

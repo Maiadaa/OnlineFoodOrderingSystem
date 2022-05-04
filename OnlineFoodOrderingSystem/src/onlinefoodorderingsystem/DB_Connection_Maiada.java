@@ -81,5 +81,42 @@ public class DB_Connection_Maiada {
         }
         return result;
     }
+
+    public int getRestAdminID(String restName) {
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select RestAdmin_ID from restaurant where Rest_Name = '" + restName + "'");
+            while (rs.next()) {
+                return rs.getInt("RestAdmin_ID");
+            }
+        } catch (Exception e) {
+            System.err.println("DATABASE GET REST ADMIN ID QUERY ERROR: " + e.toString());
+        }
+        return 0;
+    }
     
+    public void deleteRestAdmin(int id) {
+        try {
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate("delete from rest_admin where ID = '" + id + "'");
+            System.out.println("Restaurant Admin deleted");
+            
+        } catch (Exception e) {
+            System.err.println("DATABASE RESTAURANT ADMIN DELETION ERROR: " + e.toString());
+        }
+    }
+
+    public void deleteRest(String restName) {
+        try {
+            this.deleteRestAdmin(this.getRestAdminID(restName));
+            
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate("delete from restaurant where Rest_Name = '" + restName + "'");
+            System.out.println("Restaurant deleted");
+            
+        } catch (Exception e) {
+            System.err.println("DATABASE RESTAURANT DELETION ERROR: " + e.toString());
+        }
+    }
+
 }

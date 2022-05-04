@@ -59,7 +59,7 @@ public class Restaurant {
      * @param
      */
     public void Handle_Feedback(Feedback f) {
-        this.setRest_Rating(this.getRest_Rating() + f.getRating());
+        //this.setRest_Rating(this.getRest_Rating() + f.getRating());
 
         // mehtag attribute f class feedback esmo rating double
     }

@@ -168,9 +168,13 @@ public class Add__Menu_Item extends javax.swing.JPanel {
         String category = jTextField1.getText();
         double price = Double.parseDouble(jTextField1.getText());
         boolean availability = Boolean.parseBoolean(jTextField1.getText());
-        
-        db.addMenuItem(id, name, description, category, name, category);
-        
+//<<<<<<< HEAD
+//        
+//        db.addMenuItem(id, name, description, category, name, category);
+//        
+//=======
+//        //menuData.Add_Menu_Item(id,name,description,category,price,availability);
+//>>>>>>> ae671a36b05774d1aa816590d8523b2a79a6d601
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
