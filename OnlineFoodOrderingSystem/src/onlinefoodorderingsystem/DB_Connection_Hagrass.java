@@ -34,16 +34,13 @@ public class DB_Connection_Hagrass {
      
     public ArrayList selectOrderHistory(int customer_ID){
         ArrayList<Order> orders = new ArrayList<Order> ();
+        ArrayList<Order_Item> list = new ArrayList<Order>():
         try {
             Statement stmt = con.createStatement();
             ResultSet select_order = stmt.executeQuery("SELECT * FROM `order` WHERE Customer_ID = " + customer_ID);
             ResultSet select_restaurant = stmt.executeQuery("");
             while(select_order.next()){
-                Order neworder = new Order();
-                neworder.setOrder_Id(select_order.getInt("Order_ID"));
-                neworder.setOrder_Date(select_order.getString("Order_Date"));
-                neworder.setOrder_status(select_order.getString("Order_status"));
-                
+                orders.add(new Order(select_order.getInt("Order_ID"), , Ordered_Items, userName, customer_ID, userName));
             }
         } catch (Exception e) {
             System.err.println("DATABASE QUERY ERROR: " + e.toString());

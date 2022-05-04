@@ -32,10 +32,9 @@ public class Order {
         this.m_Payment_Method = m_Payment_Method;
     }
 
-    public Order(int Order_Id, Restaurant Order_Rest, ArrayList<Order_Item> Ordered_Items, String Order_Date, double Order_Price, String Orderstatus) {
+    public Order(int Order_Id, Restaurant Order_Rest, String Order_Date, double Order_Price, String Orderstatus) {
         this.Order_Id = Order_Id;
         this.Order_Rest = Order_Rest;
-        this.Ordered_Items = Ordered_Items;
         this.Order_Date = Order_Date;
         this.Order_Price = Order_Price;
         this.Orderstatus = Orderstatus;
