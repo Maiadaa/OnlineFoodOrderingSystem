@@ -6,13 +6,16 @@ package onlinefoodorderingsystem;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
  * @author mostafa gado
  */
 public class DB_Connection_Assem {
-     private final String userName = "root";
+    private final String userName = "root";
     private final String password = "";
     private final String dbName = "food_ordering_system";
 
@@ -28,4 +31,96 @@ public class DB_Connection_Assem {
             System.err.println("DATABASE CONNECTION ERROR: " + e.toString());
         }
     }
+     
+    public ArrayList<Admin> getAllAdmins()
+    {
+        ArrayList<Admin> result = new ArrayList();
+        try 
+        {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from admin");
+            while (rs.next()) 
+            {
+                result.add(new Admin(rs.getInt("ID"), rs.getString("Name"),rs.getString("Email"),rs.getString("Phone_Number"),rs.getString("Address"),rs.getString("Username"),rs.getString("Password"),rs.getString("Gender").charAt(0)));
+            }
+        } catch (Exception e) 
+        {
+            System.err.println("DATABASE QUERY ERROR: " + e.toString());
+        }
+        return result;
+    }
+    
+      public ArrayList<Customer> getAllCustomers()
+    {
+         ArrayList<Customer> result = new ArrayList();
+        try 
+        {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from admin");
+            while (rs.next()) 
+            {
+                result.add(new Customer(rs.getInt("ID"), rs.getString("Name"),rs.getString("Email"),rs.getString("Phone_Number"),rs.getString("Address"),rs.getString("Username"),rs.getString("Password"),rs.getString("Gender").charAt(0)));
+            }
+        } catch (Exception e) 
+        {
+            System.err.println("DATABASE QUERY ERROR: " + e.toString());
+        }
+        return result;
+    }
+      
+    public ArrayList<Restaurant_Admin> getAllRestaurantAdmins()
+    {
+         ArrayList<Restaurant_Admin> result = new ArrayList();
+        try 
+        {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from admin");
+            while (rs.next()) 
+            {
+                result.add(new Restaurant_Admin(rs.getInt("ID"), rs.getString("Name"),rs.getString("Email"),rs.getString("Phone_Number"),rs.getString("Address"),rs.getString("Username"),rs.getString("Password"),rs.getString("Gender").charAt(0)));
+            }
+        } catch (Exception e) 
+        {
+            System.err.println("DATABASE QUERY ERROR: " + e.toString());
+        }
+        return result;
+    }
+ 
+     public Restaurant_Admin RestaurantAdminLogin(String uname , String pw)
+     {
+        ArrayList<Restaurant_Admin> result = getAllRestaurantAdmins();
+        for(int i = 0 ;i < result.size();i++)
+        {
+            if(uname.equals(result.get(i).getUsername()) && pw .equals(result.get(i).getPassword()))
+            {
+                return result.get(i);
+            }
+        }
+    return null;
+     }
+      public Customer CustomerLogin(String uname , String pw)
+     {
+        ArrayList<Customer> result = getAllCustomers();
+        for(int i = 0 ;i < result.size();i++)
+        {
+            if(uname.equals(result.get(i).getUsername()) && pw .equals(result.get(i).getPassword()))
+            {
+                return result.get(i);
+            }
+        }
+    return null;
+     }
+       public Admin AdminLogin(String uname , String pw)
+     {
+        ArrayList<Admin> result = getAllAdmins();
+        for(int i = 0 ;i < result.size();i++)
+        {
+            if(uname.equals(result.get(i).getUsername()) && pw .equals(result.get(i).getPassword()))
+            {
+                return result.get(i);
+            }
+        }
+    return null;
+     
+     }
 }
