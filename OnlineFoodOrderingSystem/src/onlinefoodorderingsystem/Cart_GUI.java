@@ -5,25 +5,66 @@
  */
 package onlinefoodorderingsystem;
 
-/**
- *
- * @author PC
- */
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.table.DefaultTableModel;
+
 public class Cart_GUI extends javax.swing.JFrame {
-      Customer cust;
-    Order o;
-    
-    
+
+    Customer cust;
+    Order o = new Order();
+    private Connection con;
+
     public Cart_GUI() {
         initComponents();
+        o.setOrder_Id(3);
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        Object row[] = new Object[3];
+
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT MenuItem_ID, Quantity, Total_ItemPrice FROM order_item WHERE Order_ID =" + o.getOrder_Id() + "");
+            while (rs.next()){
+                row[0] = rs.getInt("MenuItem_ID");
+              
+                model.addRow(row);
+            }
+
+        } catch (Exception e) {
+            System.err.println("Error");
+        }
+        
     }
 
-    public Cart_GUI(Customer cust, Order o) {
-        this.cust = cust;
-        this.o = o;
-    }
-    
-  
+//    public Cart_GUI(Customer cust, Order o) {
+//        this.cust = cust;
+//        
+//    }
+
+//    public void addRowToJTable() {
+//        DefaultTableModel model = (DefaultTableModel) table.getModel();
+//        Object row[] = new Object[3];
+//
+//        try {
+//            Statement stmt = con.createStatement();
+//            ResultSet rs = stmt.executeQuery("SELECT `MenuItem_ID`, `Quantity`, `Total_ItemPrice` FROM `order_item` WHERE Order_ID ='" + o.getOrder_Id() + ")");
+//            while (rs.next()){
+//                row[0] = o.getM_Order_Item().getItem().getItem_Id();
+//                row[1] = o.getM_Order_Item().getItem_Quantity();
+//                row[2] = o.getM_Order_Item().getItem_Total_Price();
+//                model.addRow(row);
+//            }
+//
+//        } catch (Exception e) {
+//            System.err.println("Error");
+//        }
+//
+//    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,7 +77,7 @@ public class Cart_GUI extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table = new javax.swing.JTable();
         Cash = new javax.swing.JRadioButton();
         Card = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
@@ -46,7 +87,7 @@ public class Cart_GUI extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Cart");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -54,18 +95,30 @@ public class Cart_GUI extends javax.swing.JFrame {
                 "Item", "Price", "Quantity"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(table);
 
         buttonGroup1.add(Cash);
         Cash.setText("Cash");
+        Cash.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CashActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(Card);
         Card.setText("Credit Card");
@@ -77,23 +130,25 @@ public class Cart_GUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(114, 114, 114)
-                .addComponent(Cash)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Card)
-                .addGap(98, 98, 98))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(215, 215, 215)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(183, 183, 183)
-                        .addComponent(jButton1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(215, 215, 215)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(184, 184, 184)
+                                .addComponent(jButton1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(140, 140, 140)
+                                .addComponent(Cash)
+                                .addGap(66, 66, 66)
+                                .addComponent(Card)))
+                        .addGap(0, 118, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,17 +157,21 @@ public class Cart_GUI extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Cash)
                     .addComponent(Card))
-                .addGap(18, 18, 18)
+                .addGap(15, 15, 15)
                 .addComponent(jButton1)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void CashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CashActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CashActionPerformed
 
     /**
      * @param args the command line arguments
@@ -156,6 +215,6 @@ public class Cart_GUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }
