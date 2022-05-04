@@ -151,7 +151,7 @@ public class Manager_RemoveRest_GUI extends javax.swing.JFrame {
         int viewRow = jTable1.getSelectedRow();
         
         Manager.getTheManager().getSysRestsAdmins().Remove_Rest_Admin(Manager.getTheManager().getSysRestsAdmins().getRestAdmins().get(viewRow - 1 ));
-        Manager.getTheManager().getSysRests().Remove_Rest((Manager.getTheManager().getSysRestsAdmins().getRestAdmins().get(viewRow - 1 )).getRestaurant());
+        Manager.getTheManager().getSysRests().Remove_Rest((Manager.getTheManager().getSysRestsAdmins().getRestAdmins().get(viewRow - 1 )).getRest());
         
         DefaultTableModel tblModel = (DefaultTableModel) jTable1.getModel();
         tblModel.removeRow(viewRow);

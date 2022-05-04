@@ -35,28 +35,30 @@ public class DB_Connection_Maiada {
             Statement stmt = con.createStatement();
             stmt.executeUpdate("INSERT INTO rest_admin (`Username`, `Password`)"
                     + "VALUES ('" + ra.getUsername()+ "', '" + ra.getPassword() + "')");
-            this.addRest(ra.getRestaurant());
             System.out.println("Restaurant Admin added");
+            
+            this.addRest(ra.getRest(), ra.getUsername());
         } catch (Exception e) {
             System.err.println("RESTAURANT ADMIN INSERTION ERROR: " + e.toString());
         }
     }
      
-    public void addRest(Restaurant rest) {
+    public void addRest(Restaurant rest, String uname) {
+        int id = 0;
         try {
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from students where name = '" + name + "'");
+            ResultSet rs = stmt.executeQuery("select ID from rest_admin where Username = '" + uname + "'");
             if (rs.first()) {
-                return new Student(rs.getString("name"), rs.getDouble("gpa"));
+                id = rs.getInt("ID");
             }
         } catch (Exception e) {
-            System.err.println("DATABASE QUERY ERROR: " + e.toString());
+            System.err.println("DATABASE ADD RESTAURANT QUERY ERROR: " + e.toString());
         }
         
         try {
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("INSERT INTO restaurant (`Name`)"
-                    + "VALUES ('" + ra.getRestaurant().getRest_Name() + "')");
+            stmt.executeUpdate("INSERT INTO restaurant (`Rest_Name`, `RestAdmin_ID`, `Rest_Loc`, `Rest_Categ`)"
+                    + "VALUES ('" + rest.getRest_Name() + "', '" + id + "', '" + rest.getRest_Location() + "', '" + rest.getRest_Categ() + "')");
             System.out.println("Restaurant added");
         } catch (Exception e) {
             System.err.println("RESTAURANT INSERTION ERROR: " + e.toString());

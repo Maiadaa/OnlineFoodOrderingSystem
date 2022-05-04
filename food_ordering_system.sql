@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 04, 2022 at 09:46 AM
+-- Generation Time: May 04, 2022 at 10:20 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -105,22 +105,12 @@ CREATE TABLE `manager` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `menu`
---
-
-CREATE TABLE `menu` (
-  `Menu_ID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `menu_item`
 --
 
 CREATE TABLE `menu_item` (
   `MenuItem_ID` int(11) NOT NULL,
-  `Menu_ID` int(11) NOT NULL,
+  `Rest_ID` int(11) NOT NULL,
   `Item_Name` varchar(20) NOT NULL,
   `Item_Desc` varchar(30) NOT NULL,
   `Item_Categ` varchar(15) NOT NULL,
@@ -195,7 +185,6 @@ CREATE TABLE `premium_customer` (
 
 CREATE TABLE `restaurant` (
   `Rest_ID` int(11) NOT NULL,
-  `Menu_ID` int(11) NOT NULL,
   `Rest_Loc` varchar(30) NOT NULL,
   `Rest_Categ` varchar(15) NOT NULL,
   `Rest_Name` varchar(20) NOT NULL,
@@ -258,18 +247,12 @@ ALTER TABLE `manager`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `menu`
---
-ALTER TABLE `menu`
-  ADD PRIMARY KEY (`Menu_ID`);
-
---
 -- Indexes for table `menu_item`
 --
 ALTER TABLE `menu_item`
-  ADD PRIMARY KEY (`MenuItem_ID`,`Menu_ID`),
+  ADD PRIMARY KEY (`MenuItem_ID`),
   ADD UNIQUE KEY `MenuItem_ID` (`MenuItem_ID`),
-  ADD KEY `FK_Menu_MenuItem` (`Menu_ID`);
+  ADD KEY `FK_Rest_MenuItem` (`Rest_ID`);
 
 --
 -- Indexes for table `order`
@@ -307,7 +290,6 @@ ALTER TABLE `premium_customer`
 --
 ALTER TABLE `restaurant`
   ADD PRIMARY KEY (`Rest_ID`),
-  ADD KEY `FK_Menu_Rest` (`Menu_ID`),
   ADD KEY `FK_RestAdmin_Rest` (`RestAdmin_ID`);
 
 --
@@ -349,12 +331,6 @@ ALTER TABLE `feedback`
 --
 ALTER TABLE `manager`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `menu`
---
-ALTER TABLE `menu`
-  MODIFY `Menu_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `menu_item`
@@ -407,7 +383,7 @@ ALTER TABLE `feedback`
 -- Constraints for table `menu_item`
 --
 ALTER TABLE `menu_item`
-  ADD CONSTRAINT `FK_Menu_MenuItem` FOREIGN KEY (`Menu_ID`) REFERENCES `menu` (`Menu_ID`);
+  ADD CONSTRAINT `FK_Rest_MenuItem` FOREIGN KEY (`Rest_ID`) REFERENCES `restaurant` (`Rest_ID`);
 
 --
 -- Constraints for table `order`
@@ -435,7 +411,6 @@ ALTER TABLE `premiumcust_coupon`
 -- Constraints for table `restaurant`
 --
 ALTER TABLE `restaurant`
-  ADD CONSTRAINT `FK_Menu_Rest` FOREIGN KEY (`Menu_ID`) REFERENCES `menu` (`Menu_ID`),
   ADD CONSTRAINT `FK_RestAdmin_Rest` FOREIGN KEY (`RestAdmin_ID`) REFERENCES `rest_admin` (`ID`);
 COMMIT;
 
