@@ -6,6 +6,9 @@ package onlinefoodorderingsystem;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -28,4 +31,23 @@ public class DB_Connection_Hagrass {
             System.err.println("DATABASE CONNECTION ERROR: " + e.toString());
         }
     }   
+     
+    public ArrayList selectOrderHistory(int customer_ID){
+        ArrayList<Order> orders = new ArrayList<Order> ();
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet select_order = stmt.executeQuery("SELECT * FROM `order` WHERE Customer_ID = " + customer_ID);
+            ResultSet select_restaurant = stmt.executeQuery("");
+            while(select_order.next()){
+                Order neworder = new Order();
+                neworder.setOrder_Id(select_order.getInt("Order_ID"));
+                neworder.setOrder_Date(select_order.getString("Order_Date"));
+                neworder.setOrder_status(select_order.getString("Order_status"));
+                
+            }
+        } catch (Exception e) {
+            System.err.println("DATABASE QUERY ERROR: " + e.toString());
+        }
+        return null;
+    }
 }
