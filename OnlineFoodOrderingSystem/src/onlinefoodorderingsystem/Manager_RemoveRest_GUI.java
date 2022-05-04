@@ -106,7 +106,7 @@ public class Manager_RemoveRest_GUI extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 748, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(62, 62, 62))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(Title)
@@ -122,12 +122,13 @@ public class Manager_RemoveRest_GUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(Title))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(16, 16, 16)
-                        .addComponent(backBtn)))
-                .addGap(40, 40, 40)
+                        .addComponent(backBtn)
+                        .addGap(56, 56, 56))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Title)
+                        .addGap(38, 38, 38)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addComponent(Remove, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -155,15 +156,19 @@ public class Manager_RemoveRest_GUI extends javax.swing.JFrame {
 
         // --- USING DATABASE --- // 
         int row = restsTable.getSelectedRow();
-        int restId  = Integer.parseInt(restsTable.getModel().getValueAt(row, 0).toString());
-        int restAdminId  = Integer.parseInt(restsTable.getModel().getValueAt(row, 2).toString());
-        
+        int restId = Integer.parseInt(restsTable.getModel().getValueAt(row, 0).toString());
+        int restAdminId = Integer.parseInt(restsTable.getModel().getValueAt(row, 2).toString());
+
         DB_Connection_Maiada db = new DB_Connection_Maiada();
         db.deleteRest(restId);
         db.deleteRestAdmin(restAdminId);
-        
+
         //redisplay to view results
-        
+        Manager_RemoveRest_GUI results = new Manager_RemoveRest_GUI();
+        results.setVisible(true);
+
+        this.dispose();
+
         JOptionPane.showMessageDialog(null, "Restaurant and it's admin were removed successfully.");
     }//GEN-LAST:event_RemoveActionPerformed
 
