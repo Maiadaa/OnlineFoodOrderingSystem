@@ -163,8 +163,6 @@ public class Manager_RemoveRest_GUI extends javax.swing.JFrame {
         db.deleteRestAdmin(restAdminId);
         
         //redisplay to view results
-        DB_Connection_Maiada db2 = new DB_Connection_Maiada();
-        restsTable = db2.displayRests(restsTable);
         
         JOptionPane.showMessageDialog(null, "Restaurant and it's admin were removed successfully.");
     }//GEN-LAST:event_RemoveActionPerformed
