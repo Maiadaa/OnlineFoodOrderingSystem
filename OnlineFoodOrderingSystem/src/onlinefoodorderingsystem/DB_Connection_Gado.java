@@ -63,7 +63,7 @@ public class DB_Connection_Gado {
             ps.setDouble(5, price);
             ps.setInt(6, availability);
             
-            if(ps.executeUpdate()>0){
+            if(ps.executeUpdate()>=0){
                 JOptionPane.showMessageDialog(null, "Menu item is added");
             }
         } catch (SQLException ex) {
@@ -72,7 +72,14 @@ public class DB_Connection_Gado {
     }
     
     public void removeMenuItem(int id){
-        String query = "DELETE FROM `menu_item` WHERE id = id";
+        try {
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate("delete from menu_item where ID = '" + id + "'");
+            System.out.println("Restaurant Admin deleted");
+            
+        } catch (Exception e) {
+            System.err.println("DATABASE RESTAURANT ADMIN DELETION ERROR: " + e.toString());
+        }
     }
 
     
@@ -99,6 +106,19 @@ public class DB_Connection_Gado {
             }
         } catch (SQLException ex) {
             Logger.getLogger(DB_Connection_Gado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+    public void updateData(String phone, String address, String user, String password, int id ){
+        String sql = "UPDATE `customer` SET `Phone`= '"+phone+"',`Address`='"+address+"',`Username`='"+user+"',`Password`= '"+password+"'WHERE id = '"+id+"'";
+          PreparedStatement ps;
+        try {
+            ps = DB_Connection_Gado.getConnection().prepareStatement(sql);
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "User updated");
+        } catch (SQLException ex) {
+            Logger.getLogger(ManageAccount.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

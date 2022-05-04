@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  * @author mostafa gado
  */
 public class addMenuItem extends javax.swing.JFrame {
-    DB_Connection_Gado db;
+    
     /**
      * Creates new form addMenuItem
      */
@@ -173,7 +173,8 @@ public class addMenuItem extends javax.swing.JFrame {
         double price = Double.parseDouble(Price.getText());
         int availability = Integer.parseInt(Availability.getText());
 
-        db.addMenuItem(id, name, description, category, price,availability);
+        DB_Connection_Gado conn = new DB_Connection_Gado();
+        conn.addMenuItem(id, name, description, category, price, availability);
 
     }//GEN-LAST:event_addButtonActionPerformed
 
