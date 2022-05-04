@@ -129,7 +129,7 @@ public class Customer extends Person implements New_Rests_Observer {
             for (int i = 0; i < Orders_History.get(choice).getOrdered_Items().size(); i++) {
                 System.out.println("your order item number " + i + " is " + Orders_History.get(choice).getOrdered_Items().get(i));
             }
-            System.out.println("Your order status is " + Orders_History.get(choice).getOrder_status());
+            System.out.println("Your order status is " + Orders_History.get(choice).getOrderstatus());
 	}
 
 	public ArrayList<Order> getOrders_History(){

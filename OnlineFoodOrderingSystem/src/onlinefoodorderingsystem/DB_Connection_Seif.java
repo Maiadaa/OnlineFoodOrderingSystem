@@ -6,6 +6,7 @@ package onlinefoodorderingsystem;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.Statement;
 
 /**
  *
@@ -26,6 +27,16 @@ public class DB_Connection_Seif {
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + dbName, userName, password);
         } catch (Exception e) {
             System.err.println("DATABASE CONNECTION ERROR: " + e.toString());
+        }
+    }
+     
+     public void Add_To_Cart(Order o){
+         Order_Item item = o.getOrdered_Items();
+            try {
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate("insert into order_item values('" + item.getItem().getItem_Id() + "', " + item.getItem_Quantity() + "', " + item.getItem_Total_Price() + ")");
+        } catch (Exception e) {
+            System.err.println("DATABASE INSERTION ERROR: " + e.toString());
         }
     }
 }

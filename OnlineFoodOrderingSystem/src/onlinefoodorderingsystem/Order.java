@@ -1,4 +1,6 @@
 package onlinefoodorderingsystem;
+import java.sql.Connection;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 
@@ -10,7 +12,7 @@ public class Order {
 	private String Order_Date;
 	private Coupon Order_Promo;
 	private double Order_Price;
-	private Status Order_status;
+	private Status Orderstatus;
 	public Order_Item m_Order_Item;
 	public Payment_Method m_Payment_Method;
 
@@ -25,7 +27,7 @@ public class Order {
         this.Order_Date = Order_Date;
         this.Order_Promo = Order_Promo;
         this.Order_Price = Order_Price;
-        this.Order_status = Order_status;
+        this.Orderstatus = Order_status;
         this.m_Order_Item = m_Order_Item;
         this.m_Payment_Method = m_Payment_Method;
     }
@@ -61,7 +63,7 @@ public class Order {
 	public void Modify_Cart_Item(Order_Item item, int new_quant){
             for (int i = 0 ; i > Ordered_Items.size();i++){
                 if (Ordered_Items.get(i) == item){
-                  Ordered_Items.remove(item);
+                  Ordered_Items.get(i).setItem_Quantity(new_quant);
                 }
             }
 	}
@@ -75,7 +77,8 @@ public class Order {
 	}
 
 	public void Checkout(Order o){
-            o.setOrder_status(Order_status.Accepted);
+            o.getOrder_Id();
+            o.setOrderstatus(Orderstatus.Accepted);
 	}
 
         public void setOrder_Id(int Order_Id) {
@@ -102,8 +105,8 @@ public class Order {
             this.Order_Price = Order_Price;
         }
 
-        public void setOrder_status(Status Order_status) {
-            this.Order_status = Order_status;
+        public void setOrderstatus(Status Orderstatus) {
+            this.Orderstatus = Orderstatus;
         }
 
         public void setM_Order_Item(Order_Item m_Order_Item) {
@@ -138,8 +141,8 @@ public class Order {
             return Order_Price;
         }
 
-        public Status getOrder_status() {
-            return Order_status;
+        public Status getOrderstatus() {
+            return Orderstatus;
         }
 
         public Order_Item getM_Order_Item() {
