@@ -60,15 +60,6 @@ public class Feedback_History extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(feedbacktable);
-        if (feedbacktable.getColumnModel().getColumnCount() > 0) {
-            feedbacktable.getColumnModel().getColumn(0).setResizable(false);
-            feedbacktable.getColumnModel().getColumn(1).setResizable(false);
-            feedbacktable.getColumnModel().getColumn(2).setResizable(false);
-            feedbacktable.getColumnModel().getColumn(3).setResizable(false);
-            feedbacktable.getColumnModel().getColumn(4).setResizable(false);
-            feedbacktable.getColumnModel().getColumn(5).setResizable(false);
-            feedbacktable.getColumnModel().getColumn(6).setResizable(false);
-        }
 
         jButton1.setText("Back");
 

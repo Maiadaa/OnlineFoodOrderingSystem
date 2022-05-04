@@ -8,5 +8,4 @@ public interface Feedback_Detector
         public ArrayList<Feedback> Feedback_History = new ArrayList<Feedback>();
         
 	public void Handle_Feedback(Feedback f);
-        public void setNextinchain(Restaurant_Admin x);
 }
