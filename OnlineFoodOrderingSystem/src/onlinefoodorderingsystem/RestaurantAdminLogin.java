@@ -135,15 +135,16 @@ public class RestaurantAdminLogin extends javax.swing.JFrame {
 
     private void SignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignInActionPerformed
         // TODO add your handling code here:
-         String uname = Username.getText();
+        DB_Connection_Assem conn = new DB_Connection_Assem();
+        String uname = Username.getText();
         String password = String.valueOf(Password.getPassword());
         if(uname.equals("") || password.equals(""))
         {
             JOptionPane.showMessageDialog(null, "Please fill in your login credentials");
         }
-        if(tempRestAdmin.RestAdminLogin(uname, password) != null)
+        if(conn.RestaurantAdminLogin(uname, password) != null)
         {
-           tempRestAdmin = tempRestAdmin.RestAdminLogin(uname, password);
+           tempRestAdmin = conn.RestaurantAdminLogin(uname, password);
            RestaurantAdminMenu obj = new RestaurantAdminMenu(tempRestAdmin);
            obj.setVisible(true);
             

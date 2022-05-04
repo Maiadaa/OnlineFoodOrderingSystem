@@ -121,7 +121,7 @@ public class View_Menu_Item extends javax.swing.JPanel {
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
-        jTextField1.setText(restaurantData.getRest_Menu());
+        //jTextField1.setText(restaurantData.getRest_Menu());
     }//GEN-LAST:event_jTextField1ActionPerformed
 
 

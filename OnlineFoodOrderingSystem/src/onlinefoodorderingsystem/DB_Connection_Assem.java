@@ -31,7 +31,18 @@ public class DB_Connection_Assem {
             System.err.println("DATABASE CONNECTION ERROR: " + e.toString());
         }
     }
-     
+    public void CreateValidCoupon(Coupon c)
+    {
+          try 
+          {
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate("INSERT INTO coupon(Coupon_code, Coupon_desc, Expiry_date) values('" + c.getCoupon_Code() + "', " + c.getCoupon_Desc() + "', " + c.getCoupon_ExpiryDate() + ")");
+            System.out.println("Coupon added");
+        } catch (Exception e) 
+        {
+            System.err.println("DATABASE COUPON INSERTION ERROR: " + e.toString());
+        }
+    }
     public ArrayList<Admin> getAllAdmins()
     {
         ArrayList<Admin> result = new ArrayList();
@@ -41,25 +52,25 @@ public class DB_Connection_Assem {
             ResultSet rs = stmt.executeQuery("select * from admin");
             while (rs.next()) 
             {
-                result.add(new Admin(rs.getInt("ID"), rs.getString("Name"),rs.getString("Email"),rs.getString("Phone_Number"),rs.getString("Address"),rs.getString("Username"),rs.getString("Password"),rs.getString("Gender").charAt(0)));
+                result.add(new Admin(rs.getInt("ID"), rs.getString("Name"),rs.getString("Email"),rs.getString("Phone"),rs.getString("Address"),rs.getString("Username"),rs.getString("Password"),rs.getString("Gender").charAt(0)));
             }
         } catch (Exception e) 
         {
-            System.err.println("DATABASE QUERY ERROR: " + e.toString());
+            System.err.println("DATABASE ADMIN RETRIVAL QUERY ERROR: " + e.toString());
         }
         return result;
     }
     
       public ArrayList<Customer> getAllCustomers()
     {
-         ArrayList<Customer> result = new ArrayList();
+        ArrayList<Customer> result = new ArrayList();
         try 
         {
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from admin");
+            ResultSet rs = stmt.executeQuery("select * from customer");
             while (rs.next()) 
             {
-                result.add(new Customer(rs.getInt("ID"), rs.getString("Name"),rs.getString("Email"),rs.getString("Phone_Number"),rs.getString("Address"),rs.getString("Username"),rs.getString("Password"),rs.getString("Gender").charAt(0)));
+                result.add(new Customer(rs.getInt("ID"), rs.getString("Name"),rs.getString("Email"),rs.getString("Phone"),rs.getString("Address"),rs.getString("Username"),rs.getString("Password"),rs.getString("Gender").charAt(0)));
             }
         } catch (Exception e) 
         {
@@ -74,10 +85,10 @@ public class DB_Connection_Assem {
         try 
         {
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from admin");
+            ResultSet rs = stmt.executeQuery("select * from rest_admin");
             while (rs.next()) 
             {
-                result.add(new Restaurant_Admin(rs.getInt("ID"), rs.getString("Name"),rs.getString("Email"),rs.getString("Phone_Number"),rs.getString("Address"),rs.getString("Username"),rs.getString("Password"),rs.getString("Gender").charAt(0)));
+                result.add(new Restaurant_Admin(rs.getInt("ID"), rs.getString("Name"),rs.getString("Email"),rs.getString("Phone"),rs.getString("Address"),rs.getString("Username"),rs.getString("Password"),rs.getString("Gender").charAt(0)));
             }
         } catch (Exception e) 
         {
@@ -103,7 +114,7 @@ public class DB_Connection_Assem {
         ArrayList<Customer> result = getAllCustomers();
         for(int i = 0 ;i < result.size();i++)
         {
-            if(uname.equals(result.get(i).getUsername()) && pw .equals(result.get(i).getPassword()))
+            if(uname.equals(result.get(i).getUsername()) && pw.equals(result.get(i).getPassword()))
             {
                 return result.get(i);
             }
