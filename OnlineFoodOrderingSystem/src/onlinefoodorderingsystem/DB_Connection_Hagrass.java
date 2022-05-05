@@ -1,4 +1,5 @@
 package onlinefoodorderingsystem;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -61,6 +62,7 @@ public class DB_Connection_Hagrass {
         try {
             Statement stmt = con.createStatement();
             ResultSet selectFeedbacks = stmt.executeQuery("SELECT * FROM `feedback` Where Feedback_Type = 'complaint'");
+                //feedbacks.add(new Feedback(, , selectFeedbacks.getString("Feedback_Type"), selectFeedbacks.getString("Feedback_Desc"), selectFeedbacks.getString("Feedback_State"), selectFeedbacks.getInt("Order_ID")));
             DefaultTableModel model;
             model = (DefaultTableModel) table.getModel();
             Object rowData[] = new Object[7];
@@ -82,15 +84,5 @@ public class DB_Connection_Hagrass {
             System.err.println("DATABASE QUERY ERROR: " + e.toString());
         }
         return table;
-    }
-    
-    public Admin SelectAdminData(int AdminID){
-         try {
-            Statement stmt = con.createStatement();
-            ResultSet selectData = stmt.executeQuery("SELECT * FROM `feedback` Where Feedback_Type = 'complaint'"); 
-            return new Admin(selectData.getInt("ID"), selectData.getString("Name"), selectData.getString("Email"), selectData.getString("Phone"), selectData.getString("Username"), selectData.getString("Password"), selectData.getString("Gender"));
-         } catch (Exception e) {
-            System.err.println("DATABASE QUERY ERROR: " + e.toString());
-        }
     }
 }

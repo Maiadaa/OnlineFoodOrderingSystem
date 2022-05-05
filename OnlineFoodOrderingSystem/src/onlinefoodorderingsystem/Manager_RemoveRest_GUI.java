@@ -43,14 +43,14 @@ public class Manager_RemoveRest_GUI extends javax.swing.JFrame {
         }*/
         Object rowData[] = new Object[4];
 
-//        while (rs.next()) {
-//            rowData[0] = rs.getInt("PROD_ID");
-//            rowData[1] = rs.getDouble("PRICE");
-//            rowData[2] = rs.getString("STATUS");
-//            rowData[3] = add;
-//
-//            model.addRow(rowData);
-//        }
+        while (rs.next()) {
+            rowData[0] = rs.getInt("PROD_ID");
+            rowData[1] = rs.getDouble("PRICE");
+            rowData[2] = rs.getString("STATUS");
+            rowData[3] = add;
+
+            model.addRow(rowData);
+        }
 
         initComponents();
     }
