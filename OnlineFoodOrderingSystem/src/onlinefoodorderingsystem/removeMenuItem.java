@@ -97,6 +97,7 @@ public class removeMenuItem extends javax.swing.JFrame {
         
         DB_Connection_Gado conn = new DB_Connection_Gado();
         conn.removeMenuItem(id);
+        this.dispose();
     }//GEN-LAST:event_DeleteActionPerformed
 
     /**

@@ -49,8 +49,10 @@ public class Customer extends Person implements New_Rests_Observer {
         return null;
     }
 
-    public void Manage_Account(Customer acc) {
-
+    public void Manage_Account(String Name, String Email,String PhoneNumber, String address, String userName, String password,String Gender) {
+        
+        DB_Connection_Gado db = new DB_Connection_Gado();
+        db.customerSignUp(Name, Email, PhoneNumber, address, userName, password, Gender);
     }
 
     public void Create_Feedback(int customerID, int Order_Id, Feedback feedback) {

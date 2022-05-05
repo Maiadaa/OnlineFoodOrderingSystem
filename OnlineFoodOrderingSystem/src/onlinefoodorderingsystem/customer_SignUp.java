@@ -171,30 +171,11 @@ public class customer_SignUp extends javax.swing.JFrame {
         String username = UserName.getText();
         String password = String.valueOf(Password.getPassword());
         String gender = Gender.getSelectedItem().toString();
-
-        PreparedStatement ps;
-        String query = "INSERT INTO `customer`( `Name`, `Email`, `Phone`, `Address`, `Username`, `Password`, `Gender`) VALUES (?,?,?,?,?,?,?)";
-
-        try {
-            ps = DB_Connection_Gado.getConnection().prepareStatement(query);
-            ps.setString(1, name);
-            ps.setString(2, email);
-            ps.setString(3, phoneNumber);
-            ps.setString(4, address);
-            ps.setString(5, username);
-            ps.setString(6, password);
-            ps.setString(7, gender);
-            
-            
-            if(ps.executeUpdate()>0){
-//                CustomerLogin.setVisible(true);
-//                this.dispose(); 
-                JOptionPane.showMessageDialog(null, "New User is added");
-                
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(customer_SignUp.class.getName()).log(Level.SEVERE, null, ex);
-        }
+         DB_Connection_Gado db = new DB_Connection_Gado();
+        Customer cust = new Customer();
+        cust.Manage_Account(name, email, phoneNumber, address, username, password, gender);
+       
+//        db.customerSignUp(name, email, phoneNumber, address, username, password, gender);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void GenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenderActionPerformed
