@@ -113,15 +113,15 @@ public class DB_Connection_Gado {
 //    }
     
     
-    public void updateData(String phone, String address, String user, String password, int id ){
-        String sql = "UPDATE `customer` SET `Phone`= '"+phone+"',`Address`='"+address+"',`Username`='"+user+"',`Password`= '"+password+"'WHERE id = '"+id+"'";
+    public void updateData(String phone, String address, String user, String password, int id){
+        String sql = "UPDATE `customer` SET `Phone`= '"+phone+"',`Address`='"+address+"',`Username`='"+user+"',`Password`= '"+password+"'WHERE ID = '"+id+"'";
           PreparedStatement ps;
         try {
             ps = DB_Connection_Gado.getConnection().prepareStatement(sql);
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "User updated");
         } catch (SQLException ex) {
-            Logger.getLogger(ManageAccount.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Customer_ManageAccount_GUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

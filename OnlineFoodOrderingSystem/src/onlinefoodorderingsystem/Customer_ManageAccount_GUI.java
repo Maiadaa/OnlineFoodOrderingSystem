@@ -14,15 +14,20 @@ import javax.swing.JOptionPane;
  *
  * @author mostafa gado
  */
-public class ManageAccount extends javax.swing.JFrame {
+public class Customer_ManageAccount_GUI extends javax.swing.JFrame {
     DB_Connection_Gado db;
+    Customer cust = new Customer();
     /**
      * Creates new form ManageAccount
      */
-    public ManageAccount() {
+    public Customer_ManageAccount_GUI() {
         initComponents();
     }
-
+    
+    public Customer_ManageAccount_GUI(Customer c) {
+        initComponents();
+        this.cust = c;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -125,8 +130,9 @@ public class ManageAccount extends javax.swing.JFrame {
           String user = UserName.getText();
           String password = String.valueOf(Password.getPassword());
           
+          
           DB_Connection_Gado conn = new DB_Connection_Gado();
-          conn.updateData(phone, address, user, password, 1);
+          conn.updateData(phone, address, user, password, cust.getID());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -146,20 +152,21 @@ public class ManageAccount extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManageAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Customer_ManageAccount_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManageAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Customer_ManageAccount_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManageAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Customer_ManageAccount_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManageAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Customer_ManageAccount_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManageAccount().setVisible(true);
+                new Customer_ManageAccount_GUI().setVisible(true);
             }
         });
     }

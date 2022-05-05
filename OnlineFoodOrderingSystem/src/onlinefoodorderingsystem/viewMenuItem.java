@@ -14,11 +14,11 @@ public class viewMenuItem extends javax.swing.JFrame {
      * Creates new form viewMenuItem
      */
     Menu_Item m = new Menu_Item();
+    int restId = 0;
     public viewMenuItem() {
         
         initComponents();
-        DB_Connection_Gado db = new DB_Connection_Gado();
-        table = db.displayMenuItems(table, 1);
+        
     }
     
 //    public viewMenuItem() {
@@ -27,8 +27,9 @@ public class viewMenuItem extends javax.swing.JFrame {
 
     public viewMenuItem(int restId) {
         initComponents();
+        this.restId = restId;
         DB_Connection_Gado db = new DB_Connection_Gado();
-        table = db.displayMenuItems(table, 1);
+        table = db.displayMenuItems(table, restId);
         
     }
 
