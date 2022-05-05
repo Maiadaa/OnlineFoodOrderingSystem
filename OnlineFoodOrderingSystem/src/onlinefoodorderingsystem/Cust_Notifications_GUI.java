@@ -40,6 +40,11 @@ public class Cust_Notifications_GUI extends javax.swing.JFrame {
         this.c = c;
         DB_Connection_Maiada db = new DB_Connection_Maiada();
         NotifsTbl = c.View_Notifications(NotifsTbl);
+        
+        
+       //check if customer da premium customer
+       Premium_Customer pc = new Premium_Customer();
+       // coupon table = call pc.viewOffer(coupon table);
 
     }
 
