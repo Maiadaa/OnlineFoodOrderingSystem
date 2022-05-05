@@ -97,6 +97,11 @@ public class Person {
     public char getGender() {
         return Gender;
     }
+
+    @Override
+    public String toString() {
+        return "Person{" + "ID=" + ID + ", Name=" + Name + ", Email=" + Email + ", Phone_number=" + Phone_number + ", Address=" + Address + ", Username=" + Username + ", Password=" + Password + ", Gender=" + Gender + '}';
+    }
     
     
 

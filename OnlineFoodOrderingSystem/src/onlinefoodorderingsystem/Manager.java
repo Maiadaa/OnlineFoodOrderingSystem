@@ -4,20 +4,14 @@ import java.util.ArrayList;
 
 public class Manager extends Admin {
 
-    private static Manager theManager;
+    private static final Manager theManager = new Manager() ;
 
-    private FoodOrderingSysRests sysRests;
-    private RestAdminsData sysRestsAdmins;
+    private FoodOrderingSysRests sysRests = new FoodOrderingSysRests();
+    private RestAdminsData sysRestsAdmins = new RestAdminsData();
 
     private Manager() {
-        theManager.setID(203398);
-        theManager.setUsername("manager");
-        theManager.setPassword("m1234");
-        theManager.setName("Maiada");
-        theManager.setGender('F');
-        theManager.setEmail("mai@gmail.com");
-        theManager.setPhone_number("01010101010");
-        theManager.setAddress("Rehab");
+        super(203398, "Maiada", "mai@gmail.com", "01010101010", "Rehab", "manager", "m12234",'F' );
+
     }
 
     public static Manager getTheManager() {
@@ -29,6 +23,11 @@ public class Manager extends Admin {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Manager{" + super.toString() + '}';
     }
 
     public FoodOrderingSysRests getSysRests() {

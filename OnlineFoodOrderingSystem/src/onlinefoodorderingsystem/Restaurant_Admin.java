@@ -26,6 +26,11 @@ public class Restaurant_Admin extends Person implements Feedback_Detector {
         return null;
     }
 
+    @Override
+    public String toString() {
+        return "Restaurant_Admin{" + "Rest=" + Rest.toString() + '}';
+    }
+
     public boolean ManageRestDetails() {
         // --- using database --- //
         return db_mai.Edit_Rest_Details(this.Rest);

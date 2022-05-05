@@ -13,9 +13,9 @@ public class Premium_Customer extends Customer implements Coupon_Observer {
 
 	}
 
-	public JTable View_Offers(JTable tbl){
+	/*public JTable View_Offers(JTable tbl){
             //return db.viewCoupons(tbl);
-	}
+	}*/
 
 	public void Update(String msg){
             
