@@ -150,7 +150,7 @@ public class CreateCoupon extends javax.swing.JFrame {
         else
         {
             DB_Connection_Assem conn = new DB_Connection_Assem();
-            Coupon tempCoupon = new Coupon(code,value,description,expiry);
+            Coupon tempCoupon = new Coupon(code,description,expiry,value);
             conn.CreateValidCoupon(tempCoupon);
             JOptionPane.showMessageDialog(null, "Coupon Added Successfully");
             this.dispose();

@@ -16,7 +16,8 @@ public class Coupon
 
 	}
 
-    public Coupon(int Coupon_Code, int Coupon_Discount_Val, String Coupon_Desc, String Coupon_ExpiryDate) {
+    public Coupon(int Coupon_Code,  String Coupon_Desc, String Coupon_ExpiryDate, int Coupon_Discount_Val) 
+    {
         this.Coupon_Code = Coupon_Code;
         this.Coupon_Discount_Val = Coupon_Discount_Val;
         this.Coupon_Desc = Coupon_Desc;

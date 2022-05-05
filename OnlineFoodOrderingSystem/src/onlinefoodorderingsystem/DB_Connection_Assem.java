@@ -12,6 +12,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -63,6 +65,31 @@ public class DB_Connection_Assem
             System.err.println("DATABASE COUPON INSERTION ERROR: " + e.toString());
         }
     }
+     public JTable displayCoupons(JTable tbl) 
+     {
+        try 
+        {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from coupon");
+
+            DefaultTableModel model;
+            model = (DefaultTableModel) tbl.getModel();
+            Object rowData[] = new Object[5];
+
+            while (rs.next()) {
+                rowData[0] = rs.getInt("Coupon_ID");
+                rowData[1] = rs.getString("Coupon_code");
+                rowData[2] = rs.getString("Coupon_desc");
+                rowData[3] = rs.getString("Expiry_date");
+                rowData[4] = rs.getInt("discountVal");
+
+                model.addRow(rowData);
+            }
+        } catch (Exception e) {
+            System.err.println("DATABASE DISPLAY COUPONS ERROR: " + e.toString());
+        }
+        return tbl;
+    }
     public void DeleteCoupon(int code)
     {
            try 
@@ -75,6 +102,39 @@ public class DB_Connection_Assem
             System.err.println("DATABASE COUPON DELETION ERROR: " + e.toString());
             JOptionPane.showMessageDialog(null, "Invalid Coupon Code, please insert a valid one");
         }
+    }
+ 
+    public void UpdateCoupon(int code , Coupon c)
+    {
+         try 
+        {
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate("UPDATE `coupon` SET `Coupon_code`='" + c.getCoupon_Code() + "',`Coupon_desc`='" + c.getCoupon_Desc() + "',`Expiry_date`='" + c.getCoupon_ExpiryDate() + "',`discountVal`='" + c.getCoupon_Discount_Val() + "'");
+            System.out.println("Coupon Updated");
+        } catch (Exception e) 
+        {
+            System.err.println("DATABASE COUPON UPDATE ERROR: " + e.toString());
+            JOptionPane.showMessageDialog(null, "Invalid Coupon Code, please insert a valid one");
+        }
+    }
+    public ArrayList<Coupon> getAllCoupons()
+    {
+         ArrayList<Coupon> result = new ArrayList();
+        try 
+        {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from coupon");
+            while (rs.next()) 
+            {
+                result.add(new Coupon(rs.getInt("Coupon_code"),rs.getString("Coupon_desc"),rs.getString("Expiry_date"),rs.getInt("discountVal")));
+            }
+            System.out.println("Coupons Read");
+            
+        } catch (Exception e) 
+        {
+            System.err.println("DATABASE COUPON RETRIVAL QUERY ERROR: " + e.toString());
+        }
+        return result; 
     }
     public ArrayList<Admin> getAllAdmins()
     {
@@ -167,4 +227,23 @@ public class DB_Connection_Assem
     return null;
      
      }
+    public boolean ValidateCouponUpdate(int code)
+    {
+        ArrayList<Coupon> array = new ArrayList<Coupon>();
+        array = getAllCoupons();
+        for(int i = 0 ; i<array.size();i++)
+        {
+            System.out.println(array.get(i).getCoupon_Code());
+            if(array.get(i).getCoupon_Code() == code)
+            {
+                System.out.println("Coupon found successfully");
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        return false;   
+    }
 }
