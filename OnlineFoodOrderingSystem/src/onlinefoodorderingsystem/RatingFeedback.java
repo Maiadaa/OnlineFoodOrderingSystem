@@ -112,11 +112,13 @@ public class RatingFeedback extends javax.swing.JFrame {
         Customer c2 = new Customer(202, "Maiada" , "maiada@gmail.com" , "01128555666" , "Rehab" , "maiada123" , "maiad123" , 'F');
         Feedback m_Feedback = new Feedback();
         m_Feedback.setFeedbackDate(java.time.LocalDate.now().toString());
+                m_Feedback.setOrder_Id(1);
         m_Feedback.setFeedback_Type("rating");
         m_Feedback.setFeedback_Desc(Description.getText());
         m_Feedback.setFeedback_State("Pending");
+        m_Feedback.setRate(3);
         DB_Connection_Hagrass db = new DB_Connection_Hagrass();
-        c2.Create_Feedback(1, 0, m_Feedback);
+        c2.Create_Feedback(1, 1, m_Feedback);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

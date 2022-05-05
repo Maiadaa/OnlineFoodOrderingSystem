@@ -12,7 +12,7 @@ public class Feedback {
 	private String Feedback_Desc;
 	private String Feedback_State;
 	private int Order_Id;
-        int rate;
+        private int rate;
 
         public Feedback(int Feedback_Id, String Feedback_Date, String Feedback_Type, String Feedback_Desc, String Feedback_State, int Order_Id) {
             this.Feedback_Id = Feedback_Id;

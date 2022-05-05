@@ -32,7 +32,7 @@ public class DB_Connection_Hagrass {
     }   
     
     public void createNewFeedback(int customerID, int OrderID, Feedback feedback){
-                    System.out.println(feedback.getFeedbackDate());
+        System.out.println(feedback.getFeedbackDate());
         try {
             Statement stmt = con.createStatement();
 
@@ -129,7 +129,7 @@ public class DB_Connection_Hagrass {
     public void EditFeedbackStatus(Feedback feedback){
         try {
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("UPDATE `feedback` SET `Feedback_State`='" + feedback.getFeedback_State() + "' where Feedback_ID = '" + feedback.getFeedback_Id() + "'");
+            stmt.executeUpdate("UPDATE `feedback` SET `Feedback_State`='" + feedback.getFeedback_State() + "' WHERE Feedback_ID = '" + feedback.getFeedback_Id() + "'");
             System.out.println("feedback Updated");
         } catch (Exception e) {
             System.err.println("DATABASE INSERTION ERROR: " + e.toString());
@@ -151,7 +151,7 @@ public class DB_Connection_Hagrass {
         } 
     }
     
-    public void editRestRating(int restID,int rate){
+    public void editRestRating(int restID, double rate){
         try {
             Statement stmt = con.createStatement();
             stmt.executeUpdate("UPDATE `restaurant` SET `Rest_Rating`='" + rate + "' WHERE Rest_ID = ' " + restID + "'");

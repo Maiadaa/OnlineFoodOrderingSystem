@@ -68,7 +68,7 @@ public class Admin extends Person implements Feedback_Detector {
 
     @Override
     public void Handle_Feedback(Feedback f){
-        if(f.getFeedback_Type().equals("Complaint")){
+        if(f.getFeedback_Type().equals("complaint")){
             f.setFeedback_State("Working on it(accepted)");
             DB_Connection_Hagrass db = new DB_Connection_Hagrass();
             db.EditFeedbackStatus(f);
