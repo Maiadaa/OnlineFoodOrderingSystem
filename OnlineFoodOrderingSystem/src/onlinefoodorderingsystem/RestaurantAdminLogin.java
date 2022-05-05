@@ -40,8 +40,10 @@ public class RestaurantAdminLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Welcome To Restaurant Admin Login Page");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
         jLabel2.setText("Sign In");
 
         jLabel3.setText("Username:");
@@ -93,12 +95,12 @@ public class RestaurantAdminLogin extends javax.swing.JFrame {
                                                 .addComponent(SignUp, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(0, 0, Short.MAX_VALUE))))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(166, 166, 166)
-                                .addComponent(jLabel2))
+                                .addGap(30, 30, 30)
+                                .addComponent(jLabel1))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(58, 58, 58)
-                                .addComponent(jLabel1)))
-                        .addGap(0, 58, Short.MAX_VALUE)))
+                                .addGap(193, 193, 193)
+                                .addComponent(jLabel2)))
+                        .addGap(0, 28, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -120,7 +122,7 @@ public class RestaurantAdminLogin extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SignIn)
                     .addComponent(SignUp))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(18, 18, 18))
         );
