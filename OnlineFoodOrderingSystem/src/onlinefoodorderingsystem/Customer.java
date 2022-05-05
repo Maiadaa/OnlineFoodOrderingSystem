@@ -28,6 +28,8 @@ public class Customer extends Person implements New_Rests_Observer {
         Password = Password;
         Gender = Gender;
     }
+    
+    
 
         
 
