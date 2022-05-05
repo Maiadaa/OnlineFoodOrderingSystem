@@ -91,11 +91,12 @@ public class DB_Connection_Maiada {
         ArrayList<Customer> custs = this.getAllCusts();
 
         // 2nd add to newRestsNotifs table a notification message for each cust in the array we ve just retreived 
-        String msg = "We want to notify you that " + rest.getRest_Name() + " is now available on our application! \n Located at " + rest.getRest_Location() 
+        String msg = "We want to notify you that " + rest.getRest_Name() + " is now available on our application! \n Located at " + rest.getRest_Location()
                 + ".\n The restaurant is known for its " + rest.getRest_Categ() + ".\n Be the first to try it out and rate!";
-        System.out.println(msg);
         for (Customer c : custs) {
             try {
+                System.out.println(msg);
+
                 Statement stmt = con.createStatement();
                 stmt.executeUpdate("insert into newrestnotif (`msg`, `Cust_ID`, `Rest_ID`) values('" + msg + "', " + c.getID() + ", '" + rest.getRest_Id() + "')");
                 System.out.println("Notification added successfully");
@@ -154,7 +155,7 @@ public class DB_Connection_Maiada {
         try {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT `msg`,`Rest_Name` FROM `newrestnotif`, "
-                    + "restaurant WHERE restaurant.Rest_ID = newrestnotif.Rest_ID and Cust_ID = " + c.getID() + "");
+                    + "restaurant WHERE restaurant.Rest_ID = newrestnotif.Rest_ID and Cust_ID = '" + c.getID() + "'");
 
             DefaultTableModel model;
             model = (DefaultTableModel) tbl.getModel();

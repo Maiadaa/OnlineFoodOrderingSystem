@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 05, 2022 at 02:51 AM
+-- Generation Time: May 05, 2022 at 03:52 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -127,7 +127,7 @@ CREATE TABLE `menu_item` (
 
 CREATE TABLE `newrestnotif` (
   `Notif_ID` int(11) NOT NULL,
-  `msg` varchar(100) NOT NULL,
+  `msg` varchar(300) NOT NULL,
   `Cust_ID` int(11) NOT NULL,
   `Rest_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

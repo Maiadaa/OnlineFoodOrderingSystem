@@ -84,7 +84,7 @@ public class DB_Connection_Hagrass {
         return table;
     }
     
-    public Admin SelectAdminData(int AdminID){
+    /*public Admin SelectAdminData(int AdminID){
          try {
             Statement stmt = con.createStatement();
             ResultSet selectData = stmt.executeQuery("SELECT * FROM `feedback` Where Feedback_Type = 'complaint'"); 
@@ -92,5 +92,5 @@ public class DB_Connection_Hagrass {
          } catch (Exception e) {
             System.err.println("DATABASE QUERY ERROR: " + e.toString());
         }
-    }
+    }*/
 }

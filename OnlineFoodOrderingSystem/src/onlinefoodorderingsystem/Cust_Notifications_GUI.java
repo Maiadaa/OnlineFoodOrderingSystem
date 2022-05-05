@@ -39,6 +39,7 @@ public class Cust_Notifications_GUI extends javax.swing.JFrame {
             }
         }
          */
+        
         // --- USING DATABASE --- //
         initComponents();
         DB_Connection_Maiada db = new DB_Connection_Maiada();
