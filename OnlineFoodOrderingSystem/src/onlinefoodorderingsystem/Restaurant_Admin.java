@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Restaurant_Admin extends Person implements Feedback_Detector {
 
-    private Restaurant Rest;
+    private Restaurant Rest = new Restaurant();
     public static RestAdminsData restAdminData = new RestAdminsData();
 
     public Restaurant_Admin() {
