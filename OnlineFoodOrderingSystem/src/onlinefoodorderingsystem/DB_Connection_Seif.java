@@ -71,6 +71,30 @@ public class DB_Connection_Seif {
 //                System.err.println("DATABASE INSERTION ERROR: " + e.toString());
 //            }
 //    }
+     public void Cancel_Order(int id) {
+            try {
+                Statement stmt = con.createStatement();
+                stmt.executeUpdate("delete from order where Order_ID = '" + id + "'");
+            } catch (Exception e) {
+                System.err.println("DATABASE INSERTION ERROR: " + e.toString());
+            }
+        }
+     
+     public void Checkout(Order o){
+         try {
+            Statement stmt = con.createStatement();
+            String res="";
+            if(o.getM_Payment_Method() instanceof Cash){
+            res = "cash";
+            }
+            else{
+                res = "credit";
+            }
+            stmt.executeUpdate("UPDATE `order` SET `Order_Price`='" + o.getOrder_Price() + "',`Order_PayMethod`='" + res + "', Order_status = '" + o.getOrderstatus() + "' where Order_ID = '" + o.getOrder_Id() +"'");
+        } catch (Exception e) {
+            System.err.println("DATABASE INSERTION ERROR: " + e.toString());
+        }
+     }
 
     public JTable displayCartItems(JTable tbl,Order o) {
         try {

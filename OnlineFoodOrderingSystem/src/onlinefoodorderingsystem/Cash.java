@@ -4,6 +4,8 @@ import javax.swing.JOptionPane;
 
 public class Cash implements Payment_Method {
 
+    DB_Connection_Seif db = new DB_Connection_Seif();
+    
 	public Cash(){
 
 	}
