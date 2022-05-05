@@ -18,11 +18,13 @@ public class Feedback_History extends javax.swing.JFrame {
      */
     public Feedback_History() {
         initComponents();
+    }
+    public Feedback_History(Admin admin) {
+        initComponents();
         DB_Connection_Hagrass db = new DB_Connection_Hagrass();
-        feedbacktable = db.selectAllComplaintFeedback(feedbacktable);
+        feedbacktable = admin.View_Feedbacks(feedbacktable);
 
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

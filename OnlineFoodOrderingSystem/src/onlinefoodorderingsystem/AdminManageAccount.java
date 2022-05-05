@@ -13,10 +13,24 @@ public class AdminManageAccount extends javax.swing.JFrame {
     /**
      * Creates new form AdminManageAccount
      */
+    Admin Admin2;
     public AdminManageAccount() {
         initComponents();
         DB_Connection_Hagrass db = new DB_Connection_Hagrass();
         Admin admin = db.SelectAdminData(1);
+        Editname.setText(admin.getName());
+        EditAddress.setText(admin.getAddress());
+        EditEmail.setText(admin.getEmail());
+        EditGender.setText(Character.toString(admin.getGender()));
+        EditUsername.setText(admin.getUsername());
+        Editphone.setText(admin.getPhone_number());
+        EditPassword.setText(admin.getPassword());
+    }
+    public AdminManageAccount(Admin Admin) {
+        initComponents();
+        Admin2 = Admin;
+        DB_Connection_Hagrass db = new DB_Connection_Hagrass();
+        Admin admin = db.SelectAdminData(Admin.getID());
         Editname.setText(admin.getName());
         EditAddress.setText(admin.getAddress());
         EditEmail.setText(admin.getEmail());
@@ -186,7 +200,7 @@ public class AdminManageAccount extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Admin admin = new Admin(1,Editname.getText(), EditEmail.getText(), Editphone.getText(), EditAddress.getText(), EditUsername.getText(), EditPassword.getText(), EditGender.getText().charAt(0));
+        Admin admin = new Admin(Admin2.getID(),Editname.getText(), EditEmail.getText(), Editphone.getText(), EditAddress.getText(), EditUsername.getText(), EditPassword.getText(), EditGender.getText().charAt(0));
         DB_Connection_Hagrass db = new DB_Connection_Hagrass();
         db.Edit_Admin_Account(admin);
     }//GEN-LAST:event_jButton1ActionPerformed

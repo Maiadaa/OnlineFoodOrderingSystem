@@ -13,10 +13,25 @@ public class Rest_AdminManageAccount extends javax.swing.JFrame {
     /**
      * Creates new form AdminManageAccount
      */
+    Restaurant_Admin restAdmin2;
     public Rest_AdminManageAccount() {
         initComponents();
         DB_Connection_Hagrass db = new DB_Connection_Hagrass();
         Restaurant_Admin restAdmin = db.SelectRestAdminData(1);
+        Editname.setText(restAdmin.getName());
+        EditAddress.setText(restAdmin.getAddress());
+        EditEmail.setText(restAdmin.getEmail());
+        EditGender.setText(Character.toString(restAdmin.getGender()));
+        EditUsername.setText(restAdmin.getUsername());
+        Editphone.setText(restAdmin.getPhone_number());
+        EditPassword.setText(restAdmin.getPassword());
+    }
+    
+    public Rest_AdminManageAccount(Restaurant_Admin restadmin) {
+        initComponents();
+        restAdmin2 = restadmin;
+        DB_Connection_Hagrass db = new DB_Connection_Hagrass();
+        Restaurant_Admin restAdmin = db.SelectRestAdminData(restadmin.getID());
         Editname.setText(restAdmin.getName());
         EditAddress.setText(restAdmin.getAddress());
         EditEmail.setText(restAdmin.getEmail());
@@ -184,7 +199,7 @@ public class Rest_AdminManageAccount extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Restaurant_Admin restadmin = new Restaurant_Admin(1,Editname.getText(), EditEmail.getText(), Editphone.getText(), EditAddress.getText(), EditUsername.getText(), EditPassword.getText(), EditGender.getText().charAt(0));
+        Restaurant_Admin restadmin = new Restaurant_Admin(restAdmin2.getID(),Editname.getText(), EditEmail.getText(), Editphone.getText(), EditAddress.getText(), EditUsername.getText(), EditPassword.getText(), EditGender.getText().charAt(0));
         DB_Connection_Hagrass db = new DB_Connection_Hagrass();
         db.Edit_RestAdmin_Account(restadmin);
     }//GEN-LAST:event_jButton1ActionPerformed

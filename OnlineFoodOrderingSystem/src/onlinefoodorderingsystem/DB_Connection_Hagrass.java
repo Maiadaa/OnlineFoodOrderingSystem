@@ -126,8 +126,28 @@ public class DB_Connection_Hagrass {
         }
     }
     
-    public void AdminEditFeedbackStatus(Feedback feedback,String status){
-        
+    public void AdminEditFeedbackStatus(Feedback feedback){
+        try {
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate("UPDATE `feedback` SET `Feedback_State`='" + feedback.getFeedback_State() + "' where Feedback_ID = '" + feedback.getFeedback_Id() + "'");
+            System.out.println("feedback Updated");
+        } catch (Exception e) {
+            System.err.println("DATABASE INSERTION ERROR: " + e.toString());
+        }
     }
 
+    public int selectRestAdminID(int OrderID){
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet selectData = stmt.executeQuery("SELECT `RestAdmin_ID` FROM `restaurant`, `order` WHERE restaurant.Rest_ID = order.Rest_ID AND order.Order_ID = '" + OrderID + "'");
+            if (selectData.first()) {
+                return selectData.getInt("RestAdmin_ID");
+            }else {
+                return 0;
+            }
+        } catch (Exception e) {
+            System.err.println("DATABASE QUERY ERROR: " + e.toString());
+            return 0;
+        } 
+    }
 }

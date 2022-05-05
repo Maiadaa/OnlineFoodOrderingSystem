@@ -1,5 +1,6 @@
 package onlinefoodorderingsystem;
 import java.util.ArrayList;
+import javax.swing.JTable;
 
 public class Admin extends Person implements Feedback_Detector {
     public FoodOrderingSysCoupons m_FoodOrderingSysCoupons;
@@ -56,11 +57,9 @@ public class Admin extends Person implements Feedback_Detector {
         return db.Edit_Admin_Account(newchange);
     }
 
-    public ArrayList View_Feedbacks(){
-        return Feedback_History;
-    }
-    public void setPointOfContact(Feedback_Detector next) {
-        //Next_In_Chain = new Restaurant_Admin();
+    public JTable View_Feedbacks(JTable table){
+        DB_Connection_Hagrass  db = new DB_Connection_Hagrass();
+        return db.selectAllComplaintFeedback(table);
     }
      
     public void setNextinchain(Feedback_Detector x){
@@ -71,11 +70,16 @@ public class Admin extends Person implements Feedback_Detector {
     public void Handle_Feedback(Feedback f){
         if(f.getFeedback_Type().equals("Complaint")){
             f.setFeedback_State("Working on it(accepted)");
+            DB_Connection_Hagrass db = new DB_Connection_Hagrass();
+            db.AdminEditFeedbackStatus(f);
         }else if(f.getFeedback_Type().equals("Rating")){
-            
+            DB_Connection_Hagrass db = new DB_Connection_Hagrass();
+            Restaurant_Admin restAdmin = db.SelectRestAdminData(db.selectRestAdminID(f.getOrder_Id()));
+            this.setNextinchain(restAdmin);
             nextinchain.Handle_Feedback(f);
         }
     }
+    
 
 
 }
