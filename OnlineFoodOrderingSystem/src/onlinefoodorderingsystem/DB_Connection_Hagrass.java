@@ -93,4 +93,36 @@ public class DB_Connection_Hagrass {
             System.err.println("DATABASE QUERY ERROR: " + e.toString());
         }
     }*/
+    
+        public Restaurant_Admin SelectRestAdminData(int RestAdmin) {
+
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet selectData = stmt.executeQuery("SELECT * FROM `rest_admin` WHERE ID = '" + RestAdmin + "'");
+            if (selectData.first()) {
+                return new Restaurant_Admin(selectData.getInt("ID"), selectData.getString("Name"), selectData.getString("Email"), selectData.getString("Phone"), selectData.getString("Address"), selectData.getString("Username"), selectData.getString("Password"), selectData.getString("Gender").charAt(0));
+            }else{
+                return null;
+            }
+        } catch (Exception e) {
+            System.err.println("DATABASE QUERY ERROR: " + e.toString());
+            return null;
+        }   
+    }
+    public boolean Edit_RestAdmin_Account(Restaurant_Admin restAdmin) {
+        try {
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate("UPDATE `rest_admin` SET `Name`='" + restAdmin.getName() + "',`Email`='" + restAdmin.getEmail() + "',`Phone`='" + restAdmin.getPhone_number() + "',`Address`='" + restAdmin.getAddress() + "',`Username`='" + restAdmin.getUsername() + "',`Password`='" + restAdmin.getPassword() + "',`Gender`='" + restAdmin.getGender() + "' where ID = " + restAdmin.getID() + "");
+            System.out.println("feedback Updated");
+            return true;
+        } catch (Exception e) {
+            System.err.println("DATABASE INSERTION ERROR: " + e.toString());
+            return false;
+        }
+    }
+    
+    public void AdminEditFeedbackStatus(Feedback feedback,String status){
+        
+    }
+
 }

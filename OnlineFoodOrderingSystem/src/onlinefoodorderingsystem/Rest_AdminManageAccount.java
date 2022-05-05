@@ -8,13 +8,22 @@ package onlinefoodorderingsystem;
  *
  * @author manah
  */
-public class AdminManageAccount extends javax.swing.JFrame {
+public class Rest_AdminManageAccount extends javax.swing.JFrame {
 
     /**
      * Creates new form AdminManageAccount
      */
-    public AdminManageAccount() {
+    public Rest_AdminManageAccount() {
         initComponents();
+        DB_Connection_Hagrass db = new DB_Connection_Hagrass();
+        Restaurant_Admin restAdmin = db.SelectRestAdminData(1);
+        Editname.setText(restAdmin.getName());
+        EditAddress.setText(restAdmin.getAddress());
+        EditEmail.setText(restAdmin.getEmail());
+        EditGender.setText(Character.toString(restAdmin.getGender()));
+        EditUsername.setText(restAdmin.getUsername());
+        Editphone.setText(restAdmin.getPhone_number());
+        EditPassword.setText(restAdmin.getPassword());
     }
 
     /**
@@ -45,7 +54,6 @@ public class AdminManageAccount extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(406, 550));
         setSize(new java.awt.Dimension(0, 0));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -72,6 +80,11 @@ public class AdminManageAccount extends javax.swing.JFrame {
         });
 
         jButton1.setText("Update");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Back");
 
@@ -136,9 +149,9 @@ public class AdminManageAccount extends javax.swing.JFrame {
                     .addComponent(EditEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Editphone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(EditAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -169,12 +182,11 @@ public class AdminManageAccount extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_EditGenderActionPerformed
 
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Admin admin = new Admin(1,Editname.getText(), EditEmail.getText(), Editphone.getText(), EditAddress.getText(), EditUsername.getText(), EditPassword.getText(), EditGender.getText().charAt(0));
+        Restaurant_Admin restadmin = new Restaurant_Admin(1,Editname.getText(), EditEmail.getText(), Editphone.getText(), EditAddress.getText(), EditUsername.getText(), EditPassword.getText(), EditGender.getText().charAt(0));
         DB_Connection_Hagrass db = new DB_Connection_Hagrass();
-        db.Edit_Admin_Account(admin);
+        db.Edit_RestAdmin_Account(restadmin);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -194,20 +206,21 @@ public class AdminManageAccount extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdminManageAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Rest_AdminManageAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdminManageAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Rest_AdminManageAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdminManageAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Rest_AdminManageAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdminManageAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Rest_AdminManageAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdminManageAccount().setVisible(true);
+                new Rest_AdminManageAccount().setVisible(true);
             }
         });
     }
