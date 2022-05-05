@@ -36,7 +36,6 @@ public class DB_Connection_Maiada {
     }
 
     public void addRestAdmin(Restaurant_Admin ra) {
-        // add restaurant admin to db 
         try {
             Statement stmt = con.createStatement();
             stmt.executeUpdate("INSERT INTO rest_admin (`Username`, `Password`)"
@@ -49,23 +48,8 @@ public class DB_Connection_Maiada {
         }
     }
 
-    public ArrayList<Customer> getAllCusts() {
-        ArrayList<Customer> result = new ArrayList();
-        try {
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select ID from customer");
-            while (rs.next()) {
-                result.add(new Customer(rs.getInt("ID")));
-            }
-        } catch (Exception e) {
-            System.err.println("DATABASE QUERY ERROR: " + e.toString());
-        }
-        return result;
-    }
-    
     public void addRest(Restaurant rest, String uname) {
         int id = 0;
-        // get id of the recently added rest admin's login credentials to fill restaurant's FK with it
         try {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select ID from rest_admin where Username = '" + uname + "'");
@@ -75,8 +59,7 @@ public class DB_Connection_Maiada {
         } catch (Exception e) {
             System.err.println("DATABASE ADD RESTAURANT QUERY ERROR: " + e.toString());
         }
-        
-        // add the restaurant to db
+
         try {
             Statement stmt = con.createStatement();
             stmt.executeUpdate("INSERT INTO restaurant (`Rest_Name`, `RestAdmin_ID`, `Rest_Loc`, `Rest_Categ`)"
@@ -84,15 +67,6 @@ public class DB_Connection_Maiada {
             System.out.println("Restaurant added");
         } catch (Exception e) {
             System.err.println("RESTAURANT INSERTION ERROR: " + e.toString());
-        }
-        
-        // Upon addition of a new restaurant notify all registered customers 
-        // 1st get all customers 
-        ArrayList<Customer> custs = this.getAllCusts();
-        
-        // 2nd add to newRestsNotifs table a notification message for each cust in the array we ve just retreived 
-        for(Customer c : custs){
-            
         }
     }
 
