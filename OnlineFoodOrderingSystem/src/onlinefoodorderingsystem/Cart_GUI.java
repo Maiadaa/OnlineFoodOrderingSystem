@@ -19,10 +19,11 @@ public class Cart_GUI extends javax.swing.JFrame {
 
     Customer cust = new Customer();
     Order o = new Order();
+    
 
     public Cart_GUI() {
         initComponents();
-        o.setOrder_Id(3);
+        o.setOrder_Id(1);
         DB_Connection_Seif db = new DB_Connection_Seif();
         table = db.displayCartItems(table, o);
     }
@@ -31,10 +32,9 @@ public class Cart_GUI extends javax.swing.JFrame {
         initComponents();
         this.cust = c;
         this.o = o;
-        o.setOrder_Id(3);
+        o.setOrder_Id(1);
         DB_Connection_Seif db = new DB_Connection_Seif();
         table = db.displayCartItems(table, o);
-
     }
 
     public Cart_GUI(Restaurant o, Customer c) {
@@ -62,8 +62,8 @@ public class Cart_GUI extends javax.swing.JFrame {
         Remove = new javax.swing.JButton();
         Modify = new javax.swing.JButton();
         quantity = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        code = new javax.swing.JTextField();
+        redeem = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -129,14 +129,19 @@ public class Cart_GUI extends javax.swing.JFrame {
 
         quantity.setText("Quantity");
 
-        jTextField2.setText("Code");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        code.setText("Code");
+        code.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                codeActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Redeem");
+        redeem.setText("Redeem");
+        redeem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                redeemActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -169,9 +174,9 @@ public class Cart_GUI extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(quantity, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                                .addComponent(jButton1)
+                                .addComponent(redeem)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(code, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -186,8 +191,8 @@ public class Cart_GUI extends javax.swing.JFrame {
                     .addComponent(Remove)
                     .addComponent(Modify)
                     .addComponent(quantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(code, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(redeem))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Cash)
@@ -205,7 +210,17 @@ public class Cart_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_CashActionPerformed
 
     private void CheckoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckoutActionPerformed
-        OrderSummary_GUI summ = new OrderSummary_GUI();
+        if (Cash.isSelected()) {
+            Cash cash = new Cash();
+            o.setM_Payment_Method(cash);
+            this.o = o.Checkout(o);
+            
+        } else if (Card.isSelected()) {
+            Credit_Card card = new Credit_Card();
+           o.setM_Payment_Method(card);
+            this.o = o.Checkout(o);
+        }
+        OrderSummary_GUI summ = new OrderSummary_GUI(o);
         summ.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_CheckoutActionPerformed
@@ -229,25 +244,29 @@ public class Cart_GUI extends javax.swing.JFrame {
         int quan = Integer.parseInt(table.getModel().getValueAt(row, 2).toString());
         int newquan = Integer.parseInt(quantity.getText());
         int price = Integer.parseInt(table.getModel().getValueAt(row, 3).toString());
-        int single = price/quan;
-        int sum = newquan*single;
-        try{
+        int single = price / quan;
+        int sum = newquan * single;
+        try {
             DB_Connection_Seif db = new DB_Connection_Seif();
-            db.Modify_Cart_Item(itemId,newquan,sum);
-        JOptionPane.showMessageDialog(null, "Item Updated Successfully");
-        this.dispose();
-        Cart_GUI newcart = new Cart_GUI();
-        newcart.setVisible(true);
-        }catch(Exception e){
+            db.Modify_Cart_Item(itemId, newquan, sum);
+            JOptionPane.showMessageDialog(null, "Item Updated Successfully");
+            this.dispose();
+            Cart_GUI newcart = new Cart_GUI();
+            newcart.setVisible(true);
+        } catch (Exception e) {
             System.out.println("Didnt work");
         }
-        
+
 
     }//GEN-LAST:event_ModifyActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    private void codeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeActionPerformed
+
+    }//GEN-LAST:event_codeActionPerformed
+
+    private void redeemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redeemActionPerformed
+        
+    }//GEN-LAST:event_redeemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -291,11 +310,11 @@ public class Cart_GUI extends javax.swing.JFrame {
     private javax.swing.JButton Modify;
     private javax.swing.JButton Remove;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField code;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField quantity;
+    private javax.swing.JButton redeem;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }

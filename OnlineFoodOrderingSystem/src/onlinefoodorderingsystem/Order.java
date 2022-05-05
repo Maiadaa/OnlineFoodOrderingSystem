@@ -93,9 +93,10 @@ public class Order {
 //            
 //	}
 
-	public void Checkout(Order o){
-            o.getOrder_Id();
+	public Order Checkout(Order o){
+            o.m_Payment_Method.pay(o.getOrder_Price());
             o.setOrderstatus(Orderstatus = "Accepted");
+            return o;
 	}
 
         public void setOrder_Id(int Order_Id) {

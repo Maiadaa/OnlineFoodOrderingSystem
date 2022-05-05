@@ -16,8 +16,9 @@ public class CustomerMenu extends javax.swing.JFrame {
   
     public CustomerMenu(Customer c1)
     {
-        tempCust = c1;
         initComponents();
+        tempCust = c1;
+        CustID.setText(tempCust.getName());
     }
 
     /**
@@ -31,6 +32,9 @@ public class CustomerMenu extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        OrderHistory = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        CustID = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,15 +47,35 @@ public class CustomerMenu extends javax.swing.JFrame {
             }
         });
 
+        OrderHistory.setText("View Order History");
+        OrderHistory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OrderHistoryActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Welcome");
+
+        CustID.setEditable(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(108, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(CustID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(90, 90, 90)
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(OrderHistory)
+                        .addGap(0, 438, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -60,8 +84,12 @@ public class CustomerMenu extends javax.swing.JFrame {
                 .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jButton1))
-                .addContainerGap(258, Short.MAX_VALUE))
+                    .addComponent(jButton1)
+                    .addComponent(jLabel2)
+                    .addComponent(CustID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addComponent(OrderHistory)
+                .addContainerGap(203, Short.MAX_VALUE))
         );
 
         pack();
@@ -73,6 +101,12 @@ public class CustomerMenu extends javax.swing.JFrame {
         HomePage home = new HomePage();
         home.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void OrderHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrderHistoryActionPerformed
+        // TODO add your handling code here:
+        ViewOrderHistory menu = new ViewOrderHistory(tempCust);
+        menu.setVisible(true);
+    }//GEN-LAST:event_OrderHistoryActionPerformed
 
     /**
      * @param args the command line arguments
@@ -110,7 +144,10 @@ public class CustomerMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField CustID;
+    private javax.swing.JButton OrderHistory;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

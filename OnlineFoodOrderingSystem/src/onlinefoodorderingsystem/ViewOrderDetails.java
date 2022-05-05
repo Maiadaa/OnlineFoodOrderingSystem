@@ -10,11 +10,13 @@ package onlinefoodorderingsystem;
  * @author mahmo
  */
 public class ViewOrderDetails extends javax.swing.JFrame {
-
+   
     /** Creates new form ViewOrderDetails */
     public ViewOrderDetails() 
     {
         initComponents();
+        DB_Connection_Assem table = new DB_Connection_Assem();
+        table.getAllOrder();
     }
 
     /** This method is called from within the constructor to
@@ -47,6 +49,7 @@ public class ViewOrderDetails extends javax.swing.JFrame {
 
         jLabel2.setText("Order ID:");
 
+        OrderID.setEditable(false);
         OrderID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 OrderIDActionPerformed(evt);
@@ -55,8 +58,11 @@ public class ViewOrderDetails extends javax.swing.JFrame {
 
         jLabel3.setText("Restaurant Name:");
 
+        RestName.setEditable(false);
+
         jLabel4.setText("Order Date:");
 
+        OrderDate.setEditable(false);
         OrderDate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 OrderDateActionPerformed(evt);
@@ -65,6 +71,7 @@ public class ViewOrderDetails extends javax.swing.JFrame {
 
         jLabel5.setText("Order Price:");
 
+        OrderPrice.setEditable(false);
         OrderPrice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 OrderPriceActionPerformed(evt);
@@ -73,6 +80,7 @@ public class ViewOrderDetails extends javax.swing.JFrame {
 
         jLabel6.setText("Order Status:");
 
+        OrderStatus.setEditable(false);
         OrderStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 OrderStatusActionPerformed(evt);

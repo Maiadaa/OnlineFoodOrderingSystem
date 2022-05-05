@@ -53,7 +53,7 @@ public class DB_Connection_Assem
 
         return con;
     }
-     public ArrayList<Order> getAllOrder()
+    public ArrayList<Order> getAllOrder()
      {
           ArrayList<Order> result = new ArrayList();
         try 
@@ -62,11 +62,11 @@ public class DB_Connection_Assem
             ResultSet rs = stmt.executeQuery("select * from order");
             while (rs.next()) 
             {
-                result.add(new Admin(rs.getInt("Order_ID"), rs.getString("Order_Date"),rs.getDouble("Order_Price"),rs.getString("Order_Status")));
+                result.add(new Order(rs.getInt("Order_ID"), rs.getString("Order_Date"),rs.getDouble("Order_Price"),rs.getString("Order_Status")));
             }
         } catch (Exception e) 
         {
-            System.err.println("DATABASE ADMIN RETRIVAL QUERY ERROR: " + e.toString());
+            System.err.println("DATABASE ORDERS RETRIVAL QUERY ERROR: " + e.toString());
         }
         return result;
      }
@@ -81,6 +81,33 @@ public class DB_Connection_Assem
         {
             System.err.println("DATABASE COUPON INSERTION ERROR: " + e.toString());
         }
+    }
+     public JTable displayOrders(JTable tbl, Customer c) 
+     {
+        try 
+        {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM `order` WHERE `Customer_ID` = '" +c.getID()+ "'");
+
+            DefaultTableModel model;
+            model = (DefaultTableModel) tbl.getModel();
+            Object rowData[] = new Object[7];
+
+            while (rs.next()) {
+                rowData[0] = rs.getInt("Order_ID");
+                rowData[1] = rs.getInt("Customer_ID");
+                rowData[2] = rs.getInt("Rest_ID");
+                rowData[3] = rs.getString("Order_Date");
+                rowData[4] = rs.getDouble("Order_Price");
+                rowData[5] = rs.getString("Order_PayMethod");
+                rowData[6] = rs.getString("Order_Status");
+
+                model.addRow(rowData);
+            }
+        } catch (Exception e) {
+            System.err.println("DATABASE DISPLAY ORDERS ERROR: " + e.toString());
+        }
+        return tbl;
     }
      public JTable displayCoupons(JTable tbl) 
      {
