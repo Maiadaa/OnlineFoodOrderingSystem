@@ -8,6 +8,6 @@ public interface New_Rests {
 
 	public boolean Remove_RObserver(New_Rests_Observer subs);
 
-	public void Notify_All(String notif_msg);
+	public void Notify_All(Restaurant rest);
 
 }

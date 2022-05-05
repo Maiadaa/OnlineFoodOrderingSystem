@@ -35,6 +35,7 @@ public class DB_Connection_Maiada {
         }
     }
 
+    // done
     public void addRestAdmin(Restaurant_Admin ra) {
         // add restaurant admin to db 
         try {
@@ -49,6 +50,7 @@ public class DB_Connection_Maiada {
         }
     }
 
+    // done
     public ArrayList<Customer> getAllCusts() {
         ArrayList<Customer> result = new ArrayList();
         try {
@@ -63,6 +65,29 @@ public class DB_Connection_Maiada {
         return result;
     }
 
+    // done
+    public void notifyNewRestsObservers(Restaurant rest) {
+        // Upon addition of a new restaurant notify all registered customers 
+        // 1st get all customers 
+        ArrayList<Customer> custs = this.getAllCusts();
+
+        // 2nd add to newRestsNotifs table a notification message for each cust in the array we ve just retreived 
+        String msg = "We want to notify you that " + rest.getRest_Name() + " is now available on our application! \n Located at " + rest.getRest_Location()
+                + ".\n The restaurant is known for its " + rest.getRest_Categ() + ".\n Be the first to try it out and rate!";
+        for (Customer c : custs) {
+            try {
+                System.out.println(msg);
+
+                Statement stmt = con.createStatement();
+                stmt.executeUpdate("insert into newrestnotif (`msg`, `Cust_ID`, `Rest_ID`) values('" + msg + "', " + c.getID() + ", '" + rest.getRest_Id() + "')");
+                System.out.println("Notification added successfully");
+            } catch (Exception e) {
+                System.err.println("DATABASE NOTIFICATION INSERTION ERROR: " + e.toString());
+            }
+        }
+    }
+
+    // done
     public void addRest(Restaurant rest, String uname) {
         int id = 0;
         // get id of the recently added rest admin's login credentials to fill restaurant's FK with it
@@ -87,25 +112,10 @@ public class DB_Connection_Maiada {
         }
 
         // Upon addition of a new restaurant notify all registered customers 
-        // 1st get all customers 
-        ArrayList<Customer> custs = this.getAllCusts();
-
-        // 2nd add to newRestsNotifs table a notification message for each cust in the array we ve just retreived 
-        String msg = "We want to notify you that " + rest.getRest_Name() + " is now available on our application! \n Located at " + rest.getRest_Location()
-                + ".\n The restaurant is known for its " + rest.getRest_Categ() + ".\n Be the first to try it out and rate!";
-        for (Customer c : custs) {
-            try {
-                System.out.println(msg);
-
-                Statement stmt = con.createStatement();
-                stmt.executeUpdate("insert into newrestnotif (`msg`, `Cust_ID`, `Rest_ID`) values('" + msg + "', " + c.getID() + ", '" + rest.getRest_Id() + "')");
-                System.out.println("Notification added successfully");
-            } catch (Exception e) {
-                System.err.println("DATABASE NOTIFICATION INSERTION ERROR: " + e.toString());
-            }
-        }
+        this.notifyNewRestsObservers(rest);
     }
 
+    
     public JTable displayRests(JTable tbl) {
         try {
             Statement stmt = con.createStatement();
@@ -129,6 +139,7 @@ public class DB_Connection_Maiada {
         return tbl;
     }
 
+    //done
     public void deleteRestAdmin(int id) {
         try {
             Statement stmt = con.createStatement();
@@ -140,6 +151,7 @@ public class DB_Connection_Maiada {
         }
     }
 
+    //done
     public void deleteRest(int id) {
         try {
             Statement stmt = con.createStatement();
@@ -229,6 +241,7 @@ public class DB_Connection_Maiada {
         }
     }
 
+    // done
     public JTable displaySalesTable(JTable tbl) {
         try {
             Statement stmt = con.createStatement();

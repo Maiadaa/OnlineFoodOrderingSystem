@@ -12,11 +12,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Cust_Notifications_GUI extends javax.swing.JFrame {
 
-    Customer c;
+    Customer c = new Customer();
 
-    /**
-     * Creates new form Cust_Notifications_GUI
-     */
     public Cust_Notifications_GUI() {
         initComponents();
     }

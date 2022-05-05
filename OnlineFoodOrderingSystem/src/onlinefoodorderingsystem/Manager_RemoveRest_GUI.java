@@ -160,8 +160,12 @@ public class Manager_RemoveRest_GUI extends javax.swing.JFrame {
         int restAdminId = Integer.parseInt(restsTable.getModel().getValueAt(row, 2).toString());
 
         DB_Connection_Maiada db = new DB_Connection_Maiada();
-        db.deleteRest(restId);
-        db.deleteRestAdmin(restAdminId);
+        Restaurant_Admin ra = new Restaurant_Admin();
+        ra.setID(restAdminId);
+        ra.getRest().setRest_Id(restId);
+        
+        Manager.getTheManager().getSysRests().Remove_Rest(ra.getRest());
+        Manager.getTheManager().getSysRestsAdmins().Remove_Rest_Admin(ra);
 
         //redisplay to view results
         Manager_RemoveRest_GUI results = new Manager_RemoveRest_GUI();

@@ -14,7 +14,7 @@ public class Manager_SalesReport_GUI extends javax.swing.JFrame {
         initComponents();
         DB_Connection_Maiada db = new DB_Connection_Maiada();
 
-        jTable1 = db.displaySalesTable(jTable1);
+        jTable1 = Manager.getTheManager().getSysRests().View_Sales_Report(jTable1);
         
         // calculating all restaurant's total revenue 
         double restsRevenue = 0;
