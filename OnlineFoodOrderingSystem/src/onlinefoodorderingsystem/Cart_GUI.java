@@ -34,12 +34,6 @@ public class Cart_GUI extends javax.swing.JFrame {
         table = db.displayCartItems(table,o);
 
     }
-    
-        public Cart_GUI(Restaurant o,Customer c) {
-        initComponents();
-        this.cust = c;
-
-    }
 
 //    public Cart_GUI(Customer cust, Order o) {
 //        this.cust = cust;

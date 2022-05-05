@@ -19,24 +19,21 @@ public class Restaurant {
     private Menu Rest_Menu;
     private double Rest_Rating;
     
-    // for db query purposes in Manager_RemoveRest_GUI
+    // for db query purposes
     private int restAdminID;
 
     public Restaurant() {
 
     }
 
-    // For database query purposes in Manager_RemoveRest_GUI
+    // For database query purposes
     public Restaurant(int Rest_Id, String Rest_Name, int restAdminID) {
         this.Rest_Id = Rest_Id;
         this.Rest_Name = Rest_Name;
         this.restAdminID = restAdminID;
     }
     
-    // For database query purposes in Cust_Notifications_GUI
-    public Restaurant(int Rest_Id) {
-        this.Rest_Id = Rest_Id;
-    }    
+    
 
     public void View_Menu() {
         for (int i = 0; i < Rest_Menu.getItems_In_Menu().size(); i++) {
