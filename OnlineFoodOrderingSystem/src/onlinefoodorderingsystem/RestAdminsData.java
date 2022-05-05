@@ -19,6 +19,8 @@ public class RestAdminsData {
             System.out.println("Restaurant Admin Added Successfully");
          */
         // --- USING DATABASE --- //
+            DB_Connection_Maiada db = new DB_Connection_Maiada();
+
         db.addRestAdmin(ra);
     }
 

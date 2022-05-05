@@ -22,10 +22,18 @@ public class Restaurant {
     // for db query purposes in Manager_RemoveRest_GUI
     private int restAdminID;
 
+
+
     public Restaurant() {
 
     }
 
+    @Override
+    public String toString() {
+        return "Restaurant{" + "Rest_Id=" + Rest_Id + ", Rest_Location=" + Rest_Location + ", Rest_Categ=" + Rest_Categ + ", Rest_Name=" + Rest_Name + ", Rest_Open=" + Rest_Open + ", Rest_Rating=" + Rest_Rating + '}';
+    }
+
+    
     public Restaurant(int Rest_Id, String Rest_Location, String Rest_Categ, String Rest_Name, boolean Rest_Open) {
         this.Rest_Id = Rest_Id;
         this.Rest_Location = Rest_Location;

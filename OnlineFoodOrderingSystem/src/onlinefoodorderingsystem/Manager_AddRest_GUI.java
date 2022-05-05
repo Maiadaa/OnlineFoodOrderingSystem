@@ -7,10 +7,9 @@ package onlinefoodorderingsystem;
 import javax.swing.JOptionPane;
 
 public class Manager_AddRest_GUI extends javax.swing.JFrame {
-    
-    Restaurant_Admin ra = new Restaurant_Admin();
+
     DB_Connection_Maiada db = new DB_Connection_Maiada();
-    
+
     public Manager_AddRest_GUI() {
         initComponents();
     }
@@ -196,6 +195,8 @@ public class Manager_AddRest_GUI extends javax.swing.JFrame {
         String restLoc = RestLoc.getText();
         String restCateg = RestCateg.getText();
         
+        Restaurant_Admin ra = new Restaurant_Admin();
+
         if (uname.equals("") || pwd.equals("") || restName.equals("")) {
             JOptionPane.showMessageDialog(null, "Missing Restaurant Admin's login credentials or Restaurant name.");
         } else {
@@ -204,11 +205,11 @@ public class Manager_AddRest_GUI extends javax.swing.JFrame {
             ra.getRest().setRest_Name(restName);
             ra.getRest().setRest_Categ(restCateg);
             ra.getRest().setRest_Location(restLoc);
-            
-            DB_Connection_Maiada db = new DB_Connection_Maiada();
+            System.out.println(ra.toString());
+
             Manager.getTheManager().getSysRestsAdmins().Add_Rest_Admin(ra);
             Manager.getTheManager().getSysRests().Add_Rest(ra.getRest(), ra.getUsername());
-            
+
             JOptionPane.showMessageDialog(null, "Restaurant and it's admin were added successfully.");
         }
     }//GEN-LAST:event_submitActionPerformed

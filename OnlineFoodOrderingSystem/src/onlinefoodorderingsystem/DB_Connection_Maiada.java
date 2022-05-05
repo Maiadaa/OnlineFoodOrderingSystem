@@ -43,8 +43,6 @@ public class DB_Connection_Maiada {
             stmt.executeUpdate("INSERT INTO rest_admin (`Username`, `Password`)"
                     + "VALUES ('" + ra.getUsername() + "', '" + ra.getPassword() + "')");
             System.out.println("Restaurant Admin added");
-
-            this.addRest(ra.getRest(), ra.getUsername());
         } catch (Exception e) {
             System.err.println("RESTAURANT ADMIN INSERTION ERROR: " + e.toString());
         }
