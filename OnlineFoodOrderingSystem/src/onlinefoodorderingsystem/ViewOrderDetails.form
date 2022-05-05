@@ -142,6 +142,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="OrderID">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="OrderIDActionPerformed"/>
       </Events>
@@ -152,6 +155,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="RestName">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
@@ -159,6 +165,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="OrderDate">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="OrderDateActionPerformed"/>
       </Events>
@@ -169,6 +178,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="OrderPrice">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="OrderPriceActionPerformed"/>
       </Events>
@@ -179,6 +191,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="OrderStatus">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="OrderStatusActionPerformed"/>
       </Events>

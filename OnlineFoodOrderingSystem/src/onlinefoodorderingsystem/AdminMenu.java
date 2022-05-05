@@ -15,9 +15,9 @@ public class AdminMenu extends javax.swing.JFrame {
      */
     public AdminMenu(Admin a1) 
     {
-        tempAdmin = a1;
-        System.out.println(tempAdmin.getName());
         initComponents();
+        tempAdmin = a1;
+        AdminName.setText(tempAdmin.getName());
     }
 
     public AdminMenu() 
@@ -38,11 +38,13 @@ public class AdminMenu extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         LogOutButton = new javax.swing.JButton();
         CopounsMenu = new javax.swing.JButton();
+        AdminName = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Welcome");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("Admin Menu");
 
         LogOutButton.setText("Log Out");
@@ -59,6 +61,8 @@ public class AdminMenu extends javax.swing.JFrame {
             }
         });
 
+        AdminName.setEditable(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -68,9 +72,11 @@ public class AdminMenu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(114, 114, 114)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(AdminName, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                        .addGap(125, 125, 125)
                         .addComponent(LogOutButton)
                         .addGap(17, 17, 17))
                     .addGroup(layout.createSequentialGroup()
@@ -84,7 +90,8 @@ public class AdminMenu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
-                    .addComponent(LogOutButton))
+                    .addComponent(LogOutButton)
+                    .addComponent(AdminName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(CopounsMenu)
                 .addContainerGap(360, Short.MAX_VALUE))
@@ -144,6 +151,7 @@ public class AdminMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField AdminName;
     private javax.swing.JButton CopounsMenu;
     private javax.swing.JButton LogOutButton;
     private javax.swing.JLabel jLabel1;
