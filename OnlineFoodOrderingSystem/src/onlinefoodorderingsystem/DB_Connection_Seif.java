@@ -95,6 +95,15 @@ public class DB_Connection_Seif {
             System.err.println("DATABASE INSERTION ERROR: " + e.toString());
         }
      }
+     
+     public void Redeem_Cupon(Customer c,int code){
+         try {
+                Statement stmt = con.createStatement();
+                stmt.executeUpdate("select premiumcust_coupon.Coupon_ID from premiumcust_coupon, coupon where premiumcust_coupon.Premium_Cust_ID = '" + c.getID() + "' and coupon.Coupon_code = '"+ code +"' and premiumcust_coupon.Coupon_ID = coupon.Coupon_ID");
+            } catch (Exception e) {
+                System.err.println("DATABASE INSERTION ERROR: " + e.toString());
+            }
+        }
 
     public JTable displayCartItems(JTable tbl,Order o) {
         try {
