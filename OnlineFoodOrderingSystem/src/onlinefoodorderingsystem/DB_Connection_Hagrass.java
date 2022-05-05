@@ -49,7 +49,7 @@ public class DB_Connection_Hagrass {
         try {
             Statement stmt = con.createStatement();
             stmt.executeUpdate("UPDATE `admin` SET `Name`='" + admin.getName() + "',`Email`='" + admin.getEmail() + "',`Phone`='" + admin.getPhone_number() + "',`Address`='" + admin.getAddress() + "',`Username`='" + admin.getUsername() + "',`Password`='" + admin.getPassword() + "',`Gender`='" + admin.getGender() + "' where ID = " + admin.getID() + "");
-            System.out.println("feedback Updated");
+            System.out.println("admin Updated");
             return true;
         } catch (Exception e) {
             System.err.println("DATABASE INSERTION ERROR: " + e.toString());
@@ -84,15 +84,20 @@ public class DB_Connection_Hagrass {
         return table;
     }
     
-    /*public Admin SelectAdminData(int AdminID){
+    public Admin SelectAdminData(int AdminID){
          try {
             Statement stmt = con.createStatement();
-            ResultSet selectData = stmt.executeQuery("SELECT * FROM `feedback` Where Feedback_Type = 'complaint'"); 
-            return new Admin(selectData.getInt("ID"), selectData.getString("Name"), selectData.getString("Email"), selectData.getString("Phone"), selectData.getString("Username"), selectData.getString("Password"), selectData.getString("Gender"));
-         } catch (Exception e) {
+            ResultSet selectData = stmt.executeQuery("SELECT * FROM `admin` WHERE ID = '" + AdminID + "'");
+            if (selectData.first()) {
+                return new Admin(selectData.getInt("ID"), selectData.getString("Name"), selectData.getString("Email"), selectData.getString("Phone"), selectData.getString("Address"), selectData.getString("Username"), selectData.getString("Password"), selectData.getString("Gender").charAt(0));
+            }else{
+                return null;
+            }
+            } catch (Exception e) {
             System.err.println("DATABASE QUERY ERROR: " + e.toString());
+            return null;
         }
-    }*/
+    }
     
         public Restaurant_Admin SelectRestAdminData(int RestAdmin) {
 
@@ -113,7 +118,7 @@ public class DB_Connection_Hagrass {
         try {
             Statement stmt = con.createStatement();
             stmt.executeUpdate("UPDATE `rest_admin` SET `Name`='" + restAdmin.getName() + "',`Email`='" + restAdmin.getEmail() + "',`Phone`='" + restAdmin.getPhone_number() + "',`Address`='" + restAdmin.getAddress() + "',`Username`='" + restAdmin.getUsername() + "',`Password`='" + restAdmin.getPassword() + "',`Gender`='" + restAdmin.getGender() + "' where ID = " + restAdmin.getID() + "");
-            System.out.println("feedback Updated");
+            System.out.println("rest admin Updated");
             return true;
         } catch (Exception e) {
             System.err.println("DATABASE INSERTION ERROR: " + e.toString());

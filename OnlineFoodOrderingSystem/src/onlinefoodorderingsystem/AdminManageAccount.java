@@ -15,6 +15,15 @@ public class AdminManageAccount extends javax.swing.JFrame {
      */
     public AdminManageAccount() {
         initComponents();
+        DB_Connection_Hagrass db = new DB_Connection_Hagrass();
+        Admin admin = db.SelectAdminData(1);
+        Editname.setText(admin.getName());
+        EditAddress.setText(admin.getAddress());
+        EditEmail.setText(admin.getEmail());
+        EditGender.setText(Character.toString(admin.getGender()));
+        EditUsername.setText(admin.getUsername());
+        Editphone.setText(admin.getPhone_number());
+        EditPassword.setText(admin.getPassword());
     }
 
     /**
@@ -72,6 +81,11 @@ public class AdminManageAccount extends javax.swing.JFrame {
         });
 
         jButton1.setText("Update");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Back");
 
