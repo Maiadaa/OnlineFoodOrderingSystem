@@ -188,4 +188,44 @@ public class DB_Connection_Maiada {
         return null;
     }
 
+   public boolean Edit_Rest_Details(Restaurant rest) {
+        try {
+            Statement stmt = con.createStatement();
+            
+            int res = 0;
+            if(rest.isRest_Open()){
+                res = 1;
+            }else{
+                res = 0;
+            }
+            stmt.executeUpdate("UPDATE `restaurant` SET `Rest_Loc`='" + rest.getRest_Location()
+                    + "',`Rest_Categ`='" + rest.getRest_Categ() + "',`Rest_Name`='" + rest.getRest_Name() + "',`Rest_Open`='" + res + "' where Rest_ID = " + rest.getRest_Id() + "");
+            System.out.println("Restaurant details Updated");
+            return true;
+        } catch (Exception e) {
+            System.err.println("DATABASE RESTAURANT EDIT UPDATE ERROR: " + e.toString());
+            return false;
+        }
+    }
+
+    public Restaurant SelectRestData(int restID) {
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet d = stmt.executeQuery("SELECT * FROM `restaurant` WHERE Rest_ID = '" + restID + "'");
+            if (d.first()) {
+                boolean res = false;
+                if (d.getByte("Rest_Open") == 1) {
+                    res = true;
+                } else {
+                    res = false;
+                }
+                return new Restaurant(d.getInt("Rest_ID"), d.getString("Rest_Loc"), d.getString("Rest_Categ"), d.getString("Rest_Name"), res);
+            } else {
+                return null;
+            }
+        } catch (Exception e) {
+            System.err.println("DATABASE QUERY ERROR: " + e.toString());
+            return null;
+        }
+    }
 }

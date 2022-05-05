@@ -26,6 +26,15 @@ public class Restaurant {
 
     }
 
+    public Restaurant(int Rest_Id, String Rest_Location, String Rest_Categ, String Rest_Name, boolean Rest_Open) {
+        this.Rest_Id = Rest_Id;
+        this.Rest_Location = Rest_Location;
+        this.Rest_Categ = Rest_Categ;
+        this.Rest_Name = Rest_Name;
+        this.Rest_Open = Rest_Open;
+    }
+    
+
     // For database query purposes in Manager_RemoveRest_GUI
     public Restaurant(int Rest_Id, String Rest_Name, int restAdminID) {
         this.Rest_Id = Rest_Id;
