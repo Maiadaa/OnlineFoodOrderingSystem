@@ -71,7 +71,7 @@ public class Admin extends Person implements Feedback_Detector {
         if(f.getFeedback_Type().equals("Complaint")){
             f.setFeedback_State("Working on it(accepted)");
             DB_Connection_Hagrass db = new DB_Connection_Hagrass();
-            db.AdminEditFeedbackStatus(f);
+            db.EditFeedbackStatus(f);
         }else if(f.getFeedback_Type().equals("Rating")){
             DB_Connection_Hagrass db = new DB_Connection_Hagrass();
             Restaurant_Admin restAdmin = db.SelectRestAdminData(db.selectRestAdminID(f.getOrder_Id()));

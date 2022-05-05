@@ -126,7 +126,7 @@ public class DB_Connection_Hagrass {
         }
     }
     
-    public void AdminEditFeedbackStatus(Feedback feedback){
+    public void EditFeedbackStatus(Feedback feedback){
         try {
             Statement stmt = con.createStatement();
             stmt.executeUpdate("UPDATE `feedback` SET `Feedback_State`='" + feedback.getFeedback_State() + "' where Feedback_ID = '" + feedback.getFeedback_Id() + "'");
@@ -149,5 +149,15 @@ public class DB_Connection_Hagrass {
             System.err.println("DATABASE QUERY ERROR: " + e.toString());
             return 0;
         } 
+    }
+    
+    public void editRestRating(int restID,int rate){
+        try {
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate("UPDATE `restaurant` SET `Rest_Rating`='" + rate + "' WHERE Rest_ID = ' " + restID + "'");
+            System.out.println("restaurant Updated");
+        } catch (Exception e) {
+            System.err.println("DATABASE INSERTION ERROR: " + e.toString());
+        }
     }
 }

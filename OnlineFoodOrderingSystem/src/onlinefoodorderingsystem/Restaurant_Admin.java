@@ -6,7 +6,7 @@ public class Restaurant_Admin extends Person implements Feedback_Detector {
 
     private Restaurant Rest = new Restaurant();
     public static RestAdminsData restAdminData = new RestAdminsData();
-    
+
     DB_Connection_Maiada db_mai = new DB_Connection_Maiada();
 
     public Restaurant_Admin() {
@@ -26,15 +26,11 @@ public class Restaurant_Admin extends Person implements Feedback_Detector {
         return null;
     }
 
-    public boolean ManageRestDetails(){
+    public boolean ManageRestDetails() {
         // --- using database --- //
         return db_mai.Edit_Rest_Details(this.Rest);
     }
     
-    public void Handle_Feedback(Feedback f) {
-        Rest.Handle_Feedback(f);
-    }
-
     public void setRest(Restaurant Rest) {
         this.Rest = Rest;
     }
@@ -42,11 +38,26 @@ public class Restaurant_Admin extends Person implements Feedback_Detector {
     public Restaurant getRest() {
         return Rest;
     }
-    
+
     public void setNextinchain(Restaurant_Admin x) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
-    
 
+    @Override
+    public void Handle_Feedback(Feedback f) {
+        if (f.getFeedback_Type().equals("rating")) {
+            f.setFeedback_State("Accepted from Restaurant Admin");
+            DB_Connection_Hagrass db = new DB_Connection_Hagrass();
+            db.EditFeedbackStatus(f);
+            if (f.getRate() <= 3) {
+                if (Rest.getRest_Rating() > 0) {
+                    db.editRestRating(Rest.getRest_Id(), (Rest.getRest_Rating() - 0.1));
+                }
+            }else if(f.getRate() > 3){
+                if (Rest.getRest_Rating() > 0 && Rest.getRest_Rating() > 3) {
+                    db.editRestRating(Rest.getRest_Id(), (Rest.getRest_Rating() + 0.1));
+                }
+            }
+        }
+    }
 }//end Restaurant_Admin
