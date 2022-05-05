@@ -29,9 +29,6 @@ public class Customer extends Person implements New_Rests_Observer {
         Gender = Gender;
     }
 
-    public Customer(int ID){
-        super(ID);
-    }
         
 
 //	public void Sign_Up(Customer cust){
@@ -61,9 +58,9 @@ public class Customer extends Person implements New_Rests_Observer {
 	public void Create_Feedback(int customerID ,int Order_Id, Feedback feedback){
             DB_Connection_Hagrass db = new DB_Connection_Hagrass();
             db.createNewFeedback(customerID, Order_Id, feedback);
-            //if(check){
-              //  feedback.getF_Type().Handle_Feedback(feedback);
-            //}
+            
+            feedback.getF_Type().Handle_Feedback(feedback);
+            
 	}
 
 	public void Create_Order(){

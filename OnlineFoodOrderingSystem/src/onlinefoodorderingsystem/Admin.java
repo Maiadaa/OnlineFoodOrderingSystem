@@ -14,7 +14,7 @@ public class Admin extends Person implements Feedback_Detector {
     {
         super(ID, Name, Email, Phone_number, Address, Username, Password, Gender);
     }
-
+    
     public void setM_FoodOrderingSysCoupons(FoodOrderingSysCoupons m_FoodOrderingSysCoupons) {
         this.m_FoodOrderingSysCoupons = m_FoodOrderingSysCoupons;
     }
@@ -51,14 +51,9 @@ public class Admin extends Person implements Feedback_Detector {
             return null;
     }
 
-    public void Manage_Account(Admin newchange){
-        this.setName(newchange.getName());
-        this.setAddress(newchange.getAddress());
-        this.setEmail(newchange.getEmail());
-        this.setGender(newchange.getGender());
-        this.setPhone_number(newchange.getPhone_number());
-        this.setUsername(newchange.getUsername());
-        this.setPassword(newchange.getPassword());
+    public boolean Manage_Account(Admin newchange){
+        DB_Connection_Hagrass db = new DB_Connection_Hagrass();
+        return db.Edit_Admin_Account(newchange);
     }
 
     public ArrayList View_Feedbacks(){
@@ -67,8 +62,8 @@ public class Admin extends Person implements Feedback_Detector {
     public void setPointOfContact(Feedback_Detector next) {
         //Next_In_Chain = new Restaurant_Admin();
     }
-    @Override       
-    public void setNextinchain(Restaurant_Admin x){
+     
+    public void setNextinchain(Feedback_Detector x){
         this.nextinchain = x;
     }
 
@@ -78,6 +73,7 @@ public class Admin extends Person implements Feedback_Detector {
             f.setFeedback_State("Working on it(accepted)");
         }else if(f.getFeedback_Type().equals("Rating")){
             
+            nextinchain.Handle_Feedback(f);
         }
     }
 
