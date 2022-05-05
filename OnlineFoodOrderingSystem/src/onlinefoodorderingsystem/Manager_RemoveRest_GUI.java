@@ -123,6 +123,13 @@ public class Manager_RemoveRest_GUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(62, 62, 62)
+<<<<<<< HEAD
+=======
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 748, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+>>>>>>> parent of 5fa5e76 (view notifications DONE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -142,6 +149,7 @@ public class Manager_RemoveRest_GUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
                         .addGap(17, 17, 17)
                         .addComponent(backBtn)
                         .addGap(57, 57, 57))
@@ -149,6 +157,14 @@ public class Manager_RemoveRest_GUI extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(Title)
                         .addGap(40, 40, 40)))
+=======
+                        .addGap(40, 40, 40)
+                        .addComponent(Title))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(backBtn)))
+                .addGap(40, 40, 40)
+>>>>>>> parent of 5fa5e76 (view notifications DONE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addComponent(Remove, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -177,9 +193,22 @@ public class Manager_RemoveRest_GUI extends javax.swing.JFrame {
         // --- USING DATABASE --- // 
         int column = 0;
         int row = restsTable.getSelectedRow();
+<<<<<<< HEAD
         String restName = restsTable.getModel().getValueAt(row, column).toString();
 
 
+=======
+        int restId  = Integer.parseInt(restsTable.getModel().getValueAt(row, 0).toString());
+        int restAdminId  = Integer.parseInt(restsTable.getModel().getValueAt(row, 2).toString());
+        
+        DB_Connection_Maiada db = new DB_Connection_Maiada();
+        db.deleteRest(restId);
+        db.deleteRestAdmin(restAdminId);
+        
+        //redisplay to view results
+        
+        JOptionPane.showMessageDialog(null, "Restaurant and it's admin were removed successfully.");
+>>>>>>> parent of 5fa5e76 (view notifications DONE)
     }//GEN-LAST:event_RemoveActionPerformed
 
     /**

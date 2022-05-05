@@ -74,7 +74,16 @@ public class DB_Connection_Maiada {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select * from restaurant");
             while (rs.next()) {
+<<<<<<< HEAD
                 result.add(new Restaurant(rs.getInt("Rest_ID"), rs.getString("Rest_Name"), rs.getInt("RestAdmin_ID")));
+=======
+                rowData[0] = rs.getInt("Rest_ID");
+                rowData[1] = rs.getString("Rest_Name");
+                rowData[2] = rs.getInt("ID");
+                rowData[3] = rs.getString("Name");
+                
+                model.addRow(rowData);
+>>>>>>> parent of 5fa5e76 (view notifications DONE)
             }
         } catch (Exception e) {
             System.err.println("DATABASE QUERY ERROR: " + e.toString());
@@ -82,6 +91,7 @@ public class DB_Connection_Maiada {
         return result;
     }
 
+<<<<<<< HEAD
     public int getRestAdminID(String restName) {
         try {
             Statement stmt = con.createStatement();
@@ -94,6 +104,8 @@ public class DB_Connection_Maiada {
         }
         return 0;
     }
+=======
+>>>>>>> parent of 5fa5e76 (view notifications DONE)
     
     public void deleteRestAdmin(int id) {
         try {
