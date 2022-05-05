@@ -129,8 +129,8 @@ public class OrderSummary_GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
-        HomePage home = new HomePage();
-        home.setVisible(true);
+        allRestaurants rest = new allRestaurants();
+        rest.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_HomeActionPerformed
 

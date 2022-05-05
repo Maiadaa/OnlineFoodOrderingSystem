@@ -19,7 +19,7 @@ public class Order_Item {
         this.Item_Quantity = Item_Quantity;
         this.Item_Total_Price = Item_Total_Price;
     }
-
+   
     public Menu_Item getItem() {
         return Item;
     }

@@ -54,27 +54,27 @@ public class Order {
 	 * 
 	 * @param item
 	 */
-	public boolean Remove_From_Cart(Order_Item item){
-            for (int i = 0 ; i > Ordered_Items.size();i++){
-                if (Ordered_Items.get(i) ==  item){
-                  Ordered_Items.remove(item);
-                }
-            }
-		return false;
-	}
+//	public boolean Remove_From_Cart(Order_Item item){
+//            for (int i = 0 ; i > Ordered_Items.size();i++){
+//                if (Ordered_Items.get(i) ==  item){
+//                  Ordered_Items.remove(item);
+//                }
+//            }
+//		return false;
+//	}
 
 	/**
 	 * 
 	 * @param item
 	 * @param new_quant
 	 */
-	public void Modify_Cart_Item(Order_Item item, int new_quant){
-            for (int i = 0 ; i > Ordered_Items.size();i++){
-                if (Ordered_Items.get(i) == item){
-                  Ordered_Items.get(i).setItem_Quantity(new_quant);
-                }
-            }
-	}
+//	public void Modify_Cart_Item(Order_Item item, int new_quant){
+//            for (int i = 0 ; i > Ordered_Items.size();i++){
+//                if (Ordered_Items.get(i) == item){
+//                  Ordered_Items.get(i).setItem_Quantity(new_quant);
+//                }
+//            }
+//	}
         
         
 
@@ -82,9 +82,9 @@ public class Order {
 	 * 
 	 * @param c
 	 */
-	public void Redeem_Coupon(Coupon c){
-            
-	}
+//	public void Redeem_Coupon(Coupon c){
+//            
+//	}
 
 	public void Checkout(Order o){
             o.getOrder_Id();

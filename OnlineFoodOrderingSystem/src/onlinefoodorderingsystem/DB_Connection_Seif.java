@@ -46,10 +46,10 @@ public class DB_Connection_Seif {
         }
 
 
-    public void Modify_Cart_Item(Order_Item item) {
+    public void Modify_Cart_Item(int id, int amount,int sum) {
         try {
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("update order_item set Quantity ='" + item.getItem_Quantity() + "where OrderItem_ID ='" + item.getItem().getItem_Id() + ")");
+            stmt.executeUpdate("UPDATE `order_item` SET `Quantity`='" + amount + "',`Total_ItemPrice`='" + sum + "' where MenuItem_ID = " + id + "");
         } catch (Exception e) {
             System.err.println("DATABASE INSERTION ERROR: " + e.toString());
         }
@@ -63,6 +63,14 @@ public class DB_Connection_Seif {
                 System.err.println("DATABASE INSERTION ERROR: " + e.toString());
             }
         }
+//    public void Redeem_Coupon(Coupon c){
+//        try {
+//                Statement stmt = con.createStatement();
+//                stmt.executeUpdate("delete from order_item where OrderItem_ID = '" + id + "'");
+//            } catch (Exception e) {
+//                System.err.println("DATABASE INSERTION ERROR: " + e.toString());
+//            }
+//    }
 
     public JTable displayCartItems(JTable tbl,Order o) {
         try {

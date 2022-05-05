@@ -61,6 +61,9 @@ public class Cart_GUI extends javax.swing.JFrame {
         Checkout = new javax.swing.JButton();
         Remove = new javax.swing.JButton();
         Modify = new javax.swing.JButton();
+        quantity = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -124,6 +127,17 @@ public class Cart_GUI extends javax.swing.JFrame {
             }
         });
 
+        quantity.setText("Quantity");
+
+        jTextField2.setText("Code");
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Redeem");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -134,25 +148,30 @@ public class Cart_GUI extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(215, 215, 215)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(191, 191, 191)
+                        .addComponent(Checkout))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Remove)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(215, 215, 215)
-                                .addComponent(jLabel1))
+                                .addGap(59, 59, 59)
+                                .addComponent(Cash)
+                                .addGap(66, 66, 66)
+                                .addComponent(Card)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(191, 191, 191)
-                                .addComponent(Checkout))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(140, 140, 140)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(Remove)
-                                        .addGap(36, 36, 36)
-                                        .addComponent(Modify))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(Cash)
-                                        .addGap(66, 66, 66)
-                                        .addComponent(Card)))))
-                        .addGap(0, 118, Short.MAX_VALUE)))
+                                .addGap(35, 35, 35)
+                                .addComponent(Modify)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(quantity, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -165,7 +184,10 @@ public class Cart_GUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Remove)
-                    .addComponent(Modify))
+                    .addComponent(Modify)
+                    .addComponent(quantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Cash)
@@ -202,8 +224,30 @@ public class Cart_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_RemoveActionPerformed
 
     private void ModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifyActionPerformed
+        int row = table.getSelectedRow();
+        int itemId = Integer.parseInt(table.getModel().getValueAt(row, 0).toString());
+        int quan = Integer.parseInt(table.getModel().getValueAt(row, 2).toString());
+        int newquan = Integer.parseInt(quantity.getText());
+        int price = Integer.parseInt(table.getModel().getValueAt(row, 3).toString());
+        int single = price/quan;
+        int sum = newquan*single;
+        try{
+            DB_Connection_Seif db = new DB_Connection_Seif();
+            db.Modify_Cart_Item(itemId,newquan,sum);
+        JOptionPane.showMessageDialog(null, "Item Updated Successfully");
+        this.dispose();
+        Cart_GUI newcart = new Cart_GUI();
+        newcart.setVisible(true);
+        }catch(Exception e){
+            System.out.println("Didnt work");
+        }
+        
 
     }//GEN-LAST:event_ModifyActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -247,8 +291,11 @@ public class Cart_GUI extends javax.swing.JFrame {
     private javax.swing.JButton Modify;
     private javax.swing.JButton Remove;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField quantity;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }
