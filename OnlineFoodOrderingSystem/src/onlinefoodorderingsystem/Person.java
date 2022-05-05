@@ -17,6 +17,10 @@ public class Person {
     {
 
     }
+    
+    public Person(int id){
+        this.ID = id;
+    }
 
     public Person(int ID, String Name, String Email, String Phone_number, String Address, String Username, String Password, char Gender) 
     {

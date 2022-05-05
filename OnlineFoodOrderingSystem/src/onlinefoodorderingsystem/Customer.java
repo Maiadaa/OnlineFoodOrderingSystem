@@ -29,6 +29,9 @@ public class Customer extends Person implements New_Rests_Observer {
         Gender = Gender;
     }
 
+    public Customer(int ID){
+        super(ID);
+    }
         
 
 //	public void Sign_Up(Customer cust){
