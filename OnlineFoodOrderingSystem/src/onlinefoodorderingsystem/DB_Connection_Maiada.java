@@ -188,14 +188,14 @@ public class DB_Connection_Maiada {
         return null;
     }
 
-   public boolean Edit_Rest_Details(Restaurant rest) {
+    public boolean Edit_Rest_Details(Restaurant rest) {
         try {
             Statement stmt = con.createStatement();
-            
+
             int res = 0;
-            if(rest.isRest_Open()){
+            if (rest.isRest_Open()) {
                 res = 1;
-            }else{
+            } else {
                 res = 0;
             }
             stmt.executeUpdate("UPDATE `restaurant` SET `Rest_Loc`='" + rest.getRest_Location()
@@ -227,5 +227,29 @@ public class DB_Connection_Maiada {
             System.err.println("DATABASE QUERY ERROR: " + e.toString());
             return null;
         }
+    }
+
+    public JTable displaySalesTable(JTable tbl) {
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select restaurant.Rest_Name, COUNT(`order`.Order_ID), SUM(`order`.Order_Price) from restaurant, `order` where restaurant.Rest_ID = `order`.Rest_ID GROUP BY restaurant.Rest_Name;");
+
+            DefaultTableModel model;
+            model = (DefaultTableModel) tbl.getModel();
+            Object rowData[] = new Object[3];
+
+            while (rs.next()) {
+                rowData[0] = rs.getString("restaurant.Rest_Name");
+                rowData[1] = rs.getInt("COUNT(`order`.Order_ID)");
+                rowData[2] = rs.getDouble("SUM(`order`.Order_Price)");
+
+                model.addRow(rowData);
+            }
+            System.out.println("Sales Report displayed successfully.");
+
+        } catch (Exception e) {
+            System.err.println("DATABASE DISPLAY SALES REPORT QUERY ERROR: " + e.toString());
+        }
+        return tbl;
     }
 }
