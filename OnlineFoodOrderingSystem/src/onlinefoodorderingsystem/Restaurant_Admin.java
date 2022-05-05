@@ -6,6 +6,8 @@ public class Restaurant_Admin extends Person implements Feedback_Detector {
 
     private Restaurant Rest = new Restaurant();
     public static RestAdminsData restAdminData = new RestAdminsData();
+    
+    DB_Connection_Maiada db_mai = new DB_Connection_Maiada();
 
     public Restaurant_Admin() {
 
@@ -24,10 +26,11 @@ public class Restaurant_Admin extends Person implements Feedback_Detector {
         return null;
     }
 
-    /**
-     *
-     * @param f
-     */
+    public boolean ManageRestDetails(){
+        // --- using database --- //
+        return db_mai.Edit_Rest_Details(this.Rest);
+    }
+    
     public void Handle_Feedback(Feedback f) {
         Rest.Handle_Feedback(f);
     }

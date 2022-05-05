@@ -187,6 +187,8 @@ public class DB_Connection_Maiada {
         return tbl;
     }
 
+    
+    //done
     public Restaurant getRestByName(String restName) {
         try {
             Statement stmt = con.createStatement();

@@ -10,15 +10,15 @@ import javax.swing.JOptionPane;
  *
  * @author LENOVO
  */
-public class ManageRest_GUI extends javax.swing.JFrame {
+public class RestAdmin_ManageRest_GUI extends javax.swing.JFrame {
 
     Restaurant_Admin ra = new Restaurant_Admin();
 
-    public ManageRest_GUI() {
+    public RestAdmin_ManageRest_GUI() {
         initComponents();
     }
 
-    public ManageRest_GUI(Restaurant_Admin ra) {
+    public RestAdmin_ManageRest_GUI(Restaurant_Admin ra) {
         this.ra = ra;
         initComponents();
 
@@ -190,9 +190,8 @@ public class ManageRest_GUI extends javax.swing.JFrame {
             res = true;
         }
         
-        Restaurant rest = new Restaurant(Integer.parseInt(restID.getText()), restLoc.getText(), restCateg.getText(), restName.getText(), res);
-        
-        if (db.Edit_Rest_Details(rest)) {
+        ra.setRest(new Restaurant(Integer.parseInt(restID.getText()), restLoc.getText(), restCateg.getText(), restName.getText(), res));
+        if (ra.ManageRestDetails()) {
             JOptionPane.showMessageDialog(null, "Restaurant details updated successfully!");
 
         }
@@ -215,21 +214,23 @@ public class ManageRest_GUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManageRest_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RestAdmin_ManageRest_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManageRest_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RestAdmin_ManageRest_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManageRest_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RestAdmin_ManageRest_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManageRest_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RestAdmin_ManageRest_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManageRest_GUI().setVisible(true);
+                new RestAdmin_ManageRest_GUI().setVisible(true);
             }
         });
     }

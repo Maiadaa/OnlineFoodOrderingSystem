@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
+import javax.swing.JTable;
 
 public class Customer extends Person implements New_Rests_Observer {
 
@@ -12,6 +13,8 @@ public class Customer extends Person implements New_Rests_Observer {
     public Order m_Order;
     public SysRests_Interface m_SysRests;
     public static CustomersData custdata = new CustomersData();
+
+    DB_Connection_Maiada db_mai = new DB_Connection_Maiada();
 
     public Customer() {
 
@@ -28,8 +31,8 @@ public class Customer extends Person implements New_Rests_Observer {
         Password = Password;
         Gender = Gender;
     }
-    
-    public Customer(int ID){
+
+    public Customer(int ID) {
         super(ID);
     }
 
@@ -74,17 +77,19 @@ public class Customer extends Person implements New_Rests_Observer {
         return null;
     }
 
-    public void View_Notifications() {
-
+    // --- USING ARRAY LISTS --- // 
+    @Override
+    public ArrayList<String> getNewRestsNotifs() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     public void Update(String msg) {
 
     }
 
-    @Override
-    public ArrayList<String> getNewRestsNotifs() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    // --- THUS ALTERNATIVE IS USING DATABASE WITH THIS FUNCTION: --- //
+    public JTable View_Notifications(JTable tbl) {
+        return db_mai.displayNotifs(tbl, this);
     }
 
 }

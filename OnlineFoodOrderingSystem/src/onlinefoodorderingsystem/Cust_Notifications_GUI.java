@@ -19,8 +19,6 @@ public class Cust_Notifications_GUI extends javax.swing.JFrame {
     }
 
     public Cust_Notifications_GUI(Customer c) {
-        this.c = c;
-
         /* // --- USING ARRAY LISTS --- //
         DefaultTableModel tblModel = (DefaultTableModel) jTable1.getModel();
         for (String s : c.getNewRestsNotifs()) {
@@ -39,8 +37,9 @@ public class Cust_Notifications_GUI extends javax.swing.JFrame {
         
         // --- USING DATABASE --- //
         initComponents();
+        this.c = c;
         DB_Connection_Maiada db = new DB_Connection_Maiada();
-        NotifsTbl = db.displayNotifs(NotifsTbl, c);
+        NotifsTbl = c.View_Notifications(NotifsTbl);
 
     }
 
@@ -201,7 +200,7 @@ public class Cust_Notifications_GUI extends javax.swing.JFrame {
         Restaurant rest = new Restaurant();
         rest = db.getRestByName(restName);
 
-        /* Open selected restaurant */
+        /* !!!!!!!!!!!!Open selected restaurant!!!!!!!!!!!!! */
 
     }//GEN-LAST:event_NotifsTblMousePressed
 
