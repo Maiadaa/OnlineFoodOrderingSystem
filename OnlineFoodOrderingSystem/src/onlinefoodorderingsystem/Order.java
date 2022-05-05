@@ -39,6 +39,13 @@ public class Order {
         this.Order_Price = Order_Price;
         this.Orderstatus = Orderstatus;
     }
+
+    public Order(int Order_Id, String Order_Date, double Order_Price, String Orderstatus) {
+        this.Order_Id = Order_Id;
+        this.Order_Date = Order_Date;
+        this.Order_Price = Order_Price;
+        this.Orderstatus = Orderstatus;
+    }
         
         
 

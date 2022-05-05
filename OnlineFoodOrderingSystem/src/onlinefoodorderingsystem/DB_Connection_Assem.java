@@ -53,6 +53,23 @@ public class DB_Connection_Assem
 
         return con;
     }
+     public ArrayList<Order> getAllOrder()
+     {
+          ArrayList<Order> result = new ArrayList();
+        try 
+        {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from order");
+            while (rs.next()) 
+            {
+                result.add(new Admin(rs.getInt("Order_ID"), rs.getString("Order_Date"),rs.getDouble("Order_Price"),rs.getString("Order_Status")));
+            }
+        } catch (Exception e) 
+        {
+            System.err.println("DATABASE ADMIN RETRIVAL QUERY ERROR: " + e.toString());
+        }
+        return result;
+     }
     public void CreateValidCoupon(Coupon c)
     {
         try 
