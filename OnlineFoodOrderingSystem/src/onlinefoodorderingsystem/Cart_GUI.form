@@ -58,9 +58,9 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="quantity" min="-2" pref="90" max="-2" attributes="0"/>
                               <EmptySpace pref="15" max="32767" attributes="0"/>
-                              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                              <Component id="redeem" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextField2" min="-2" pref="81" max="-2" attributes="0"/>
+                              <Component id="code" min="-2" pref="81" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -81,8 +81,8 @@
                   <Component id="Remove" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="Modify" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="quantity" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="code" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="redeem" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="35" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -201,18 +201,21 @@
         <Property name="text" type="java.lang.String" value="Quantity"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField2">
+    <Component class="javax.swing.JTextField" name="code">
       <Properties>
         <Property name="text" type="java.lang.String" value="Code"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="codeActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="redeem">
       <Properties>
         <Property name="text" type="java.lang.String" value="Redeem"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="redeemActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
