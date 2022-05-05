@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class Cart_GUI extends javax.swing.JFrame {
@@ -22,49 +24,24 @@ public class Cart_GUI extends javax.swing.JFrame {
         initComponents();
         o.setOrder_Id(3);
         DB_Connection_Seif db = new DB_Connection_Seif();
-        table = db.displayCartItems(table,o);
+        table = db.displayCartItems(table, o);
     }
-   
-    public Cart_GUI(Order o,Customer c) {
+
+    public Cart_GUI(Order o, Customer c) {
         initComponents();
         this.cust = c;
         this.o = o;
         o.setOrder_Id(3);
         DB_Connection_Seif db = new DB_Connection_Seif();
-        table = db.displayCartItems(table,o);
+        table = db.displayCartItems(table, o);
 
     }
-    
-        public Cart_GUI(Restaurant o,Customer c) {
+
+    public Cart_GUI(Restaurant o, Customer c) {
         initComponents();
         this.cust = c;
 
     }
-
-//    public Cart_GUI(Customer cust, Order o) {
-//        this.cust = cust;
-//        
-//    }
-
-//    public void addRowToJTable() {
-//        DefaultTableModel model = (DefaultTableModel) table.getModel();
-//        Object row[] = new Object[3];
-//
-//        try {
-//            Statement stmt = con.createStatement();
-//            ResultSet rs = stmt.executeQuery("SELECT `MenuItem_ID`, `Quantity`, `Total_ItemPrice` FROM `order_item` WHERE Order_ID ='" + o.getOrder_Id() + ")");
-//            while (rs.next()){
-//                row[0] = o.getM_Order_Item().getItem().getItem_Id();
-//                row[1] = o.getM_Order_Item().getItem_Quantity();
-//                row[2] = o.getM_Order_Item().getItem_Total_Price();
-//                model.addRow(row);
-//            }
-//
-//        } catch (Exception e) {
-//            System.err.println("Error");
-//        }
-//
-//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -81,7 +58,9 @@ public class Cart_GUI extends javax.swing.JFrame {
         table = new javax.swing.JTable();
         Cash = new javax.swing.JRadioButton();
         Card = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
+        Checkout = new javax.swing.JButton();
+        Remove = new javax.swing.JButton();
+        Modify = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -124,7 +103,26 @@ public class Cart_GUI extends javax.swing.JFrame {
         buttonGroup1.add(Card);
         Card.setText("Credit Card");
 
-        jButton1.setText("Checkout");
+        Checkout.setText("Checkout");
+        Checkout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CheckoutActionPerformed(evt);
+            }
+        });
+
+        Remove.setText("Remove");
+        Remove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RemoveActionPerformed(evt);
+            }
+        });
+
+        Modify.setText("Modify");
+        Modify.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModifyActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -141,13 +139,19 @@ public class Cart_GUI extends javax.swing.JFrame {
                                 .addGap(215, 215, 215)
                                 .addComponent(jLabel1))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(184, 184, 184)
-                                .addComponent(jButton1))
+                                .addGap(191, 191, 191)
+                                .addComponent(Checkout))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(140, 140, 140)
-                                .addComponent(Cash)
-                                .addGap(66, 66, 66)
-                                .addComponent(Card)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(Remove)
+                                        .addGap(36, 36, 36)
+                                        .addComponent(Modify))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(Cash)
+                                        .addGap(66, 66, 66)
+                                        .addComponent(Card)))))
                         .addGap(0, 118, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -158,12 +162,16 @@ public class Cart_GUI extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Remove)
+                    .addComponent(Modify))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Cash)
                     .addComponent(Card))
                 .addGap(15, 15, 15)
-                .addComponent(jButton1)
+                .addComponent(Checkout)
                 .addContainerGap())
         );
 
@@ -173,6 +181,29 @@ public class Cart_GUI extends javax.swing.JFrame {
     private void CashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CashActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CashActionPerformed
+
+    private void CheckoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckoutActionPerformed
+        OrderSummary_GUI summ = new OrderSummary_GUI();
+        summ.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_CheckoutActionPerformed
+
+    private void RemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveActionPerformed
+
+        int row = table.getSelectedRow();
+        int itemId = Integer.parseInt(table.getModel().getValueAt(row, 0).toString());
+        DB_Connection_Seif db = new DB_Connection_Seif();
+        db.Remove_From_Cart(itemId);
+        JOptionPane.showMessageDialog(null, "Item Removed Successfully");
+        this.dispose();
+        Cart_GUI newcart = new Cart_GUI();
+        newcart.setVisible(true);
+
+    }//GEN-LAST:event_RemoveActionPerformed
+
+    private void ModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifyActionPerformed
+
+    }//GEN-LAST:event_ModifyActionPerformed
 
     /**
      * @param args the command line arguments
@@ -212,8 +243,10 @@ public class Cart_GUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton Card;
     private javax.swing.JRadioButton Cash;
+    private javax.swing.JButton Checkout;
+    private javax.swing.JButton Modify;
+    private javax.swing.JButton Remove;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable table;

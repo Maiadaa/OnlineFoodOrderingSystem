@@ -36,18 +36,15 @@ public class DB_Connection_Seif {
         }
     }
 
-    public void Add_To_Cart(Order o) {
-        ArrayList<Order_Item> item = o.getOrdered_Items();
-        for (int i = 0; i < item.size(); i++) {
+    public void Add_To_Cart(Order_Item item) {
             try {
                 Statement stmt = con.createStatement();
-                stmt.executeUpdate("insert into order_item values('" + item.get(i).getItem().getItem_Id() + "', " + item.get(i).getItem_Quantity() + "', " + item.get(i).getItem_Total_Price() + ")");
+                stmt.executeUpdate("insert into order_item values('" + item.getItem().getItem_Id() + "', " + item.getItem().getItem_Id() + "', " + item.getItem().getItem_Id() +"'," + item.getItem_Quantity() +"'," + item.getItem_Total_Price()+ ")");
             } catch (Exception e) {
                 System.err.println("DATABASE INSERTION ERROR: " + e.toString());
             }
         }
 
-    }
 
     public void Modify_Cart_Item(Order_Item item) {
         try {
@@ -58,17 +55,14 @@ public class DB_Connection_Seif {
         }
     }
 
-    public void Remove_From_Cart(Order o) {
-        ArrayList<Order_Item> item = o.getOrdered_Items();
-        for (int i = 0; i < item.size(); i++) {
+    public void Remove_From_Cart(int id) {
             try {
                 Statement stmt = con.createStatement();
-                stmt.executeUpdate("delete from order_item values('" + item.get(i).getItem().getItem_Id() + "', " + item.get(i).getItem_Quantity() + "', " + item.get(i).getItem_Total_Price() + ")");
+                stmt.executeUpdate("delete from order_item where OrderItem_ID = '" + id + "'");
             } catch (Exception e) {
                 System.err.println("DATABASE INSERTION ERROR: " + e.toString());
             }
         }
-    }
 
     public JTable displayCartItems(JTable tbl,Order o) {
         try {
@@ -92,6 +86,8 @@ public class DB_Connection_Seif {
         }
         return tbl;
     }
+    
+   
 
     /*
     public JTable viewOrderHistory(JTable jTable1) {
