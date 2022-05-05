@@ -62,7 +62,7 @@ public class DB_Connection_Maiada {
         }
         return result;
     }
-    
+
     public void addRest(Restaurant rest, String uname) {
         int id = 0;
         // get id of the recently added rest admin's login credentials to fill restaurant's FK with it
@@ -75,7 +75,7 @@ public class DB_Connection_Maiada {
         } catch (Exception e) {
             System.err.println("DATABASE ADD RESTAURANT QUERY ERROR: " + e.toString());
         }
-        
+
         // add the restaurant to db
         try {
             Statement stmt = con.createStatement();
@@ -85,14 +85,21 @@ public class DB_Connection_Maiada {
         } catch (Exception e) {
             System.err.println("RESTAURANT INSERTION ERROR: " + e.toString());
         }
-        
+
         // Upon addition of a new restaurant notify all registered customers 
         // 1st get all customers 
         ArrayList<Customer> custs = this.getAllCusts();
-        
+
         // 2nd add to newRestsNotifs table a notification message for each cust in the array we ve just retreived 
-        for(Customer c : custs){
-            
+        String msg = "The " + ;
+        for (Customer c : custs) {
+            try {
+                Statement stmt = con.createStatement();
+                stmt.executeUpdate("insert into newrestnotif values('" + s.getName() + "', " + s.getGPA() + ")");
+                System.out.println("Notification added successfully");
+            } catch (Exception e) {
+                System.err.println("DATABASE NOTIFICATION INSERTION ERROR: " + e.toString());
+            }
         }
     }
 
@@ -164,7 +171,7 @@ public class DB_Connection_Maiada {
         }
         return tbl;
     }
-    
+
     public Restaurant getRestByName(String restName) {
         try {
             Statement stmt = con.createStatement();
