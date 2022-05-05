@@ -76,8 +76,9 @@ public class DB_Connection_Gado {
     public void removeMenuItem(int id){
         try {
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("delete from menu_item where ID = '" + id + "'");
+            stmt.executeUpdate("delete from menu_item where MenuItem_ID = '" + id + "'");
             JOptionPane.showMessageDialog(null, "Menu item deleted deleted");
+            
             
         } catch (Exception e) {
             System.err.println("DATABASE Menu item DELETION ERROR: " + e.toString());
@@ -85,31 +86,31 @@ public class DB_Connection_Gado {
     }
 
     
-    public void viewMenuItem (int id){
-        PreparedStatement ps;
-        
-        
-        String query = "SELECT * FROM `menu_item` WHERE id = id";
-        
-        try {
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(query);
-            
-            while(rs.next()){
-                String ID = String.valueOf(rs.getInt("id"));
-                String name = rs.getString("Item_Name");
-                String desc = rs.getString("Item_Desc");
-                String categ = rs.getString("Item_Categ");
-                String price = rs.getString("Item_Price");
-                String avail = rs.getString("Item_Avail");
-                
-                String menuData[] = {ID,name,desc,categ,price,avail};
-//                DefaultTableModel tblModel = {DefaultTable}
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(DB_Connection_Gado.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+//    public void viewMenuItem (int id){
+//        PreparedStatement ps;
+//        
+//        
+//        String query = "SELECT * FROM `menu_item` WHERE id = id";
+//        
+//        try {
+//            Statement st = con.createStatement();
+//            ResultSet rs = st.executeQuery(query);
+//            
+//            while(rs.next()){
+//                String ID = String.valueOf(rs.getInt("id"));
+//                String name = rs.getString("Item_Name");
+//                String desc = rs.getString("Item_Desc");
+//                String categ = rs.getString("Item_Categ");
+//                String price = rs.getString("Item_Price");
+//                String avail = rs.getString("Item_Avail");
+//                
+//                String menuData[] = {ID,name,desc,categ,price,avail};
+////                DefaultTableModel tblModel = {DefaultTable}
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(DB_Connection_Gado.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
     
     
     public void updateData(String phone, String address, String user, String password, int id ){
@@ -124,10 +125,11 @@ public class DB_Connection_Gado {
         }
     }
     
-    public JTable displayMenuItems(JTable tbl, int id) {
+    public JTable displayMenuItems(JTable tbl, int rest) {
+        
         try {
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT `Item_Name`, `Item_Desc`, `Item_Categ`, `Item_Price` FROM `menu_item` WHERE MenuItem_ID  = '"+id+"' ");
+            ResultSet rs = stmt.executeQuery("SELECT `Item_Name`, `Item_Desc`, `Item_Categ`, `Item_Price` FROM `menu_item`  WHERE Rest_ID = '"+rest+"'   ");
 
             DefaultTableModel model;
             model = (DefaultTableModel) tbl.getModel();
@@ -147,20 +149,21 @@ public class DB_Connection_Gado {
         return tbl;
     }
     
-    public JTable displayRestuarant (JTable tbl, int id) {
+    public JTable displayRestuarant (JTable tbl) {
         try {
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT `Rest_Loc`, `Rest_Categ`, `Rest_Name`, `Rest_Rating` FROM `restaurant` WHERE Rest_ID = '"+ id+"'");
+            ResultSet rs = stmt.executeQuery("SELECT `Rest_ID`,`Rest_Loc`, `Rest_Categ`, `Rest_Name`, `Rest_Rating` FROM `restaurant` ");
 
             DefaultTableModel model;
             model = (DefaultTableModel) tbl.getModel();
-            Object rowData[] = new Object[4];
+            Object rowData[] = new Object[5];
 
             while (rs.next()) {
                 rowData[0] = rs.getString("Rest_Loc");
                 rowData[1] = rs.getString("Rest_Categ");
                 rowData[2] = rs.getString("Rest_Name");
                 rowData[3] = rs.getString("Rest_Rating");
+                rowData[4] = rs.getInt("Rest_ID");
                 
                 model.addRow(rowData);
             }
@@ -168,5 +171,31 @@ public class DB_Connection_Gado {
             System.err.println("DATABASE DISPLAY CART ITEMS QUERY ERROR: " + e.toString());
         }
         return tbl;
+    }
+    
+    public void customerSignUp(String Name, String Email, String PhoneNumber, String address, String userName, String password, String Gender){
+        PreparedStatement ps;
+        String query = "INSERT INTO `customer`( `Name`, `Email`, `Phone`, `Address`, `Username`, `Password`, `Gender`) VALUES (?,?,?,?,?,?,?)";
+
+        try {
+            ps = DB_Connection_Gado.getConnection().prepareStatement(query);
+            ps.setString(1, Name);
+            ps.setString(2, Email);
+            ps.setString(3, PhoneNumber);
+            ps.setString(4, address);
+            ps.setString(5, userName);
+            ps.setString(6, password);
+            ps.setString(7, Gender);
+            
+            
+            if(ps.executeUpdate()>0){
+//                CustomerLogin.setVisible(true);
+//                this.dispose(); 
+                JOptionPane.showMessageDialog(null, "New User is added");
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(customer_SignUp.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

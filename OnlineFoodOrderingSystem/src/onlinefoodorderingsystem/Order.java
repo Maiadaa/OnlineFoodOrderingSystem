@@ -15,7 +15,8 @@ public class Order {
 	private String Orderstatus;
 	public Order_Item m_Order_Item;
 	public Payment_Method m_Payment_Method;
-
+        DB_Connection_Seif db = new DB_Connection_Seif();
+        
 	public Order(){
 
 	}
@@ -96,6 +97,8 @@ public class Order {
 	public Order Checkout(Order o){
             o.m_Payment_Method.pay(o.getOrder_Price());
             o.setOrderstatus(Orderstatus = "Accepted");
+            db.Checkout(o);
+            
             return o;
 	}
 

@@ -210,14 +210,20 @@ public class Cart_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_CashActionPerformed
 
     private void CheckoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckoutActionPerformed
+        double orderTP = 0;
+        for (int i = 0; i < table.getRowCount() ; i++) {
+            orderTP += Double.parseDouble(table.getModel().getValueAt(i, 3).toString());
+        }
         if (Cash.isSelected()) {
             Cash cash = new Cash();
             o.setM_Payment_Method(cash);
+            o.setOrder_Price(orderTP);
             this.o = o.Checkout(o);
             
         } else if (Card.isSelected()) {
             Credit_Card card = new Credit_Card();
            o.setM_Payment_Method(card);
+           o.setOrder_Price(orderTP);
             this.o = o.Checkout(o);
         }
         OrderSummary_GUI summ = new OrderSummary_GUI(o);
