@@ -36,7 +36,7 @@ public class DB_Connection_Hagrass {
         try {
             Statement stmt = con.createStatement();
 
-            stmt.executeUpdate("INSERT INTO feedback (`Customer_ID`, `Order_ID`, `Feedback_Date`, `Feedback_Type`, `Feedback_Desc`, `Feedback_State`, `Rate`) VALUES ('"+ customerID +"','" + feedback.getOrder_Id() + "','" + feedback.getFeedbackDate() +"','"+ feedback.getFeedback_Type() +"','"+ feedback.getFeedback_Desc() +"','"+ feedback.getFeedback_State() +"','"+ feedback.getRate() + "')");
+            stmt.executeUpdate("INSERT INTO feedback (`Feedback_ID`,`Customer_ID`, `Order_ID`, `Feedback_Date`, `Feedback_Type`, `Feedback_Desc`, `Feedback_State`, `Rate`) VALUES ('"+ feedback.getFeedback_Id() +"','"+ customerID +"','" + feedback.getOrder_Id() + "','" + feedback.getFeedbackDate() +"','"+ feedback.getFeedback_Type() +"','"+ feedback.getFeedback_Desc() +"','"+ feedback.getFeedback_State() +"','"+ feedback.getRate() + "')");
             System.out.println("feedback added");
             //return true;
         } catch (Exception e) {
@@ -105,6 +105,7 @@ public class DB_Connection_Hagrass {
             Statement stmt = con.createStatement();
             ResultSet selectData = stmt.executeQuery("SELECT * FROM `rest_admin` WHERE ID = '" + RestAdmin + "'");
             if (selectData.first()) {
+                System.out.println("admin get");
                 return new Restaurant_Admin(selectData.getInt("ID"), selectData.getString("Name"), selectData.getString("Email"), selectData.getString("Phone"), selectData.getString("Address"), selectData.getString("Username"), selectData.getString("Password"), selectData.getString("Gender").charAt(0));
             }else{
                 return null;
