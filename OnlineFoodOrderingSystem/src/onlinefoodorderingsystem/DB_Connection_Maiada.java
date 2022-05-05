@@ -9,6 +9,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -34,6 +36,7 @@ public class DB_Connection_Maiada {
     }
 
     public void addRestAdmin(Restaurant_Admin ra) {
+        // add restaurant admin to db 
         try {
             Statement stmt = con.createStatement();
             stmt.executeUpdate("INSERT INTO rest_admin (`Username`, `Password`)"
@@ -46,8 +49,23 @@ public class DB_Connection_Maiada {
         }
     }
 
+    public ArrayList<Customer> getAllCusts() {
+        ArrayList<Customer> result = new ArrayList();
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select ID from customer");
+            while (rs.next()) {
+                result.add(new Customer(rs.getInt("ID")));
+            }
+        } catch (Exception e) {
+            System.err.println("DATABASE QUERY ERROR: " + e.toString());
+        }
+        return result;
+    }
+    
     public void addRest(Restaurant rest, String uname) {
         int id = 0;
+        // get id of the recently added rest admin's login credentials to fill restaurant's FK with it
         try {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select ID from rest_admin where Username = '" + uname + "'");
@@ -57,7 +75,8 @@ public class DB_Connection_Maiada {
         } catch (Exception e) {
             System.err.println("DATABASE ADD RESTAURANT QUERY ERROR: " + e.toString());
         }
-
+        
+        // add the restaurant to db
         try {
             Statement stmt = con.createStatement();
             stmt.executeUpdate("INSERT INTO restaurant (`Rest_Name`, `RestAdmin_ID`, `Rest_Loc`, `Rest_Categ`)"
@@ -66,69 +85,97 @@ public class DB_Connection_Maiada {
         } catch (Exception e) {
             System.err.println("RESTAURANT INSERTION ERROR: " + e.toString());
         }
+        
+        // Upon addition of a new restaurant notify all registered customers 
+        // 1st get all customers 
+        ArrayList<Customer> custs = this.getAllCusts();
+        
+        // 2nd add to newRestsNotifs table a notification message for each cust in the array we ve just retreived 
+        for(Customer c : custs){
+            
+        }
     }
 
-    public ArrayList<Restaurant> getAllRests() {
-        ArrayList<Restaurant> result = new ArrayList();
+    public JTable displayRests(JTable tbl) {
         try {
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from restaurant");
+            ResultSet rs = stmt.executeQuery("select * from restaurant, rest_admin where restaurant.RestAdmin_ID = rest_admin.ID");
+
+            DefaultTableModel model;
+            model = (DefaultTableModel) tbl.getModel();
+            Object rowData[] = new Object[4];
+
             while (rs.next()) {
-<<<<<<< HEAD
-                result.add(new Restaurant(rs.getInt("Rest_ID"), rs.getString("Rest_Name"), rs.getInt("RestAdmin_ID")));
-=======
                 rowData[0] = rs.getInt("Rest_ID");
                 rowData[1] = rs.getString("Rest_Name");
                 rowData[2] = rs.getInt("ID");
                 rowData[3] = rs.getString("Name");
-                
+
                 model.addRow(rowData);
->>>>>>> parent of 5fa5e76 (view notifications DONE)
             }
         } catch (Exception e) {
-            System.err.println("DATABASE QUERY ERROR: " + e.toString());
+            System.err.println("DATABASE DISPLAY CART ITEMS QUERY ERROR: " + e.toString());
         }
-        return result;
+        return tbl;
     }
 
-<<<<<<< HEAD
-    public int getRestAdminID(String restName) {
-        try {
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select RestAdmin_ID from restaurant where Rest_Name = '" + restName + "'");
-            while (rs.next()) {
-                return rs.getInt("RestAdmin_ID");
-            }
-        } catch (Exception e) {
-            System.err.println("DATABASE GET REST ADMIN ID QUERY ERROR: " + e.toString());
-        }
-        return 0;
-    }
-=======
->>>>>>> parent of 5fa5e76 (view notifications DONE)
-    
     public void deleteRestAdmin(int id) {
         try {
             Statement stmt = con.createStatement();
             stmt.executeUpdate("delete from rest_admin where ID = '" + id + "'");
             System.out.println("Restaurant Admin deleted");
-            
+
         } catch (Exception e) {
             System.err.println("DATABASE RESTAURANT ADMIN DELETION ERROR: " + e.toString());
         }
     }
 
-    public void deleteRest(String restName) {
+    public void deleteRest(int id) {
         try {
-            this.deleteRestAdmin(this.getRestAdminID(restName));
-            
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("delete from restaurant where Rest_Name = '" + restName + "'");
+            stmt.executeUpdate("delete from restaurant where Rest_ID = '" + id + "'");
             System.out.println("Restaurant deleted");
-            
+
         } catch (Exception e) {
             System.err.println("DATABASE RESTAURANT DELETION ERROR: " + e.toString());
         }
+    }
+
+    public JTable displayNotifs(JTable tbl, Customer c) {
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT `msg`,`Rest_Name` FROM `newrestnotif`, "
+                    + "restaurant WHERE restaurant.Rest_ID = newrestnotif.Rest_ID and Cust_ID = " + c.getID() + "");
+
+            DefaultTableModel model;
+            model = (DefaultTableModel) tbl.getModel();
+            Object rowData[] = new Object[2];
+
+            while (rs.next()) {
+                rowData[0] = rs.getString("Rest_Name");
+                rowData[1] = rs.getString("msg");
+
+                model.addRow(rowData);
+            }
+            System.out.println("Notifications displayed successfully.");
+
+        } catch (Exception e) {
+            System.err.println("DATABASE DISPLAY CART ITEMS QUERY ERROR: " + e.toString());
+        }
+        return tbl;
+    }
+    
+    public Restaurant getRestByName(String restName) {
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select Rest_ID from restaurant where Rest_Name = '" + restName + "'");
+            if (rs.first()) {
+                return new Restaurant(rs.getInt("Rest_ID"));
+            }
+        } catch (Exception e) {
+            System.err.println("DATABASE QUERY ERROR: " + e.toString());
+        }
+        return null;
     }
 
 }
