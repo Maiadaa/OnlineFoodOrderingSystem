@@ -39,11 +39,10 @@ public class Restaurant_Admin extends Person implements Feedback_Detector {
     public Restaurant getRest() {
         return Rest;
     }
-
-    /*@Override
+    
     public void setNextinchain(Restaurant_Admin x) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }*/
+    }
     
     
 
