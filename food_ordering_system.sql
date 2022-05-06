@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 05, 2022 at 03:52 AM
+-- Generation Time: May 06, 2022 at 05:57 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -55,6 +55,17 @@ CREATE TABLE `coupon` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `couponnotifications`
+--
+
+CREATE TABLE `couponnotifications` (
+  `Notif_ID` int(11) NOT NULL,
+  `msg` varchar(300) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `customer`
 --
 
@@ -82,7 +93,7 @@ CREATE TABLE `feedback` (
   `Feedback_Date` varchar(15) DEFAULT NULL,
   `Feedback_Type` varchar(15) NOT NULL,
   `Feedback_Desc` varchar(30) NOT NULL,
-  `Feedback_State` varchar(15) NOT NULL DEFAULT 'Pending',
+  `Feedback_State` varchar(100) NOT NULL DEFAULT 'Pending',
   `Rate` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -241,6 +252,12 @@ ALTER TABLE `coupon`
   ADD PRIMARY KEY (`Coupon_ID`);
 
 --
+-- Indexes for table `couponnotifications`
+--
+ALTER TABLE `couponnotifications`
+  ADD PRIMARY KEY (`Notif_ID`);
+
+--
 -- Indexes for table `customer`
 --
 ALTER TABLE `customer`
@@ -335,6 +352,12 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `coupon`
   MODIFY `Coupon_ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `couponnotifications`
+--
+ALTER TABLE `couponnotifications`
+  MODIFY `Notif_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `customer`
