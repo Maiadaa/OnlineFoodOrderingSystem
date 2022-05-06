@@ -24,6 +24,7 @@ public class Cart_GUI extends javax.swing.JFrame {
     public Cart_GUI() {
         initComponents();
         o.setOrder_Id(1);
+        cust.setID(1);
         DB_Connection_Seif db = new DB_Connection_Seif();
         table = db.displayCartItems(table, o);
     }
@@ -272,15 +273,22 @@ public class Cart_GUI extends javax.swing.JFrame {
 
     private void redeemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redeemActionPerformed
         int ccode = Integer.parseInt(code.getText());
-        double orderTP = 0;
-        for (int i = 0; i < table.getRowCount() ; i++) {
-            orderTP += Double.parseDouble(table.getModel().getValueAt(i, 3).toString());
-        }
+//        double orderTP = 0;
+//        for (int i = 0; i < table.getRowCount() ; i++) {
+//            orderTP += Double.parseDouble(table.getModel().getValueAt(i, 3).toString());
+//        }
+        
         try {
             DB_Connection_Seif db = new DB_Connection_Seif();
-            db.Redeem_Cupon(cust, ccode);
-            JOptionPane.showMessageDialog(null, "Cupon Redeemed Successfully");
-            this.dispose();
+            if (db.Redeem_Cupon(cust, ccode) != 0 && db.Redeem_Cupon(cust, ccode) != -1){
+               JOptionPane.showMessageDialog(null, "Cupon Redeemed Successfully");
+            }
+            if (db.Redeem_Cupon(cust, ccode) == -1) {
+                JOptionPane.showMessageDialog(null, "You are not premium customer");
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Enter the correct code");
+            }
         } catch (Exception e) {
             System.out.println("Didnt work");
         }

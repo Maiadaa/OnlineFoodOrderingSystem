@@ -96,19 +96,28 @@ public class DB_Connection_Seif {
         }
      }
      
-     public void Redeem_Cupon(Customer c,int code){
+     public int Redeem_Cupon(Customer c,int code){
          try {
                 Statement stmt = con.createStatement();
-                stmt.executeUpdate("select premiumcust_coupon.Coupon_ID from premiumcust_coupon, coupon where premiumcust_coupon.Premium_Cust_ID = '" + c.getID() + "' and coupon.Coupon_code = '"+ code +"' and premiumcust_coupon.Coupon_ID = coupon.Coupon_ID");
+                   ResultSet rs = stmt.executeQuery("select premiumcust_coupon.Coupon_ID, Coupon_code from premiumcust_coupon, coupon where premiumcust_coupon.Premium_Cust_ID = '" + c.getID() + "' and coupon.Coupon_code = '"+ code +"' and premiumcust_coupon.Coupon_ID = coupon.Coupon_ID"); 
+                   if (rs.first()){ //is premium cust
+                       if(rs.getInt("Coupon_code") == code){
+                           return rs.getInt("Coupon_ID"); //sa7
+                       }
+                       else return 0;// wrong syntax query
+                   }
+                   else return -1; // not premium
+
             } catch (Exception e) {
                 System.err.println("DATABASE INSERTION ERROR: " + e.toString());
+                return -1;
             }
         }
 
     public JTable displayCartItems(JTable tbl,Order o) {
         try {
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select `Quantity`, `Total_ItemPrice`,`Item_Name`,`order_item`.`MenuItem_ID` from order_item , menu_item where Order_ID = '" + o.getOrder_Id() +"'");
+            ResultSet rs = stmt.executeQuery("select `Quantity`, `Total_ItemPrice`,`Item_Name`,`order_item`.`MenuItem_ID` from order_item , menu_item where order_item.MenuItem_ID = menu_item.MenuItem_ID and Order_ID = '" + o.getOrder_Id() +"'");
 
             DefaultTableModel model;
             model = (DefaultTableModel) tbl.getModel();
