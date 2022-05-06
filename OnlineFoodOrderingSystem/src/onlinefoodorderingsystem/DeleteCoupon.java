@@ -11,12 +11,14 @@ import javax.swing.JOptionPane;
  * @author mahmo
  */
 public class DeleteCoupon extends javax.swing.JFrame {
-
+    static Admin tempAdmin = new Admin();
     /**
      * Creates new form DeleteCoupon
      */
-    public DeleteCoupon() {
+    public DeleteCoupon(Admin a) 
+    {
         initComponents();
+        tempAdmin = a;
     }
 
     /**
@@ -104,7 +106,7 @@ public class DeleteCoupon extends javax.swing.JFrame {
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        Coupons menu = new Coupons();
+        Coupons menu = new Coupons(tempAdmin);
         menu.setVisible(true);
     }//GEN-LAST:event_BackButtonActionPerformed
 
@@ -120,7 +122,7 @@ public class DeleteCoupon extends javax.swing.JFrame {
             DB_Connection_Assem conn = new DB_Connection_Assem();
             conn.DeleteCoupon(code);
             JOptionPane.showMessageDialog(null, "Coupon Deleted Successfully");
-            Coupons menu = new Coupons();
+            Coupons menu = new Coupons(tempAdmin);
             menu.setVisible(true);
             this.dispose();
         }
@@ -156,7 +158,7 @@ public class DeleteCoupon extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DeleteCoupon().setVisible(true);
+                new DeleteCoupon(tempAdmin).setVisible(true);
             }
         });
     }

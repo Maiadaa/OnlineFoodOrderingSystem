@@ -46,7 +46,6 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                               <Component id="PremiumCustCheck" min="-2" pref="230" max="-2" attributes="0"/>
-                              <EmptySpace pref="6" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>

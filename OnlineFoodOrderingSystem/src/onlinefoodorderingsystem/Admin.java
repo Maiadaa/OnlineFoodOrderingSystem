@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import javax.swing.JTable;
 
 public class Admin extends Person implements Feedback_Detector {
-    public FoodOrderingSysCoupons m_FoodOrderingSysCoupons;
+    public FoodOrderingSysCoupons m_FoodOrderingSysCoupons = new FoodOrderingSysCoupons();
     public SysRests_Interface m_SysRests;
     public static AdminsData adminData = new AdminsData();
     private Feedback_Detector nextinchain;

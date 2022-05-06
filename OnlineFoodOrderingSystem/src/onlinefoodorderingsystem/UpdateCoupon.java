@@ -11,12 +11,14 @@ import javax.swing.JOptionPane;
  * @author mahmo
  */
 public class UpdateCoupon extends javax.swing.JFrame {
-
+    static Admin tempAdmin = new Admin();
     /**
      * Creates new form UpdateCoupon
      */
-    public UpdateCoupon() {
+    public UpdateCoupon(Admin a) 
+    {
         initComponents();
+        tempAdmin = a;
     }
 
     /**
@@ -101,7 +103,7 @@ public class UpdateCoupon extends javax.swing.JFrame {
     private void BackButttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButttonActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        Coupons menu = new Coupons();
+        Coupons menu = new Coupons(tempAdmin);
         menu.setVisible(true);
     }//GEN-LAST:event_BackButttonActionPerformed
 
@@ -115,7 +117,7 @@ public class UpdateCoupon extends javax.swing.JFrame {
         DB_Connection_Assem conn = new DB_Connection_Assem();
         if(conn.ValidateCouponUpdate(code))
         {
-            UpdateCouponForm menu = new UpdateCouponForm(code);
+            UpdateCouponForm menu = new UpdateCouponForm(code,tempAdmin);
             menu.setVisible(true);
             this.dispose();
         }
@@ -153,7 +155,7 @@ public class UpdateCoupon extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UpdateCoupon().setVisible(true);
+                new UpdateCoupon(tempAdmin).setVisible(true);
             }
         });
     }

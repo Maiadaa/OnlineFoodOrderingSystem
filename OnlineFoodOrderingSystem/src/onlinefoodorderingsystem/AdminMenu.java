@@ -109,7 +109,7 @@ public class AdminMenu extends javax.swing.JFrame {
 
     private void CopounsMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopounsMenuActionPerformed
         // TODO add your handling code here:
-        Coupons menu = new Coupons();
+        Coupons menu = new Coupons(tempAdmin);
         menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_CopounsMenuActionPerformed

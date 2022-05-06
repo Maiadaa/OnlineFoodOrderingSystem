@@ -5,8 +5,7 @@ import javax.swing.JTable;
 
 public class Premium_Customer extends Customer implements Coupon_Observer {
 
-    public FoodOrderingSysCoupons m_FoodOrderingSysCoupons;
-    
+    public FoodOrderingSysCoupons m_FoodOrderingSysCoupons;    
     DB_Connection_Assem db = new DB_Connection_Assem();
 
 	public Premium_Customer(){
@@ -23,8 +22,9 @@ public class Premium_Customer extends Customer implements Coupon_Observer {
             //return db.viewCoupons(tbl);
 	}*/
 
-	public void Update(String msg){
-            
+	public void Update(String msg)
+        {
+            db.insertCouponNotification(msg);
 	}
 
 	public ArrayList<String> getCoupon_Notifs(){

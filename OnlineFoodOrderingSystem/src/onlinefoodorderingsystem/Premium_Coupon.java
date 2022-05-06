@@ -8,7 +8,7 @@ public interface Premium_Coupon {
 	 * 
 	 * @param subs
 	 */
-	public void Add_Observer(Coupon_Observer subs);
+	public void Add_Observer(Customer c);
 
 	/**
 	 * 

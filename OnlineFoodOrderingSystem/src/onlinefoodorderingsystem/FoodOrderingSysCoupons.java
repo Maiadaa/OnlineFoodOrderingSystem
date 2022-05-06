@@ -7,73 +7,54 @@ public class FoodOrderingSysCoupons implements Premium_Coupon {
 	private ArrayList<Coupon_Observer> Applicable_Custs;
 	private ArrayList<Coupon> Coupons_Avail;
 	public Coupon m_Coupon;
+        DB_Connection_Assem conn = new DB_Connection_Assem();
+        Premium_Coupon prem;
+        
 
        
 	public FoodOrderingSysCoupons(){
 
 	}
-
-	public void finalize() throws Throwable {
-
+        
+	public void View_Coupons()
+        {
+            
 	}
-	public void View_Coupons(){
-
-	}
-
-	/**
-	 * 
-	 * @param C
-	 */
+        @Override
+        public void Notify_All(String msg)
+        {
+            ArrayList<Premium_Customer> premCusts = new ArrayList();
+            premCusts = conn.getAllPremCustomers();
+            for(int i = 0;i<premCusts.size();i++)
+            {
+                premCusts.get(i).Update(msg);
+            }
+        }
+        
 	public void Create_Coupon(Coupon C)
         {
-            Coupons_Avail.add(C);
-            System.out.println("Coupoun Added Successfully");
-
+            conn.CreateValidCoupon(C);
+            this.Notify_All(C.getCoupon_Desc());
+            
 	}
 	public void Remove_Coupon(int code)
         {
-            for (int i =0; i < Coupons_Avail.size();i++)
-            {
-                if (Coupons_Avail.get(i).getCoupon_Code() == code)
-                {
-                    Coupons_Avail.remove(i);
-                    System.out.println("Coupon Removed Successfully");
-                }
-            }
-            System.out.println("Coupon code not found");
+            conn.DeleteCoupon(code);
 	}
-
-	/**
-	 * 
-	 * @param C
-	 * @param Cust_toChk
-	 */
-	public boolean Validate_Coupon(Coupon C, Customer Cust_toChk)
+        public void Update_Coupon(int code , Coupon c)
         {
-		return false;
+            conn.UpdateCoupon(code, c);
+        }
+
+	public void Add_Observer(Customer c)
+        {
+            conn.Add_Observer(c);
 	}
 
-	/**
-	 * 
-	 * @param subs
-	 */
-	public void Add_Observer(Coupon_Observer subs){
 
-	}
-
-	/**
-	 * 
-	 * @param subs
-	 */
-	public void Remove_Observer(Coupon_Observer subs){
+	public void Remove_Observer(Coupon_Observer subs)
+        {
 
 	}
 
-	/**
-	 * 
-	 * @param Notif_Msg
-	 */
-	public void Notify_All(String Notif_Msg){
-
-	}
 }//end FoodOrderingSysCoupons

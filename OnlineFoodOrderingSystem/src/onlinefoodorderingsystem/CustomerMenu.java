@@ -24,7 +24,7 @@ public class CustomerMenu extends javax.swing.JFrame {
         CustID.setText(tempCust.getName());
         DB_Connection_Assem conn = new DB_Connection_Assem();
         premCheck = conn.checkForPremCustomer(tempCust.getUsername());
-        conn.Add_Observer(tempCust);
+        
         if(premCheck == true)
         {
             PremiumCustCheck.setText("You are a premium customer.");

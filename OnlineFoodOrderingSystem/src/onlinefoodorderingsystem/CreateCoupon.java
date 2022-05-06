@@ -11,12 +11,14 @@ import javax.swing.JOptionPane;
  * @author mahmo
  */
 public class CreateCoupon extends javax.swing.JFrame {
-
+    static Admin tempAdmin = new Admin();
     /**
      * Creates new form CreateCoupon
      */
-    public CreateCoupon() {
+    public CreateCoupon(Admin a) 
+    {
         initComponents();
+        tempAdmin = a;
     }
 
     /**
@@ -74,17 +76,15 @@ public class CreateCoupon extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(153, 153, 153)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(BackButton))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 118, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(BackButton)
+                        .addGap(18, 18, 18))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(153, 153, 153)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addGap(18, 18, 18)
@@ -102,8 +102,7 @@ public class CreateCoupon extends javax.swing.JFrame {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(DiscountValue, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
                                         .addComponent(CouponCode)))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addContainerGap(124, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,11 +125,14 @@ public class CreateCoupon extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(ExpiryDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addComponent(CreateCouponButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                .addComponent(BackButton)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(CreateCouponButton)
+                        .addGap(106, 106, 106))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(BackButton)
+                        .addGap(30, 30, 30))))
         );
 
         pack();
@@ -149,12 +151,11 @@ public class CreateCoupon extends javax.swing.JFrame {
         }
         else
         {
-            DB_Connection_Assem conn = new DB_Connection_Assem();
             Coupon tempCoupon = new Coupon(code,description,expiry,value);
-            conn.CreateValidCoupon(tempCoupon);
+            tempAdmin.getM_FoodOrderingSysCoupons().Create_Coupon(tempCoupon);
             JOptionPane.showMessageDialog(null, "Coupon Added Successfully");
             this.dispose();
-            Coupons newmenu = new Coupons();
+            Coupons newmenu = new Coupons(tempAdmin);
             newmenu.setVisible(true);
         }
         
@@ -190,7 +191,7 @@ public class CreateCoupon extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CreateCoupon().setVisible(true);
+                new CreateCoupon(tempAdmin).setVisible(true);
             }
         });
     }

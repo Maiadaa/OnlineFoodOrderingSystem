@@ -129,8 +129,9 @@ public class DB_Connection_Assem
         try 
         {
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("INSERT INTO coupon(Coupon_code, Coupon_desc, Expiry_date) values('" + c.getCoupon_Code() + "',' " + c.getCoupon_Desc() + "', '" + c.getCoupon_ExpiryDate() + "')");
+            stmt.executeUpdate("INSERT INTO coupon(Coupon_code, Coupon_desc, Expiry_date, discountVal) values('" + c.getCoupon_Code() + "',' " + c.getCoupon_Desc() + "', '" + c.getCoupon_ExpiryDate() + "', '" + c.getCoupon_Discount_Val() + "')");
             System.out.println("Coupon Added");
+            
         } catch (Exception e) 
         {
             System.err.println("DATABASE COUPON INSERTION ERROR: " + e.toString());
@@ -163,6 +164,40 @@ public class DB_Connection_Assem
         }
         return tbl;
     }
+     public void insertCouponNotification(String desc)
+     {
+         try 
+        {
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate("INSERT INTO couponnotifications(msg) values('" + desc + "')");
+            System.out.println("Notification Added Successfullyd");
+            
+        } catch (Exception e) 
+        {
+            System.err.println("DATABASE COUPON INSERTION ERROR: " + e.toString());
+        }
+     }
+     public JTable displayCouponMsgs(JTable tbl)
+     {
+         try 
+        {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT DISTINCT msg FROM couponnotifications");
+
+            DefaultTableModel model;
+            model = (DefaultTableModel) tbl.getModel();
+            Object rowData[] = new Object[1];
+
+            while (rs.next()) {
+                rowData[0] = rs.getString("msg");
+
+                model.addRow(rowData);
+            }
+        } catch (Exception e) {
+            System.err.println("DATABASE DISPLAY COUPONS ERROR: " + e.toString());
+        }
+        return tbl;
+     }
      public JTable displayCoupons(JTable tbl) 
      {
         try 

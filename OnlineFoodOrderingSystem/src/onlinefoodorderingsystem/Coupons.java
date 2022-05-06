@@ -9,15 +9,16 @@ package onlinefoodorderingsystem;
  * @author mahmo
  */
 public class Coupons extends javax.swing.JFrame {
-
+    static public Admin tempAdmin = new Admin();
     /**
      * Creates new form Coupons
      */
-    public Coupons() 
+    public Coupons(Admin a) 
     {
         initComponents();
         DB_Connection_Assem conn = new DB_Connection_Assem();
         CoupounsData = conn.displayCoupons(CoupounsData);
+        tempAdmin = a;
     }
 
     /**
@@ -175,21 +176,21 @@ public class Coupons extends javax.swing.JFrame {
 
     private void AddCopounActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCopounActionPerformed
         // TODO add your handling code here:
-        CreateCoupon create =  new CreateCoupon();
+        CreateCoupon create =  new CreateCoupon(tempAdmin);
         create.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_AddCopounActionPerformed
 
     private void DeleteCopounActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteCopounActionPerformed
         // TODO add your handling code here:
-        DeleteCoupon menu = new DeleteCoupon();
+        DeleteCoupon menu = new DeleteCoupon(tempAdmin);
         menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_DeleteCopounActionPerformed
 
     private void UpdateCopounActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateCopounActionPerformed
         // TODO add your handling code here:
-        UpdateCoupon menu = new UpdateCoupon();
+        UpdateCoupon menu = new UpdateCoupon(tempAdmin);
         menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_UpdateCopounActionPerformed
@@ -224,7 +225,7 @@ public class Coupons extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Coupons().setVisible(true);
+                new Coupons(tempAdmin).setVisible(true);
             }
         });
     }

@@ -14,8 +14,11 @@ public class Cust_Notifications_GUI extends javax.swing.JFrame {
 
     Customer c = new Customer();
 
-    public Cust_Notifications_GUI() {
+    public Cust_Notifications_GUI()
+    {
         initComponents();
+        DB_Connection_Assem conn = new DB_Connection_Assem();
+        couponTbl = conn.displayCouponMsgs(couponTbl);
     }
 
     public Cust_Notifications_GUI(Customer c) {
