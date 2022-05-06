@@ -115,11 +115,15 @@ public class UpdateCoupon extends javax.swing.JFrame {
         }
         int code = Integer.parseInt(CouponCode.getText());
         DB_Connection_Assem conn = new DB_Connection_Assem();
-        if(conn.ValidateCouponUpdate(code))
+        if(conn.ValidateCouponUpdate(code) == true)
         {
             UpdateCouponForm menu = new UpdateCouponForm(code,tempAdmin);
             menu.setVisible(true);
             this.dispose();
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Coupon not found, please enter a valid one");
         }
         
         
