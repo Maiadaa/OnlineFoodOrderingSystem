@@ -53,6 +53,60 @@ public class DB_Connection_Assem
 
         return con;
     }
+    public int Add_Observer(Customer c)
+    {
+        ArrayList<Premium_Customer> result = new ArrayList();
+        result = getAllPremCustomers();
+        try 
+        {
+            for(int i = 0;i<result.size();i++)
+            {
+                if(c.getUsername().equals(result.get(i).getUsername()))
+                {
+                    System.out.println("This customer is already premium");
+                    return 0;
+                }
+            }
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate("INSERT INTO premium_customer(Name, Email, Phone  , Address , Username , Password, Gender) values('" + c.getName() + "',' " + c.getEmail() + "', '" + c.getPhone_number() + "', '" + c.getAddress() + "', '" + c.getUsername() + "', '" + c.getPassword() + "', '" + c.getGender() + "')");
+            System.out.println("Customer added as a premium customer");
+        } catch (Exception e) 
+        {
+            System.err.println("DATABASE COUPON INSERTION ERROR: " + e.toString());
+        }
+        return 0;
+    }
+     public ArrayList<Premium_Customer> getAllPremCustomers()
+     {
+        ArrayList<Premium_Customer> result = new ArrayList();
+        try 
+        {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from premium_customer");
+            while (rs.next()) 
+            {
+                result.add(new Premium_Customer(rs.getInt("ID"), rs.getString("Name"),rs.getString("Email"),rs.getString("Phone"),rs.getString("Address"),rs.getString("Username"),rs.getString("Password"),rs.getString("Gender").charAt(0)));
+            }
+        } catch (Exception e) 
+        {
+            System.err.println("DATABASE PREMIUM CUSTOMERS RETRIVAL QUERY ERROR: " + e.toString());
+        }
+        return result;
+     }
+     public boolean checkForPremCustomer(String uname)
+     {
+         ArrayList<Premium_Customer> result = new ArrayList();
+         result = getAllPremCustomers();
+         for(int i = 0 ; i<result.size();i++)
+         {
+             if(uname.equals(result.get(i).getUsername()))
+             {
+                 System.out.println("Customer found as a premium customer");
+                 return true;
+             }
+         }
+         return false;
+     }
     public ArrayList<Order> getAllOrder()
      {
           ArrayList<Order> result = new ArrayList();
