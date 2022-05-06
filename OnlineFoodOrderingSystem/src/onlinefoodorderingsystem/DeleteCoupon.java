@@ -121,7 +121,6 @@ public class DeleteCoupon extends javax.swing.JFrame {
         {
             
             tempAdmin.m_FoodOrderingSysCoupons.Remove_Coupon(code);
-            JOptionPane.showMessageDialog(null, "Coupon Deleted Successfully");
             Coupons menu = new Coupons(tempAdmin);
             menu.setVisible(true);
             this.dispose();

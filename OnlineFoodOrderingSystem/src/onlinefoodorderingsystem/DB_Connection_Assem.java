@@ -223,18 +223,33 @@ public class DB_Connection_Assem
         }
         return tbl;
     }
-    public void DeleteCoupon(int code)
+    public int DeleteCoupon(int code)
     {
+        
+        ArrayList<Coupon> result = new ArrayList<Coupon>();
+        result = getAllCoupons();
+        for(int i = 0 ;i<result.size();i++)
+        {
+            if(code == result.get(i).getCoupon_Code())
+            {
+                System.out.println("Coupon Found");
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Invalid Coupon Code, please insert a valid one");
+                return 0;
+            }
+        }
            try 
         {
             Statement stmt = con.createStatement();
             stmt.executeUpdate("DELETE FROM `coupon` WHERE Coupon_code = '" +code+ "'");
-            System.out.println("Coupon Added");
+            System.out.println("Coupon Deleted Successfullyyyyy");
         } catch (Exception e) 
         {
             System.err.println("DATABASE COUPON DELETION ERROR: " + e.toString());
-            JOptionPane.showMessageDialog(null, "Invalid Coupon Code, please insert a valid one");
         }
+           return 0;
     }
  
     public void UpdateCoupon(int code , Coupon c)
