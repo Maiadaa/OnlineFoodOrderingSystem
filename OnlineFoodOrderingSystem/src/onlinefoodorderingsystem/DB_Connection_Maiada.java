@@ -195,7 +195,7 @@ public class DB_Connection_Maiada {
                 return new Restaurant(rs.getInt("Rest_ID"));
             }
         } catch (Exception e) {
-            System.err.println("DATABASE QUERY ERROR: " + e.toString());
+            System.err.println("DATABASE GET REST BY NAME QUERY ERROR: " + e.toString());
         }
         return null;
     }

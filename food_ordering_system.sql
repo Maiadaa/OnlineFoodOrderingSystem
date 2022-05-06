@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2022 at 05:57 AM
+-- Generation Time: May 06, 2022 at 07:33 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -38,6 +38,13 @@ CREATE TABLE `admin` (
   `Gender` char(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`ID`, `Name`, `Email`, `Phone`, `Address`, `Username`, `Password`, `Gender`) VALUES
+(1, 'Wael', 'w@gmail.com', '01010101010', 'Rehab', 'wael', 'w1234', 'M');
+
 -- --------------------------------------------------------
 
 --
@@ -52,6 +59,13 @@ CREATE TABLE `coupon` (
   `discountVal` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `coupon`
+--
+
+INSERT INTO `coupon` (`Coupon_ID`, `Coupon_code`, `Coupon_desc`, `Expiry_date`, `discountVal`) VALUES
+(1, 1515, 'Eid discount', '10/5/2022', 10);
+
 -- --------------------------------------------------------
 
 --
@@ -62,6 +76,13 @@ CREATE TABLE `couponnotifications` (
   `Notif_ID` int(11) NOT NULL,
   `msg` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `couponnotifications`
+--
+
+INSERT INTO `couponnotifications` (`Notif_ID`, `msg`) VALUES
+(1, 'Eid discount.\r\nUse promo code: 1515 \r\nfor 10LE discount on your next order.');
 
 -- --------------------------------------------------------
 
@@ -80,6 +101,14 @@ CREATE TABLE `customer` (
   `Gender` char(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`ID`, `Name`, `Email`, `Phone`, `Address`, `Username`, `Password`, `Gender`) VALUES
+(1, 'Mai', 'mai@gmail.com', '01010101010', 'Nasr City', 'Mai', 'm1234', 'F'),
+(2, 'Youssef', 'y@gmail.com', '01111111111', 'Sheraton', 'youssef', 'y1234', 'M');
+
 -- --------------------------------------------------------
 
 --
@@ -96,6 +125,14 @@ CREATE TABLE `feedback` (
   `Feedback_State` varchar(100) NOT NULL DEFAULT 'Pending',
   `Rate` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `feedback`
+--
+
+INSERT INTO `feedback` (`Feedback_ID`, `Customer_ID`, `Order_ID`, `Feedback_Date`, `Feedback_Type`, `Feedback_Desc`, `Feedback_State`, `Rate`) VALUES
+(1, 1, 1, '4/5/2022', 'Complaint', 'Didn\'t receive my order', 'Pending', 0),
+(2, 2, 2, '4/5/2022', 'Rating', 'Perfect', 'Pending', 5);
 
 -- --------------------------------------------------------
 
@@ -114,6 +151,13 @@ CREATE TABLE `manager` (
   `Gender` char(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `manager`
+--
+
+INSERT INTO `manager` (`ID`, `Name`, `Email`, `Phone`, `Address`, `Username`, `Password`, `Gender`) VALUES
+(203398, 'Maiada', 'm@gmail.com', '01010101010', 'Rehab', 'manager', 'm1234', 'F');
+
 -- --------------------------------------------------------
 
 --
@@ -130,6 +174,14 @@ CREATE TABLE `menu_item` (
   `Item_Avail` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `menu_item`
+--
+
+INSERT INTO `menu_item` (`MenuItem_ID`, `Rest_ID`, `Item_Name`, `Item_Desc`, `Item_Categ`, `Item_Price`, `Item_Avail`) VALUES
+(1, 1, 'Cheeseburger', 'with mayo', 'Sandwiches', 65, 1),
+(2, 2, 'Foul', 'Dish', 'Oriental', 30, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -142,6 +194,16 @@ CREATE TABLE `newrestnotif` (
   `Cust_ID` int(11) NOT NULL,
   `Rest_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `newrestnotif`
+--
+
+INSERT INTO `newrestnotif` (`Notif_ID`, `msg`, `Cust_ID`, `Rest_ID`) VALUES
+(1, 'We want to notify you that Tabali restaurant is now available on our application!\nLocated at Rehab city.\nThe restaurant is known for its Oriental Sandwiches.\nBe the first to try it out and rate!', 1, 2),
+(2, 'We want to notify you that Tabali restaurant is now available on our application!\\nLocated at Rehab city.\\nThe restaurant is known for its Oriental Sandwiches.\\nBe the first to try it out and rate!', 2, 2),
+(3, 'We want to notify you that McDonald\'s restaurant is now available on our application!\r\nLocated at Rehab city.\r\nThe restaurant is known for its Burger.\r\nBe the first to try it out and rate!', 1, 1),
+(4, 'We want to notify you that McDonald\'s restaurant is now available on our application!\r\nLocated at Rehab city.\r\nThe restaurant is known for its Burger.\r\nBe the first to try it out and rate!', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -160,6 +222,14 @@ CREATE TABLE `order` (
   `Order_status` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `order`
+--
+
+INSERT INTO `order` (`Order_ID`, `Customer_ID`, `Coupon_ID`, `Rest_ID`, `Order_Date`, `Order_Price`, `Order_PayMethod`, `Order_status`) VALUES
+(1, 1, NULL, 1, '4/5/2022', 65, 'Cash', 'Delivered'),
+(2, 2, NULL, 1, '6/5/2022', 30, 'Cash', 'Delivered');
+
 -- --------------------------------------------------------
 
 --
@@ -174,6 +244,14 @@ CREATE TABLE `order_item` (
   `Total_ItemPrice` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `order_item`
+--
+
+INSERT INTO `order_item` (`OrderItem_ID`, `Order_ID`, `MenuItem_ID`, `Quantity`, `Total_ItemPrice`) VALUES
+(1, 1, 1, 1, 65),
+(2, 2, 2, 1, 30);
+
 -- --------------------------------------------------------
 
 --
@@ -184,6 +262,13 @@ CREATE TABLE `premiumcust_coupon` (
   `Coupon_ID` int(11) NOT NULL,
   `Premium_Cust_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `premiumcust_coupon`
+--
+
+INSERT INTO `premiumcust_coupon` (`Coupon_ID`, `Premium_Cust_ID`) VALUES
+(1, 1);
 
 -- --------------------------------------------------------
 
@@ -202,6 +287,13 @@ CREATE TABLE `premium_customer` (
   `Gender` char(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `premium_customer`
+--
+
+INSERT INTO `premium_customer` (`ID`, `Name`, `Email`, `Phone`, `Address`, `Username`, `Password`, `Gender`) VALUES
+(1, 'Mai', 'mai@gmail.com', '01010101010', 'Nasr City', 'mai', 'm1234', 'F');
+
 -- --------------------------------------------------------
 
 --
@@ -211,12 +303,20 @@ CREATE TABLE `premium_customer` (
 CREATE TABLE `restaurant` (
   `Rest_ID` int(11) NOT NULL,
   `Rest_Loc` varchar(30) NOT NULL,
-  `Rest_Categ` varchar(15) NOT NULL,
+  `Rest_Categ` varchar(30) NOT NULL,
   `Rest_Name` varchar(20) NOT NULL,
   `Rest_Open` tinyint(4) DEFAULT NULL,
   `Rest_Rating` double DEFAULT 0,
   `RestAdmin_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `restaurant`
+--
+
+INSERT INTO `restaurant` (`Rest_ID`, `Rest_Loc`, `Rest_Categ`, `Rest_Name`, `Rest_Open`, `Rest_Rating`, `RestAdmin_ID`) VALUES
+(1, 'Rehab', 'Burger', 'McDonald\'s', 1, 0, 1),
+(2, 'Rehab', 'Oriental Sandwiches', 'Tabali', 1, 0, 2);
 
 -- --------------------------------------------------------
 
@@ -234,6 +334,14 @@ CREATE TABLE `rest_admin` (
   `Password` varchar(15) NOT NULL,
   `Gender` char(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `rest_admin`
+--
+
+INSERT INTO `rest_admin` (`ID`, `Name`, `Email`, `Phone`, `Address`, `Username`, `Password`, `Gender`) VALUES
+(1, 'Ahmed', 'a@gmail.com', '01010101010', 'Nasr City', 'ahmed', 'a1234', 'M'),
+(2, 'Hagrass', 'h@gmail.com', '01010101010', 'Nasr City', 'hagrass', 'h1234', 'M');
 
 --
 -- Indexes for dumped tables
@@ -345,79 +453,79 @@ ALTER TABLE `rest_admin`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `coupon`
 --
 ALTER TABLE `coupon`
-  MODIFY `Coupon_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Coupon_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `couponnotifications`
 --
 ALTER TABLE `couponnotifications`
-  MODIFY `Notif_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Notif_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `Feedback_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Feedback_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `manager`
 --
 ALTER TABLE `manager`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=203399;
 
 --
 -- AUTO_INCREMENT for table `menu_item`
 --
 ALTER TABLE `menu_item`
-  MODIFY `MenuItem_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `MenuItem_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `newrestnotif`
 --
 ALTER TABLE `newrestnotif`
-  MODIFY `Notif_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Notif_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-  MODIFY `Order_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Order_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `order_item`
 --
 ALTER TABLE `order_item`
-  MODIFY `OrderItem_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `OrderItem_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `premium_customer`
 --
 ALTER TABLE `premium_customer`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `restaurant`
 --
 ALTER TABLE `restaurant`
-  MODIFY `Rest_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Rest_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `rest_admin`
 --
 ALTER TABLE `rest_admin`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables

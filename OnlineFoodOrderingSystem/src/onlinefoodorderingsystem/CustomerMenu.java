@@ -11,29 +11,27 @@ import javax.swing.JOptionPane;
  * @author mahmo
  */
 public class CustomerMenu extends javax.swing.JFrame {
+
     static Customer tempCust = new Customer();
     boolean premCheck = false;
+
     /**
      * Creates new form CustomerMenu
      */
-  
-    public CustomerMenu(Customer c1)
-    {
+
+    public CustomerMenu(Customer c1) {
         initComponents();
         tempCust = c1;
         CustID.setText(tempCust.getName());
         DB_Connection_Assem conn = new DB_Connection_Assem();
         premCheck = conn.checkForPremCustomer(tempCust.getUsername());
-        
-        if(premCheck == true)
-        {
+
+        if (premCheck == true) {
             PremiumCustCheck.setText("You are a premium customer.");
-        }
-        else
-        {
+        } else {
             PremiumCustCheck.setText("You are not a premium customer yet.");
         }
-        
+
     }
 
     /**
@@ -53,6 +51,7 @@ public class CustomerMenu extends javax.swing.JFrame {
         Notifications = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         PremiumCustCheck = new javax.swing.JTextField();
+        Notifs = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,7 +76,7 @@ public class CustomerMenu extends javax.swing.JFrame {
 
         CustID.setEditable(false);
 
-        Notifications.setText("Notifications");
+        Notifications.setText("Coupons");
         Notifications.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NotificationsActionPerformed(evt);
@@ -89,6 +88,13 @@ public class CustomerMenu extends javax.swing.JFrame {
 
         PremiumCustCheck.setEditable(false);
 
+        Notifs.setText("Notifications");
+        Notifs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NotifsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,14 +103,6 @@ public class CustomerMenu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(OrderHistory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Notifications, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(12, 12, 12)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(CustID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -112,12 +110,20 @@ public class CustomerMenu extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
-                                .addComponent(PremiumCustCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(PremiumCustCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                         .addComponent(jButton1)
-                        .addGap(33, 33, 33))))
+                        .addGap(33, 33, 33))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(Notifs, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(OrderHistory, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Notifications, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(12, 12, 12)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,7 +142,9 @@ public class CustomerMenu extends javax.swing.JFrame {
                 .addComponent(Notifications)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Notifs)
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         pack();
@@ -158,18 +166,21 @@ public class CustomerMenu extends javax.swing.JFrame {
     private void NotificationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NotificationsActionPerformed
         // TODO add your handling code here:
         DB_Connection_Assem conn = new DB_Connection_Assem();
-        if(premCheck==true)
-        {
-           Cust_Notifications_GUI menu = new Cust_Notifications_GUI();
-           menu.setVisible(true); 
-        }
-        else
-        {
+        if (premCheck == true) {
+            Cust_CouponNotifs_GUI menu = new Cust_CouponNotifs_GUI();
+            menu.setVisible(true);
+        } else {
             JOptionPane.showMessageDialog(null, "Sorry, you can't access this window as that you are not a premium customer yet. Exceed 5 or more orders to become a premium customer");
         }
-       
-        
+
+
     }//GEN-LAST:event_NotificationsActionPerformed
+
+    private void NotifsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NotifsActionPerformed
+        // TODO add your handling code here:
+        Cust_Notifications_GUI notifs = new Cust_Notifications_GUI(tempCust);
+        notifs.setVisible(true);
+    }//GEN-LAST:event_NotifsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -209,6 +220,7 @@ public class CustomerMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField CustID;
     private javax.swing.JButton Notifications;
+    private javax.swing.JButton Notifs;
     private javax.swing.JButton OrderHistory;
     private javax.swing.JTextField PremiumCustCheck;
     private javax.swing.JButton jButton1;
