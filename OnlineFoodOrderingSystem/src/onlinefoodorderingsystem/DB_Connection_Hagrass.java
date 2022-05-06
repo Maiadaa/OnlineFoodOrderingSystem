@@ -99,13 +99,13 @@ public class DB_Connection_Hagrass {
         }
     }
     
-        public Restaurant_Admin SelectRestAdminData(int RestAdmin) {
+    public Restaurant_Admin SelectRestAdminData(int RestAdmin) {
 
         try {
             Statement stmt = con.createStatement();
             ResultSet selectData = stmt.executeQuery("SELECT * FROM `rest_admin` WHERE ID = '" + RestAdmin + "'");
             if (selectData.first()) {
-                System.out.println("admin get");
+                System.out.println("restadmin get");
                 return new Restaurant_Admin(selectData.getInt("ID"), selectData.getString("Name"), selectData.getString("Email"), selectData.getString("Phone"), selectData.getString("Address"), selectData.getString("Username"), selectData.getString("Password"), selectData.getString("Gender").charAt(0));
             }else{
                 return null;
@@ -142,6 +142,7 @@ public class DB_Connection_Hagrass {
             Statement stmt = con.createStatement();
             ResultSet selectData = stmt.executeQuery("SELECT `RestAdmin_ID` FROM `restaurant`, `order` WHERE restaurant.Rest_ID = order.Rest_ID AND order.Order_ID = '" + OrderID + "'");
             if (selectData.first()) {
+                System.out.println("doneeeeeeeeeeeeeeeee");
                 return selectData.getInt("RestAdmin_ID");
             }else {
                 return 0;
@@ -159,6 +160,18 @@ public class DB_Connection_Hagrass {
             System.out.println("restaurant Updated");
         } catch (Exception e) {
             System.err.println("DATABASE INSERTION ERROR: " + e.toString());
+        }
+    }
+    
+    public void create_Order(int CustID,Order order){
+         try {
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate("INSERT INTO `order`(`Customer_ID`, `Rest_ID`, `Order_Date`, `Order_status`) VALUES ('" + CustID + "','" + order.getOrder_Rest().getRest_Id() + "','" + order.getOrder_Date() + "','" + order.getOrderstatus() + "')");
+            System.out.println("Order Created");
+            //return true;
+        } catch (Exception e) {
+            System.err.println("DATABASE INSERTION ERROR: " + e.toString());
+            //return false;
         }
     }
 }

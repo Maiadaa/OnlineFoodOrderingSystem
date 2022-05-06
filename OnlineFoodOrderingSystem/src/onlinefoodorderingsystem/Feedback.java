@@ -97,4 +97,9 @@ public class Feedback {
             F_Type = new Admin();
 	}
 
+    @Override
+    public String toString() {
+        return "Feedback{" + ", Feedback_Id=" + Feedback_Id + ", FeedbackDate=" + FeedbackDate + ", Feedback_Type=" + Feedback_Type + ", Feedback_Desc=" + Feedback_Desc + ", Feedback_State=" + Feedback_State + ", Order_Id=" + Order_Id + ", rate=" + rate + '}';
+    }
+
 }
