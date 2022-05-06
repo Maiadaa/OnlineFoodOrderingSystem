@@ -55,34 +55,26 @@ public class Order {
 	}
         
 	public void Add_To_Cart(Order_Item item){
-            Ordered_Items.add(item);
+            db.Add_To_Cart(item);
 	}
 
 	/**
 	 * 
 	 * @param item
 	 */
-//	public boolean Remove_From_Cart(Order_Item item){
-//            for (int i = 0 ; i > Ordered_Items.size();i++){
-//                if (Ordered_Items.get(i) ==  item){
-//                  Ordered_Items.remove(item);
-//                }
-//            }
-//		return false;
-//	}
+	public boolean Remove_From_Cart(int id){
+           db.Remove_From_Cart(id);
+		return false;
+	}
 
 	/**
 	 * 
 	 * @param item
 	 * @param new_quant
 	 */
-//	public void Modify_Cart_Item(Order_Item item, int new_quant){
-//            for (int i = 0 ; i > Ordered_Items.size();i++){
-//                if (Ordered_Items.get(i) == item){
-//                  Ordered_Items.get(i).setItem_Quantity(new_quant);
-//                }
-//            }
-//	}
+	public void Modify_Cart_Item(int id, int amount, int sum){
+            db.Modify_Cart_Item(id, amount, sum);
+	}
         
         
 
@@ -90,16 +82,13 @@ public class Order {
 	 * 
 	 * @param c
 	 */
-//	public void Redeem_Coupon(Coupon c){
-//            
-//	}
+        
+	public Coupon Redeem_Coupon(Customer c, int code){
+            return db.Redeem_Coupon(c, code);
+	}
 
-	public Order Checkout(Order o){
-            o.m_Payment_Method.pay(o.getOrder_Price());
-            o.setOrderstatus(Orderstatus = "Accepted");
+	public void Checkout(Order o){
             db.Checkout(o);
-            
-            return o;
 	}
 
         public void setOrder_Id(int Order_Id) {

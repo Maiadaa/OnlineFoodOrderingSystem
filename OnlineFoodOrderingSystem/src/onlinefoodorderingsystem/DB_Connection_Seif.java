@@ -62,14 +62,6 @@ public class DB_Connection_Seif {
             System.err.println("DATABASE INSERTION ERROR: " + e.toString());
         }
     }
-//    public void Redeem_Coupon(Coupon c){
-//        try {
-//                Statement stmt = con.createStatement();
-//                stmt.executeUpdate("delete from order_item where OrderItem_ID = '" + id + "'");
-//            } catch (Exception e) {
-//                System.err.println("DATABASE INSERTION ERROR: " + e.toString());
-//            }
-//    }
 
     public void Cancel_Order(int id) {
         try {

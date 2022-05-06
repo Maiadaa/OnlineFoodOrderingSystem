@@ -23,8 +23,6 @@ public class Cart_GUI extends javax.swing.JFrame {
 
     public Cart_GUI() {
         initComponents();
-        o.setOrder_Id(1);
-        cust.setID(1);
         DB_Connection_Seif db = new DB_Connection_Seif();
         table = db.displayCartItems(table, o);
     }
@@ -33,7 +31,6 @@ public class Cart_GUI extends javax.swing.JFrame {
         initComponents();
         this.cust = c;
         this.o = o;
-        o.setOrder_Id(1);
         DB_Connection_Seif db = new DB_Connection_Seif();
         table = db.displayCartItems(table, o);
     }
@@ -219,13 +216,15 @@ public class Cart_GUI extends javax.swing.JFrame {
             Cash cash = new Cash();
             o.setM_Payment_Method(cash);
             o.setOrder_Price(orderTP);
-            this.o = o.Checkout(o);
+            o.setOrderstatus("Accepted");
+            o.Checkout(o);
 
         } else if (Card.isSelected()) {
             Credit_Card card = new Credit_Card();
             o.setM_Payment_Method(card);
             o.setOrder_Price(orderTP);
-            this.o = o.Checkout(o);
+            o.setOrderstatus("Accepted");
+            o.Checkout(o);
         }
 
         if (cCode != null) {
