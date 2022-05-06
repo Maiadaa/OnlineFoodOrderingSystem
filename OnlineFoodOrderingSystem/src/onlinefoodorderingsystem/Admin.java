@@ -76,6 +76,7 @@ public class Admin extends Person implements Feedback_Detector {
             DB_Connection_Hagrass db = new DB_Connection_Hagrass();
             Restaurant_Admin restAdmin = db.SelectRestAdminData(db.selectRestAdminID(f.getOrder_Id()));
             System.out.println(restAdmin.toString());
+            restAdmin.setRest(db.selectRestaurant(f.getOrder_Id()));
             this.setNextinchain(restAdmin);
             nextinchain.Handle_Feedback(f);
         }

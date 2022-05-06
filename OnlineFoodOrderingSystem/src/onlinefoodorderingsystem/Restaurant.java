@@ -41,6 +41,11 @@ public class Restaurant {
         this.Rest_Name = Rest_Name;
         this.Rest_Open = Rest_Open;
     }
+
+    public Restaurant(int Rest_Id, double Rest_Rating) {
+        this.Rest_Id = Rest_Id;
+        this.Rest_Rating = Rest_Rating;
+    }
     
 
     // For database query purposes in Manager_RemoveRest_GUI

@@ -142,7 +142,7 @@ public class DB_Connection_Hagrass {
             Statement stmt = con.createStatement();
             ResultSet selectData = stmt.executeQuery("SELECT `RestAdmin_ID` FROM `restaurant`, `order` WHERE restaurant.Rest_ID = order.Rest_ID AND order.Order_ID = '" + OrderID + "'");
             if (selectData.first()) {
-                System.out.println("doneeeeeeeeeeeeeeeee");
+                System.out.println("select rest admin id");
                 return selectData.getInt("RestAdmin_ID");
             }else {
                 return 0;
@@ -160,6 +160,21 @@ public class DB_Connection_Hagrass {
             System.out.println("restaurant Updated");
         } catch (Exception e) {
             System.err.println("DATABASE INSERTION ERROR: " + e.toString());
+        }
+    }
+    
+    public Restaurant selectRestaurant(int OrderID){
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet selectData = stmt.executeQuery("SELECT `restaurant`.`Rest_ID`, `restaurant`.`Rest_Rating` FROM `restaurant`, `order` WHERE restaurant.Rest_ID = order.Rest_ID AND order.Order_ID = '" + OrderID + "'");
+            if (selectData.first()) {
+                return new Restaurant(selectData.getInt("Rest_ID"), selectData.getDouble("Rest_Rating"));
+            }else{
+                return null;
+            }
+        } catch (Exception e) {
+            System.err.println("DATABASE QUERY ERROR: " + e.toString());
+            return null;
         }
     }
     

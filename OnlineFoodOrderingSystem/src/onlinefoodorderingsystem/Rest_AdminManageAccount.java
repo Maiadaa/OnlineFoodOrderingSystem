@@ -4,6 +4,8 @@
  */
 package onlinefoodorderingsystem;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author manah
@@ -72,6 +74,7 @@ public class Rest_AdminManageAccount extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(0, 0));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Manage Account");
 
         jLabel2.setText("Edit Your Name:");
@@ -131,10 +134,7 @@ public class Rest_AdminManageAccount extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(65, 65, 65)
-                                .addComponent(Editname, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(94, 94, 94)
-                                .addComponent(jLabel1)))
+                                .addComponent(Editname, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,6 +149,9 @@ public class Rest_AdminManageAccount extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(39, 39, 39))))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,9 +202,11 @@ public class Rest_AdminManageAccount extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Restaurant_Admin restadmin = new Restaurant_Admin(restAdmin2.getID(),Editname.getText(), EditEmail.getText(), Editphone.getText(), EditAddress.getText(), EditUsername.getText(), EditPassword.getText(), EditGender.getText().charAt(0));
+        Restaurant_Admin restadmin = new Restaurant_Admin(1,Editname.getText(), EditEmail.getText(), Editphone.getText(), EditAddress.getText(), EditUsername.getText(), EditPassword.getText(), EditGender.getText().charAt(0));
         DB_Connection_Hagrass db = new DB_Connection_Hagrass();
-        db.Edit_RestAdmin_Account(restadmin);
+        if(db.Edit_RestAdmin_Account(restadmin)){
+            JOptionPane.showMessageDialog(null, "You Update Your Profile successfully");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
