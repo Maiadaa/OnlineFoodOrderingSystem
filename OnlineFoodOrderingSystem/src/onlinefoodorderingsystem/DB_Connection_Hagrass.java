@@ -181,12 +181,27 @@ public class DB_Connection_Hagrass {
     public void create_Order(int CustID,Order order){
          try {
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("INSERT INTO `order`(`Customer_ID`, `Rest_ID`, `Order_Date`, `Order_status`) VALUES ('" + CustID + "','" + order.getOrder_Rest().getRest_Id() + "','" + order.getOrder_Date() + "','" + order.getOrderstatus() + "')");
+            stmt.executeUpdate("INSERT INTO `order`(`Order_ID`,`Customer_ID`, `Rest_ID`, `Order_Date`, `Order_status`) VALUES ('"+ order.getOrder_Id() + "','" + CustID + "','" + order.getOrder_Rest().getRest_Id() + "','" + order.getOrder_Date() + "','" + order.getOrderstatus() + "')");
             System.out.println("Order Created");
             //return true;
         } catch (Exception e) {
             System.err.println("DATABASE INSERTION ERROR: " + e.toString());
             //return false;
+        }
+    }
+    
+    public int selectOrderID(){
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet selectData = stmt.executeQuery("SELECT * FROM `order` WHERE 1");
+            if (selectData.last()) {
+                return selectData.getInt("Order_ID");
+            }else {
+                return 0;
+            }
+        } catch (Exception e) {
+            System.err.println("DATABASE QUERY ERROR: " + e.toString());
+            return 0;
         }
     }
 }

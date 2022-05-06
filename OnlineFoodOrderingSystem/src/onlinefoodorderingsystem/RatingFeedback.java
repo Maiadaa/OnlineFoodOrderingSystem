@@ -12,13 +12,19 @@ import javax.swing.JOptionPane;
  */
 public class RatingFeedback extends javax.swing.JFrame {
 
+    Customer cust;
+    int orderID;
     /**
      * Creates new form RatingFeedback
      */
     public RatingFeedback() {
         initComponents();
     }
-
+    public RatingFeedback(Customer x, int order) {
+        initComponents();
+        cust = x;
+        orderID = order;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -172,17 +178,17 @@ public class RatingFeedback extends javax.swing.JFrame {
         rate5.setActionCommand("5");    
         System.out.println(buttonGroup1.getSelection().getActionCommand());
         /*////////////////////////////////////////*/
-        Customer c2 = new Customer(202, "Maiada" , "maiada@gmail.com" , "01128555666" , "Rehab" , "maiada123" , "maiad123" , 'F');
+
         Feedback m_Feedback = new Feedback();
-        m_Feedback.setFeedback_Id(1+2);
+        m_Feedback.setFeedback_Id(cust.getID()+orderID);
         m_Feedback.setFeedbackDate(java.time.LocalDate.now().toString());
-        m_Feedback.setOrder_Id(1);
+        m_Feedback.setOrder_Id(orderID);
         m_Feedback.setFeedback_Type("rating");
         m_Feedback.setFeedback_Desc(Description.getText());
         m_Feedback.setFeedback_State("Pending");
         m_Feedback.setRate(Integer.parseInt(buttonGroup1.getSelection().getActionCommand()));
         DB_Connection_Hagrass db = new DB_Connection_Hagrass();
-        c2.Create_Feedback(1, 1, m_Feedback);
+        cust.Create_Feedback(cust.getID(), orderID, m_Feedback);
         JOptionPane.showMessageDialog(null, "Your Feedback created successfully");
     }//GEN-LAST:event_jButton1ActionPerformed
 

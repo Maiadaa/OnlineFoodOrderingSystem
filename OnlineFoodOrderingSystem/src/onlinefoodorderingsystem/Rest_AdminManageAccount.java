@@ -67,7 +67,7 @@ public class Rest_AdminManageAccount extends javax.swing.JFrame {
         EditUsername = new javax.swing.JTextField();
         EditPassword = new javax.swing.JTextField();
         EditGender = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        updateRestAdmin = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -97,10 +97,10 @@ public class Rest_AdminManageAccount extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Update");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        updateRestAdmin.setText("Update");
+        updateRestAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                updateRestAdminActionPerformed(evt);
             }
         });
 
@@ -145,7 +145,7 @@ public class Rest_AdminManageAccount extends javax.swing.JFrame {
                             .addComponent(EditPassword)
                             .addComponent(EditGender)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                                .addComponent(updateRestAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(39, 39, 39))))
@@ -188,7 +188,7 @@ public class Rest_AdminManageAccount extends javax.swing.JFrame {
                     .addComponent(EditGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(updateRestAdmin)
                     .addComponent(jButton2))
                 .addGap(27, 27, 27))
         );
@@ -200,14 +200,14 @@ public class Rest_AdminManageAccount extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_EditGenderActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void updateRestAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateRestAdminActionPerformed
         // TODO add your handling code here:
-        Restaurant_Admin restadmin = new Restaurant_Admin(1,Editname.getText(), EditEmail.getText(), Editphone.getText(), EditAddress.getText(), EditUsername.getText(), EditPassword.getText(), EditGender.getText().charAt(0));
+        Restaurant_Admin restadmin = new Restaurant_Admin(restAdmin2.getID(),Editname.getText(), EditEmail.getText(), Editphone.getText(), EditAddress.getText(), EditUsername.getText(), EditPassword.getText(), EditGender.getText().charAt(0));
         DB_Connection_Hagrass db = new DB_Connection_Hagrass();
         if(db.Edit_RestAdmin_Account(restadmin)){
             JOptionPane.showMessageDialog(null, "You Update Your Profile successfully");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_updateRestAdminActionPerformed
 
     /**
      * @param args the command line arguments
@@ -253,7 +253,6 @@ public class Rest_AdminManageAccount extends javax.swing.JFrame {
     private javax.swing.JTextField EditUsername;
     private javax.swing.JTextField Editname;
     private javax.swing.JTextField Editphone;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -263,5 +262,6 @@ public class Rest_AdminManageAccount extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JButton updateRestAdmin;
     // End of variables declaration//GEN-END:variables
 }

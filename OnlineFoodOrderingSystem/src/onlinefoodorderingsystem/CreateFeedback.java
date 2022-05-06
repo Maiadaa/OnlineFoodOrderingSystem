@@ -143,7 +143,7 @@ public class CreateFeedback extends javax.swing.JFrame {
         Feed_back.setFeedback_Desc(Description.getText());
         Feed_back.setFeedback_State("Pending");
         DB_Connection_Hagrass db = new DB_Connection_Hagrass();
-        cust.Create_Feedback(1, 1, Feed_back);
+        cust.Create_Feedback(cust.getID(), orderID, Feed_back);
         JOptionPane.showMessageDialog(null, "Your Feedback created successfully");
     }//GEN-LAST:event_complaintActionPerformed
 

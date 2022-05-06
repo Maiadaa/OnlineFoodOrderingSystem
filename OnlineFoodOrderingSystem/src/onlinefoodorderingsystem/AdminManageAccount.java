@@ -204,7 +204,7 @@ public class AdminManageAccount extends javax.swing.JFrame {
 
     private void UpdateAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateAdminActionPerformed
         // TODO add your handling code here:
-        Admin admin = new Admin(1,Editname.getText(), EditEmail.getText(), Editphone.getText(), EditAddress.getText(), EditUsername.getText(), EditPassword.getText(), EditGender.getText().charAt(0));
+        Admin admin = new Admin(Admin2.getID(),Editname.getText(), EditEmail.getText(), Editphone.getText(), EditAddress.getText(), EditUsername.getText(), EditPassword.getText(), EditGender.getText().charAt(0));
         DB_Connection_Hagrass db = new DB_Connection_Hagrass();
         if(db.Edit_Admin_Account(admin)){
             JOptionPane.showMessageDialog(null, "You Update Your Profile successfully");
