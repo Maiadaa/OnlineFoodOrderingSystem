@@ -39,6 +39,8 @@ public class AdminMenu extends javax.swing.JFrame {
         LogOutButton = new javax.swing.JButton();
         CopounsMenu = new javax.swing.JButton();
         AdminName = new javax.swing.JTextField();
+        ManageAccount = new javax.swing.JButton();
+        ViewFeedbacks = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,6 +65,20 @@ public class AdminMenu extends javax.swing.JFrame {
 
         AdminName.setEditable(false);
 
+        ManageAccount.setText("Manage Account");
+        ManageAccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ManageAccountActionPerformed(evt);
+            }
+        });
+
+        ViewFeedbacks.setText("View Feedback History");
+        ViewFeedbacks.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ViewFeedbacksActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -80,7 +96,10 @@ public class AdminMenu extends javax.swing.JFrame {
                         .addComponent(LogOutButton)
                         .addGap(17, 17, 17))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(CopounsMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(ViewFeedbacks, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ManageAccount, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(CopounsMenu, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -94,7 +113,11 @@ public class AdminMenu extends javax.swing.JFrame {
                     .addComponent(AdminName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(CopounsMenu)
-                .addContainerGap(360, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ManageAccount)
+                .addGap(18, 18, 18)
+                .addComponent(ViewFeedbacks)
+                .addContainerGap(286, Short.MAX_VALUE))
         );
 
         pack();
@@ -113,6 +136,20 @@ public class AdminMenu extends javax.swing.JFrame {
         menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_CopounsMenuActionPerformed
+
+    private void ManageAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageAccountActionPerformed
+        // TODO add your handling code here:
+        AdminManageAccount manageAccount = new AdminManageAccount(tempAdmin);
+        manageAccount.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_ManageAccountActionPerformed
+
+    private void ViewFeedbacksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewFeedbacksActionPerformed
+        // TODO add your handling code here:
+        Feedback_History feedbackHistory = new Feedback_History(tempAdmin);
+        feedbackHistory.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_ViewFeedbacksActionPerformed
 
     /**
      * @param args the command line arguments
@@ -154,6 +191,8 @@ public class AdminMenu extends javax.swing.JFrame {
     private javax.swing.JTextField AdminName;
     private javax.swing.JButton CopounsMenu;
     private javax.swing.JButton LogOutButton;
+    private javax.swing.JButton ManageAccount;
+    private javax.swing.JButton ViewFeedbacks;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables

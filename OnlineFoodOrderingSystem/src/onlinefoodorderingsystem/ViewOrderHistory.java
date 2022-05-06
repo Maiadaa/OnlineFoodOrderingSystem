@@ -37,12 +37,14 @@ public class ViewOrderHistory extends javax.swing.JFrame {
         OrdersTable = new javax.swing.JTable();
         BackButton = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        GiveFeedback = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        RatingFeedback = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         CustName = new javax.swing.JTextField();
+        GetOrderID = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,46 +78,62 @@ public class ViewOrderHistory extends javax.swing.JFrame {
 
         jButton1.setText("View Order Details");
 
-        jButton2.setText("Give Feedback");
+        GiveFeedback.setText("Give Feedback");
+        GiveFeedback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GiveFeedbackActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Re-Order");
 
-        jButton4.setText("Send Rating");
+        RatingFeedback.setText("Send Rating");
+        RatingFeedback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RatingFeedbackActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Cancel Order");
 
         jLabel2.setText("Order History Panel for:");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setText("Enter Your Order ID:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(1254, 1254, 1254)
-                        .addComponent(BackButton))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(CustName))
+                        .addGap(457, 457, 457)
+                        .addComponent(jLabel1))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1402, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(CustName))
-                                .addGap(457, 457, 457)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jButton4))
-                                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addComponent(GiveFeedback)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton5)
-                                    .addComponent(jButton1)))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1402, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(RatingFeedback))
+                            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton5)
+                                .addGap(699, 699, 699)
+                                .addComponent(BackButton))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(GetOrderID, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(40, 40, 40))
         );
         layout.setVerticalGroup(
@@ -132,9 +150,11 @@ public class ViewOrderHistory extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton4)
-                    .addComponent(jButton1))
+                    .addComponent(GiveFeedback)
+                    .addComponent(RatingFeedback)
+                    .addComponent(jButton1)
+                    .addComponent(jLabel3)
+                    .addComponent(GetOrderID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BackButton)
                 .addGap(14, 14, 14)
@@ -151,6 +171,20 @@ public class ViewOrderHistory extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_BackButtonActionPerformed
+
+    private void GiveFeedbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GiveFeedbackActionPerformed
+        // TODO add your handling code here:
+        CreateFeedback createFeedback = new CreateFeedback(tempCustomer, Integer.parseInt(GetOrderID.getText()));
+        createFeedback.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_GiveFeedbackActionPerformed
+
+    private void RatingFeedbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RatingFeedbackActionPerformed
+        // TODO add your handling code here:
+        RatingFeedback rating = new RatingFeedback(tempCustomer, Integer.parseInt(GetOrderID.getText()));
+        rating.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_RatingFeedbackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -190,14 +224,16 @@ public class ViewOrderHistory extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackButton;
     private javax.swing.JTextField CustName;
+    private javax.swing.JTextField GetOrderID;
+    private javax.swing.JButton GiveFeedback;
     private javax.swing.JTable OrdersTable;
+    private javax.swing.JButton RatingFeedback;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

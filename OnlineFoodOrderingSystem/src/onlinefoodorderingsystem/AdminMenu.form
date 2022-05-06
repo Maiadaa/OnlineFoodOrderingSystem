@@ -37,7 +37,11 @@
                       <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="CopounsMenu" min="-2" pref="148" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="ViewFeedbacks" alignment="0" max="32767" attributes="0"/>
+                          <Component id="ManageAccount" alignment="0" max="32767" attributes="0"/>
+                          <Component id="CopounsMenu" alignment="0" max="32767" attributes="0"/>
+                      </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -56,7 +60,11 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="CopounsMenu" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="360" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="ManageAccount" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="ViewFeedbacks" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="286" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -95,6 +103,22 @@
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="ManageAccount">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Manage Account"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ManageAccountActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="ViewFeedbacks">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="View Feedback History"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ViewFeedbacksActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

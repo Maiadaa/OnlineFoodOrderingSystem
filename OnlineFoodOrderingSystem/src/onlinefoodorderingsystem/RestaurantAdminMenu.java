@@ -35,6 +35,7 @@ public class RestaurantAdminMenu extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         RAdminName = new javax.swing.JTextField();
+        ManageAccount = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,6 +53,13 @@ public class RestaurantAdminMenu extends javax.swing.JFrame {
 
         RAdminName.setEditable(false);
 
+        ManageAccount.setText("Manage Account");
+        ManageAccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ManageAccountActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -60,15 +68,17 @@ public class RestaurantAdminMenu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(RAdminName, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addComponent(jButton1)
-                        .addGap(15, 15, 15))))
+                        .addGap(15, 15, 15))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(ManageAccount, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(RAdminName, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -80,7 +90,9 @@ public class RestaurantAdminMenu extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(RAdminName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(230, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(ManageAccount)
+                .addContainerGap(190, Short.MAX_VALUE))
         );
 
         pack();
@@ -92,6 +104,13 @@ public class RestaurantAdminMenu extends javax.swing.JFrame {
         HomePage home = new HomePage();
         home.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void ManageAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageAccountActionPerformed
+        // TODO add your handling code here:
+        Rest_AdminManageAccount manageAccount = new Rest_AdminManageAccount(tempRA);
+        manageAccount.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_ManageAccountActionPerformed
 
     /**
      * @param args the command line arguments
@@ -129,6 +148,7 @@ public class RestaurantAdminMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ManageAccount;
     private javax.swing.JTextField RAdminName;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
