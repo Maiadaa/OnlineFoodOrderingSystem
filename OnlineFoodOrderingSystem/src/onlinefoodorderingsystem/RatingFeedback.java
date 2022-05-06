@@ -175,7 +175,7 @@ public class RatingFeedback extends javax.swing.JFrame {
         /*////////////////////////////////////////*/
         Customer c2 = new Customer(202, "Maiada" , "maiada@gmail.com" , "01128555666" , "Rehab" , "maiada123" , "maiad123" , 'F');
         Feedback m_Feedback = new Feedback();
-        m_Feedback.setFeedback_Id(1+4);
+        m_Feedback.setFeedback_Id(1+2);
         m_Feedback.setFeedbackDate(java.time.LocalDate.now().toString());
         m_Feedback.setOrder_Id(1);
         m_Feedback.setFeedback_Type("rating");

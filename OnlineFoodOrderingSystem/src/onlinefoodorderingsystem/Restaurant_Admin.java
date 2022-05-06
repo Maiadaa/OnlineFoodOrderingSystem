@@ -51,18 +51,17 @@ public class Restaurant_Admin extends Person implements Feedback_Detector {
     @Override
     public void Handle_Feedback(Feedback f) {
         if (f.getFeedback_Type().equals("rating")) {
-            System.out.println(f.getRate());
             f.setFeedback_State("Accepted from Restaurant Admin");
             DB_Connection_Hagrass db = new DB_Connection_Hagrass();
             db.EditFeedbackStatus(f);
+            System.out.println(f.getRate());
+            System.out.println(f.toString());
             if (f.getRate() <= 3) {
                 if (Rest.getRest_Rating() > 0) {
                     db.editRestRating(Rest.getRest_Id(), (Rest.getRest_Rating() - 0.1));
                 }
             }else if(f.getRate() > 3){
-                if (Rest.getRest_Rating() > 0 && Rest.getRest_Rating() > 3) {
                     db.editRestRating(Rest.getRest_Id(), (Rest.getRest_Rating() + 0.1));
-                }
             }
         }
     }
