@@ -4,12 +4,15 @@
  */
 package onlinefoodorderingsystem;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author mahmo
  */
 public class CustomerMenu extends javax.swing.JFrame {
     static Customer tempCust = new Customer();
+    boolean premCheck = false;
     /**
      * Creates new form CustomerMenu
      */
@@ -19,6 +22,18 @@ public class CustomerMenu extends javax.swing.JFrame {
         initComponents();
         tempCust = c1;
         CustID.setText(tempCust.getName());
+        DB_Connection_Assem conn = new DB_Connection_Assem();
+        premCheck = conn.checkForPremCustomer(tempCust.getUsername());
+        conn.Add_Observer(tempCust);
+        if(premCheck == true)
+        {
+            PremiumCustCheck.setText("You are a premium customer.");
+        }
+        else
+        {
+            PremiumCustCheck.setText("You are not a premium customer yet.");
+        }
+        
     }
 
     /**
@@ -35,9 +50,13 @@ public class CustomerMenu extends javax.swing.JFrame {
         OrderHistory = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         CustID = new javax.swing.JTextField();
+        Notifications = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        PremiumCustCheck = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Welcome to Customer Menu");
 
         jButton1.setText("Log Out");
@@ -58,6 +77,18 @@ public class CustomerMenu extends javax.swing.JFrame {
 
         CustID.setEditable(false);
 
+        Notifications.setText("Notifications");
+        Notifications.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NotificationsActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel3.setText("(For Premium Customers Only)");
+
+        PremiumCustCheck.setEditable(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -65,31 +96,47 @@ public class CustomerMenu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(OrderHistory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Notifications, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(12, 12, 12)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(CustID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addGap(90, 90, 90)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(OrderHistory)
-                        .addGap(0, 438, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(PremiumCustCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(33, 33, 33))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(13, 13, 13)
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
                     .addComponent(jButton1)
+                    .addComponent(jLabel1)
                     .addComponent(jLabel2)
                     .addComponent(CustID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(PremiumCustCheck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addComponent(OrderHistory)
-                .addContainerGap(203, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Notifications)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addContainerGap(107, Short.MAX_VALUE))
         );
 
         pack();
@@ -107,6 +154,22 @@ public class CustomerMenu extends javax.swing.JFrame {
         ViewOrderHistory menu = new ViewOrderHistory(tempCust);
         menu.setVisible(true);
     }//GEN-LAST:event_OrderHistoryActionPerformed
+
+    private void NotificationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NotificationsActionPerformed
+        // TODO add your handling code here:
+        DB_Connection_Assem conn = new DB_Connection_Assem();
+        if(premCheck==true)
+        {
+           Cust_Notifications_GUI menu = new Cust_Notifications_GUI();
+           menu.setVisible(true); 
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Sorry, you can't access this window as that you are not a premium customer yet. Exceed 5 or more orders to become a premium customer");
+        }
+       
+        
+    }//GEN-LAST:event_NotificationsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,9 +208,12 @@ public class CustomerMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField CustID;
+    private javax.swing.JButton Notifications;
     private javax.swing.JButton OrderHistory;
+    private javax.swing.JTextField PremiumCustCheck;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }

@@ -13,6 +13,12 @@ public class Premium_Customer extends Customer implements Coupon_Observer {
 
 	}
 
+    public Premium_Customer(int ID, String Name, String Email, String Phone_number, String Address, String Username, String Password, char Gender)
+    {
+        super(ID, Name, Email, Phone_number, Address, Username, Password, Gender);
+    }
+        
+
 	/*public JTable View_Offers(JTable tbl){
             //return db.viewCoupons(tbl);
 	}*/
