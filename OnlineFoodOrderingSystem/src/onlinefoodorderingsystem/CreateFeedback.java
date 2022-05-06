@@ -11,12 +11,20 @@ import javax.swing.JOptionPane;
  * @author manah
  */
 public class CreateFeedback extends javax.swing.JFrame {
-
+    
+    Customer cust;
+    int orderID;
     /**
      * Creates new form CreateFeedback
      */
     public CreateFeedback() {
         initComponents();
+    }
+    
+    public CreateFeedback(Customer x, int order) {
+        initComponents();
+        cust = x;
+        orderID = order;
     }
 
     /**
@@ -126,16 +134,16 @@ public class CreateFeedback extends javax.swing.JFrame {
 
     private void complaintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_complaintActionPerformed
         // TODO add your handling code here:
-        Customer c2 = new Customer(202, "Maiada" , "maiada@gmail.com" , "01128555666" , "Rehab" , "maiada123" , "maiad123" , 'F');
-         Feedback m_Feedback = new Feedback();
-         m_Feedback.setFeedback_Id(1+3);
-        m_Feedback.setFeedbackDate(java.time.LocalDate.now().toString());
-        m_Feedback.setOrder_Id(1);
-        m_Feedback.setFeedback_Type("complaint");
-        m_Feedback.setFeedback_Desc(Description.getText());
-        m_Feedback.setFeedback_State("Pending");
+        
+        Feedback Feed_back = new Feedback();
+        Feed_back.setFeedback_Id(cust.getID()+orderID);
+        Feed_back.setFeedbackDate(java.time.LocalDate.now().toString());
+        Feed_back.setOrder_Id(orderID);
+        Feed_back.setFeedback_Type("complaint");
+        Feed_back.setFeedback_Desc(Description.getText());
+        Feed_back.setFeedback_State("Pending");
         DB_Connection_Hagrass db = new DB_Connection_Hagrass();
-        c2.Create_Feedback(1, 1, m_Feedback);
+        cust.Create_Feedback(1, 1, Feed_back);
         JOptionPane.showMessageDialog(null, "Your Feedback created successfully");
     }//GEN-LAST:event_complaintActionPerformed
 
