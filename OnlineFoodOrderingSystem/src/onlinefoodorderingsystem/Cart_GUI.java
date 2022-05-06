@@ -19,7 +19,7 @@ public class Cart_GUI extends javax.swing.JFrame {
 
     Customer cust = new Customer();
     Order o = new Order();
-    
+    Coupon cCode = new Coupon();
 
     public Cart_GUI() {
         initComponents();
@@ -212,7 +212,7 @@ public class Cart_GUI extends javax.swing.JFrame {
 
     private void CheckoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckoutActionPerformed
         double orderTP = 0;
-        for (int i = 0; i < table.getRowCount() ; i++) {
+        for (int i = 0; i < table.getRowCount(); i++) {
             orderTP += Double.parseDouble(table.getModel().getValueAt(i, 3).toString());
         }
         if (Cash.isSelected()) {
@@ -220,13 +220,18 @@ public class Cart_GUI extends javax.swing.JFrame {
             o.setM_Payment_Method(cash);
             o.setOrder_Price(orderTP);
             this.o = o.Checkout(o);
-            
+
         } else if (Card.isSelected()) {
             Credit_Card card = new Credit_Card();
-           o.setM_Payment_Method(card);
-           o.setOrder_Price(orderTP);
+            o.setM_Payment_Method(card);
+            o.setOrder_Price(orderTP);
             this.o = o.Checkout(o);
         }
+
+        if (cCode != null) {
+            o.setOrder_Price(o.getOrder_Price() - cCode.getCoupon_Discount_Val());
+        }
+
         OrderSummary_GUI summ = new OrderSummary_GUI(o);
         summ.setVisible(true);
         this.dispose();
@@ -277,17 +282,16 @@ public class Cart_GUI extends javax.swing.JFrame {
 //        for (int i = 0; i < table.getRowCount() ; i++) {
 //            orderTP += Double.parseDouble(table.getModel().getValueAt(i, 3).toString());
 //        }
-        
+
         try {
             DB_Connection_Seif db = new DB_Connection_Seif();
-            if (db.Redeem_Cupon(cust, ccode) != 0 && db.Redeem_Cupon(cust, ccode) != -1){
-               JOptionPane.showMessageDialog(null, "Cupon Redeemed Successfully");
-            }
-            if (db.Redeem_Cupon(cust, ccode) == -1) {
-                JOptionPane.showMessageDialog(null, "You are not premium customer");
-            }
-            else {
-                JOptionPane.showMessageDialog(null, "Enter the correct code");
+            if (db.Redeem_Coupon(cust, ccode) == null) {
+                JOptionPane.showMessageDialog(null, "Invalid code or You are not premium customer");
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Coupon Redeemed Successfully");
+                this.cCode = db.Redeem_Coupon(cust, ccode);
+                o.setOrder_Promo(cCode);
             }
         } catch (Exception e) {
             System.out.println("Didnt work");

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Coupon 
 {
-
+        private int id;
 	private int Coupon_Code;
 	private int Coupon_Discount_Val;
 	private String Coupon_Desc;
@@ -15,6 +15,13 @@ public class Coupon
         {
 
 	}
+
+    public Coupon(int id, int Coupon_Discount_Val) {
+        this.id = id;
+        this.Coupon_Discount_Val = Coupon_Discount_Val;
+    }
+        
+        
 
     public Coupon(int Coupon_Code,  String Coupon_Desc, String Coupon_ExpiryDate, int Coupon_Discount_Val) 
     {

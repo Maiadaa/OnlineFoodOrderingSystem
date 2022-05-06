@@ -37,16 +37,15 @@ public class DB_Connection_Seif {
     }
 
     public void Add_To_Cart(Order_Item item) {
-            try {
-                Statement stmt = con.createStatement();
-                stmt.executeUpdate("insert into order_item values('" + item.getItem().getItem_Id() + "', " + item.getItem().getItem_Id() + "', " + item.getItem().getItem_Id() +"'," + item.getItem_Quantity() +"'," + item.getItem_Total_Price()+ ")");
-            } catch (Exception e) {
-                System.err.println("DATABASE INSERTION ERROR: " + e.toString());
-            }
+        try {
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate("insert into order_item values('" + item.getItem().getItem_Id() + "', " + item.getItem().getItem_Id() + "', " + item.getItem().getItem_Id() + "'," + item.getItem_Quantity() + "'," + item.getItem_Total_Price() + ")");
+        } catch (Exception e) {
+            System.err.println("DATABASE INSERTION ERROR: " + e.toString());
         }
+    }
 
-
-    public void Modify_Cart_Item(int id, int amount,int sum) {
+    public void Modify_Cart_Item(int id, int amount, int sum) {
         try {
             Statement stmt = con.createStatement();
             stmt.executeUpdate("UPDATE `order_item` SET `Quantity`='" + amount + "',`Total_ItemPrice`='" + sum + "' where MenuItem_ID = " + id + "");
@@ -56,13 +55,13 @@ public class DB_Connection_Seif {
     }
 
     public void Remove_From_Cart(int id) {
-            try {
-                Statement stmt = con.createStatement();
-                stmt.executeUpdate("delete from order_item where OrderItem_ID = '" + id + "'");
-            } catch (Exception e) {
-                System.err.println("DATABASE INSERTION ERROR: " + e.toString());
-            }
+        try {
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate("delete from order_item where OrderItem_ID = '" + id + "'");
+        } catch (Exception e) {
+            System.err.println("DATABASE INSERTION ERROR: " + e.toString());
         }
+    }
 //    public void Redeem_Coupon(Coupon c){
 //        try {
 //                Statement stmt = con.createStatement();
@@ -71,53 +70,48 @@ public class DB_Connection_Seif {
 //                System.err.println("DATABASE INSERTION ERROR: " + e.toString());
 //            }
 //    }
-     public void Cancel_Order(int id) {
-            try {
-                Statement stmt = con.createStatement();
-                stmt.executeUpdate("delete from order where Order_ID = '" + id + "'");
-            } catch (Exception e) {
-                System.err.println("DATABASE INSERTION ERROR: " + e.toString());
-            }
-        }
-     
-     public void Checkout(Order o){
-         try {
+
+    public void Cancel_Order(int id) {
+        try {
             Statement stmt = con.createStatement();
-            String res="";
-            if(o.getM_Payment_Method() instanceof Cash){
-            res = "cash";
-            }
-            else{
-                res = "credit";
-            }
-            stmt.executeUpdate("UPDATE `order` SET `Order_Price`='" + o.getOrder_Price() + "',`Order_PayMethod`='" + res + "', Order_status = '" + o.getOrderstatus() + "' where Order_ID = '" + o.getOrder_Id() +"'");
+            stmt.executeUpdate("delete from order where Order_ID = '" + id + "'");
         } catch (Exception e) {
             System.err.println("DATABASE INSERTION ERROR: " + e.toString());
         }
-     }
-     
-     public int Redeem_Cupon(Customer c,int code){
-         try {
-                Statement stmt = con.createStatement();
-                   ResultSet rs = stmt.executeQuery("select premiumcust_coupon.Coupon_ID, Coupon_code from premiumcust_coupon, coupon where premiumcust_coupon.Premium_Cust_ID = '" + c.getID() + "' and coupon.Coupon_code = '"+ code +"' and premiumcust_coupon.Coupon_ID = coupon.Coupon_ID"); 
-                   if (rs.first()){ //is premium cust
-                       if(rs.getInt("Coupon_code") == code){
-                           return rs.getInt("Coupon_ID"); //sa7
-                       }
-                       else return 0;// wrong syntax query
-                   }
-                   else return -1; // not premium
+    }
 
-            } catch (Exception e) {
-                System.err.println("DATABASE INSERTION ERROR: " + e.toString());
-                return -1;
-            }
-        }
-
-    public JTable displayCartItems(JTable tbl,Order o) {
+    public void Checkout(Order o) {
         try {
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select `Quantity`, `Total_ItemPrice`,`Item_Name`,`order_item`.`MenuItem_ID` from order_item , menu_item where order_item.MenuItem_ID = menu_item.MenuItem_ID and Order_ID = '" + o.getOrder_Id() +"'");
+            String res = "";
+            if (o.getM_Payment_Method() instanceof Cash) {
+                res = "cash";
+            } else {
+                res = "credit";
+            }
+            stmt.executeUpdate("UPDATE `order` SET `Order_Price`='" + o.getOrder_Price() + "',`Order_PayMethod`='" + res + "', Order_status = '" + o.getOrderstatus() + "' where Order_ID = '" + o.getOrder_Id() + "'");
+        } catch (Exception e) {
+            System.err.println("DATABASE INSERTION ERROR: " + e.toString());
+        }
+    }
+
+    public Coupon Redeem_Coupon(Customer c, int code) {
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select discountVal, premiumcust_coupon.Coupon_ID, Coupon_code from premiumcust_coupon, coupon where premiumcust_coupon.Premium_Cust_ID = '" + c.getID() + "' and coupon.Coupon_code = '" + code + "' and premiumcust_coupon.Coupon_ID = coupon.Coupon_ID");
+            if (rs.first()) { //is premium cust
+                return (new Coupon(rs.getInt("Coupon_ID"), rs.getInt("discountVal"))); //sa7
+            } 
+        } catch (Exception e) {
+            System.err.println("DATABASE INSERTION ERROR: " + e.toString());
+        }
+        return null;
+    }
+
+    public JTable displayCartItems(JTable tbl, Order o) {
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select `Quantity`, `Total_ItemPrice`,`Item_Name`,`order_item`.`MenuItem_ID` from order_item , menu_item where order_item.MenuItem_ID = menu_item.MenuItem_ID and Order_ID = '" + o.getOrder_Id() + "'");
 
             DefaultTableModel model;
             model = (DefaultTableModel) tbl.getModel();
@@ -128,7 +122,7 @@ public class DB_Connection_Seif {
                 rowData[1] = rs.getString("Item_Name");
                 rowData[2] = rs.getInt("Quantity");
                 rowData[3] = rs.getInt("Total_ItemPrice");
-                
+
                 model.addRow(rowData);
             }
         } catch (Exception e) {
@@ -136,8 +130,6 @@ public class DB_Connection_Seif {
         }
         return tbl;
     }
-    
-   
 
     /*
     public JTable viewOrderHistory(JTable jTable1) {
