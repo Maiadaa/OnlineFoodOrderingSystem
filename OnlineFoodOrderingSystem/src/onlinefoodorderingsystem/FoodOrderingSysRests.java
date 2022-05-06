@@ -87,9 +87,13 @@ public class FoodOrderingSysRests implements SysRests_Interface, New_Rests {
         // --- USING DATABASE --- //
         db.notifyNewRestsObservers(rest);
     }
-
+    
+    @Override
     public ArrayList<Restaurant> getRests_Avail() {
-        return Rests_Avail;
+//        return Rests_Avail;
+        DB_Connection_Gado db = new DB_Connection_Gado();
+        return db.displayRestuarant2();
     }
+    
 
 }

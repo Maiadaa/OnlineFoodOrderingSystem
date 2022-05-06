@@ -26,6 +26,8 @@ public class OnlineFoodOrderingSystem {
         
         DB_Connection_Hagrass db = new DB_Connection_Hagrass();
         System.out.println(db.selectOrderID());
+        
+        a1.viewRest();
 
     }
     

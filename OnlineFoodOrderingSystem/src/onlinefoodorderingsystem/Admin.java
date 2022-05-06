@@ -75,7 +75,11 @@ public class Admin extends Person implements Feedback_Detector {
             nextinchain.Handle_Feedback(f);
         }
     }
-    
+    public void viewRest (){
+        FoodOrderingSysRests foodrest = new FoodOrderingSysRests();
+        System.out.println(foodrest.getRests_Avail().toString());
+        
+    }
 
 
 }

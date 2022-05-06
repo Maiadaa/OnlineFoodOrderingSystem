@@ -1,10 +1,13 @@
 package onlinefoodorderingsystem;
 
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class Customer extends Person implements New_Rests_Observer {
 
@@ -92,4 +95,23 @@ public class Customer extends Person implements New_Rests_Observer {
         return db_mai.displayNotifs(tbl, this);
     }
 
+    public JTable displayRestuarant (JTable tbl) {
+        
+            FoodOrderingSysRests food = new FoodOrderingSysRests();
+            ArrayList<Restaurant> rest = food.getRests_Avail();
+            DefaultTableModel model;
+            model = (DefaultTableModel) tbl.getModel();
+            Object rowData[] = new Object[5];
+            for (int i =0;i < rest.size();i++){
+                rowData[0] = rest.get(i).getRest_Location();
+                rowData[1] = rest.get(i).getRest_Categ();
+                rowData[2] = rest.get(i).getRest_Name();
+                rowData[3] = rest.get(i).getRest_Rating();
+                rowData[4] = rest.get(i).getRest_Id();
+                
+                model.addRow(rowData);  
+            }
+            
+        return tbl;
+    }
 }

@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -68,8 +69,8 @@ public class DB_Connection_Gado {
             if(ps.executeUpdate()>=0){
                 JOptionPane.showMessageDialog(null, "Menu item is added");
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(DB_Connection_Gado.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
+            System.err.println("DATABASE Menu item ADDITION ERROR: " + e.toString());
         }
     }
     
@@ -77,7 +78,7 @@ public class DB_Connection_Gado {
         try {
             Statement stmt = con.createStatement();
             stmt.executeUpdate("delete from menu_item where MenuItem_ID = '" + id + "'");
-            JOptionPane.showMessageDialog(null, "Menu item deleted deleted");
+            JOptionPane.showMessageDialog(null, "Menu item is deleted");
             
             
         } catch (Exception e) {
@@ -120,8 +121,8 @@ public class DB_Connection_Gado {
             ps = DB_Connection_Gado.getConnection().prepareStatement(sql);
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "User updated");
-        } catch (SQLException ex) {
-            Logger.getLogger(Customer_ManageAccount_GUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
+            System.err.println("DATABASE USER DATA Update ERROR: " + e.toString());
         }
     }
     
@@ -172,6 +173,21 @@ public class DB_Connection_Gado {
         }
         return tbl;
     }
+    public ArrayList displayRestuarant2 () {
+        ArrayList<Restaurant> rest = new ArrayList<Restaurant>();
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM `restaurant` ");
+            
+            //int Rest_Id, String Rest_Location, String Rest_Categ, String Rest_Name, boolean Rest_Open
+            while (rs.next()) {
+                rest.add(new Restaurant(rs.getInt("Rest_ID"), rs.getString("Rest_Loc"),rs.getString("Rest_Categ"),  rs.getString("Rest_Name"),rs.getBoolean("Rest_Open"),rs.getDouble("Rest_Rating")));
+            }
+        } catch (Exception e) {
+            System.err.println("DATABASE DISPLAY CART ITEMS QUERY ERROR: " + e.toString());
+        }
+        return rest;
+    }
     
     public void customerSignUp(String Name, String Email, String PhoneNumber, String address, String userName, String password, String Gender){
         PreparedStatement ps;
@@ -194,8 +210,8 @@ public class DB_Connection_Gado {
                 JOptionPane.showMessageDialog(null, "New User is added");
                 
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(customer_SignUp.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
+            System.err.println("DATABASE CUSTOMER SIGNUP ERROR: " + e.toString());
         }
     }
 }
