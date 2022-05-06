@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Order {
 	private int Order_Id;
-	private Restaurant Order_Rest;
+	private Restaurant Order_Rest = new Restaurant();
 	private ArrayList<Order_Item> Ordered_Items;
 	private String Order_Date;
 	private Coupon Order_Promo;
@@ -54,8 +54,8 @@ public class Order {
 
 	}
         
-	public void Add_To_Cart(Order_Item item){
-            db.Add_To_Cart(item);
+	public void Add_To_Cart(Order_Item item, Order o){
+            db.Add_To_Cart(item, o);
 	}
 
 	/**

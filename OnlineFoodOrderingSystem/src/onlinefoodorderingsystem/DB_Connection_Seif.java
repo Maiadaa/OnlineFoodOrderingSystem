@@ -36,10 +36,10 @@ public class DB_Connection_Seif {
         }
     }
 
-    public void Add_To_Cart(Order_Item item) {
+    public void Add_To_Cart(Order_Item item, Order o) {
         try {
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("insert into order_item values('" + item.getItem().getItem_Id() + "', " + item.getItem().getItem_Id() + "', " + item.getItem().getItem_Id() + "'," + item.getItem_Quantity() + "'," + item.getItem_Total_Price() + ")");
+            stmt.executeUpdate("insert into order_item (`Order_ID`, `MenuItem_ID`, `Quantity`, `Total_ItemPrice`) values('" + o.getOrder_Id() + "', '" + item.getItem().getItem_Id() + "', '1', '" + item.getItem_Total_Price() + "')");
         } catch (Exception e) {
             System.err.println("DATABASE INSERTION ERROR: " + e.toString());
         }
@@ -52,6 +52,27 @@ public class DB_Connection_Seif {
         } catch (Exception e) {
             System.err.println("DATABASE INSERTION ERROR: " + e.toString());
         }
+    }
+
+    public Order_Item getMenuITemObjByName(String name) {
+        Order_Item item = new Order_Item();
+        int menuItemID = 0;
+        double menuItemPrice = 0.0;
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT menu_item.MenuItem_ID, menu_item.Item_Price from menu_item where menu_item.Item_Name  = " + name );
+            if (rs.first()) {
+                menuItemID = rs.getInt("MenuItem_ID");
+                menuItemPrice = rs.getDouble("Item_Price");
+                item.getItem().setItem_Id(menuItemID);
+                item.setItem_Total_Price(menuItemPrice);
+                 return item;
+            }
+        } catch (Exception e) {
+            System.err.println("DATABASE GET REST BY NAME QUERY ERROR: " + e.toString());
+        }
+
+       return null;
     }
 
     public void Remove_From_Cart(int id) {
@@ -93,7 +114,7 @@ public class DB_Connection_Seif {
             ResultSet rs = stmt.executeQuery("select discountVal, premiumcust_coupon.Coupon_ID, Coupon_code from premiumcust_coupon, coupon where premiumcust_coupon.Premium_Cust_ID = '" + c.getID() + "' and coupon.Coupon_code = '" + code + "' and premiumcust_coupon.Coupon_ID = coupon.Coupon_ID");
             if (rs.first()) { //is premium cust
                 return (new Coupon(rs.getInt("Coupon_ID"), rs.getInt("discountVal"))); //sa7
-            } 
+            }
         } catch (Exception e) {
             System.err.println("DATABASE INSERTION ERROR: " + e.toString());
         }

@@ -1,28 +1,31 @@
 package onlinefoodorderingsystem;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-
 public class Order_Item {
-	private Menu_Item Item;
-	private int Item_Quantity;
-	private double Item_Total_Price;
 
-    public Order_Item(){
+    private Menu_Item Item = new Menu_Item();
+    private int Item_Quantity;
+    private double Item_Total_Price;
 
-	}
+    public Order_Item() {
+
+    }
 
     public Order_Item(Menu_Item Item, int Item_Quantity, double Item_Total_Price) {
         this.Item = Item;
         this.Item_Quantity = Item_Quantity;
         this.Item_Total_Price = Item_Total_Price;
     }
-   
+
     public Menu_Item getItem() {
         return Item;
     }
+
+    
 
     public int getItem_Quantity() {
         return Item_Quantity;
@@ -44,12 +47,11 @@ public class Order_Item {
         this.Item_Total_Price = Item_Total_Price;
     }
 
-
     public void finalize() throws Throwable {
 
-	}
+    }
 
-	/*public getters(){
+    /*public getters(){
 
 	}*/
 }//end Order_Item

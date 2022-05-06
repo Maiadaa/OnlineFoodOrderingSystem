@@ -4,33 +4,33 @@
  */
 package onlinefoodorderingsystem;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 /**
  *
  * @author mostafa gado
  */
 public class viewMenuItem extends javax.swing.JFrame {
-    
+
     /**
      * Creates new form viewMenuItem
      */
-    Menu_Item m = new Menu_Item();
+    Order o = new Order();
     int restId = 0;
-    public viewMenuItem() {
-        
-        initComponents();
-        
-    }
-    
-//    public viewMenuItem() {
-//        initComponents();
-//    }
+    private String itemName;
 
-    public viewMenuItem(int restId) {
+    public viewMenuItem() {
+        initComponents();
+    }
+
+    public viewMenuItem(int restId, Order o) {
         initComponents();
         this.restId = restId;
         DB_Connection_Gado db = new DB_Connection_Gado();
         table = db.displayMenuItems(table, restId);
-        
+
     }
 
     /**
@@ -105,9 +105,18 @@ public class viewMenuItem extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        DB_Connection_Seif conn = new DB_Connection_Seif();
-        
-//        conn.Add_To_Cart(item);
+        DB_Connection_Seif con = new DB_Connection_Seif();
+        Order_Item item = new Order_Item();
+
+        int menuItemID = 0;
+        double menuItemPrice = 0.0;
+
+        int row = table.getSelectedRow();
+        itemName = table.getModel().getValueAt(row, 0).toString();
+
+        item = con.getMenuITemObjByName(itemName);
+
+        con.Add_To_Cart(item, o);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

@@ -13,6 +13,8 @@ public class allRestaurants extends javax.swing.JFrame {
     /**
      * Creates new form allRestaurants
      */
+    Order o = new Order();
+    
     public allRestaurants() {
         initComponents();
         DB_Connection_Gado db = new DB_Connection_Gado();
@@ -101,8 +103,16 @@ public class allRestaurants extends javax.swing.JFrame {
         // TODO add your handling code here:
         int row = table.getSelectedRow();
         int restId = Integer.parseInt(table.getModel().getValueAt(row, 4).toString());
-        viewMenuItem menu = new viewMenuItem(restId);
         
+        // create order function >> DB_Connection_Hagrass
+        
+        
+        // set the o's id and restaurant id in the instance 
+        o.setOrder_Id(1);
+        o.getOrder_Rest().setRest_Id(restId);
+        
+        viewMenuItem menu = new viewMenuItem(restId, o);
+
         menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
