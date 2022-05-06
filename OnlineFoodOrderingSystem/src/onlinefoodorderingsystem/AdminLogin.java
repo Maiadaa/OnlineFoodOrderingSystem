@@ -138,16 +138,15 @@ public class AdminLogin extends javax.swing.JFrame {
 
     private void SignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignInActionPerformed
         // TODO add your handling code here:
-        DB_Connection_Assem conn = new DB_Connection_Assem();
         String uname = Username.getText();
         String password = String.valueOf(Password.getPassword());
         if(uname.equals("") || password.equals(""))
         {
             JOptionPane.showMessageDialog(null, "Please fill in your login credentials");
         }
-        if(conn.AdminLogin(uname, password) != null)
+        if(tempAdmin.AdminLogin(uname, password) != null)
         {
-           tempAdmin = conn.AdminLogin(uname, password);
+           tempAdmin = tempAdmin.AdminLogin(uname, password);
            AdminMenu obj = new AdminMenu(tempAdmin);
            obj.setVisible(true);
             

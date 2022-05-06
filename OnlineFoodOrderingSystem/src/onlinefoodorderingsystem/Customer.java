@@ -40,13 +40,10 @@ public class Customer extends Person implements New_Rests_Observer {
 //            custdata.SignUp(this);
 //            
 //	}
-    public Customer CustomerLogin(String Username, String Pwd) {
-        for (Customer sysCust : CustomersData.getSysCusts()) {
-            if (sysCust.getUsername().equals(Username) && sysCust.getPassword().equals(Pwd)) {
-                return sysCust;
-            }
-        }
-        return null;
+    public Customer CustomerLogin(String Username, String Pwd) 
+    {
+        DB_Connection_Assem conn = new DB_Connection_Assem();
+        return conn.CustomerLogin(Username, Pwd);
     }
 
     public void Manage_Account(String Name, String Email,String PhoneNumber, String address, String userName, String password,String Gender) {

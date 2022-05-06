@@ -140,7 +140,6 @@ public class CreateCoupon extends javax.swing.JFrame {
 
     private void CreateCouponButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateCouponButtonActionPerformed
         // TODO add your handling code here:
-       
         int code = Integer.parseInt(CouponCode.getText());
         int value = Integer.parseInt(DiscountValue.getText());
         String description = CouponDescription.getText();

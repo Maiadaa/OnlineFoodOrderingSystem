@@ -17,13 +17,10 @@ public class Restaurant_Admin extends Person implements Feedback_Detector {
         super(ID, Name, Email, Phone_number, Address, Username, Password, Gender);
     }
 
-    public Restaurant_Admin RestAdminLogin(String Username, String Pwd) {
-        for (Restaurant_Admin sysRestAdmin : RestAdminsData.getRestAdmins()) {
-            if (sysRestAdmin.getUsername().equals(Username) && sysRestAdmin.getPassword().equals(Pwd)) {
-                return sysRestAdmin;
-            }
-        }
-        return null;
+    public Restaurant_Admin RestAdminLogin(String Username, String Pwd) 
+    {
+        DB_Connection_Assem conn = new DB_Connection_Assem();
+        return conn.RestaurantAdminLogin(Username, Pwd);
     }
 
 //    @Override

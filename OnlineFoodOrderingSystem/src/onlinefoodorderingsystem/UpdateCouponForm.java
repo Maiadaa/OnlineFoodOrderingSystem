@@ -176,9 +176,7 @@ public class UpdateCouponForm extends javax.swing.JFrame {
             int coupDisc = Integer.parseInt(DiscountValue.getText());
             String coupExp = ExpiryDate.getText();
             Coupon tempCoupon = new Coupon(coupCode,coupDesc,coupExp,coupDisc);
-            
-            DB_Connection_Assem conn = new DB_Connection_Assem();
-            conn.UpdateCoupon(code,tempCoupon);
+            tempAdmin.m_FoodOrderingSysCoupons.Update_Coupon(code, tempCoupon);
             JOptionPane.showMessageDialog(null, "Coupon Updated Successfully");
             Coupons menu = new Coupons(tempAdmin);
             menu.setVisible(true);

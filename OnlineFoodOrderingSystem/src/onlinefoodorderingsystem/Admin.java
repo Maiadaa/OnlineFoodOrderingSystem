@@ -42,14 +42,8 @@ public class Admin extends Person implements Feedback_Detector {
 
     public Admin AdminLogin(String Username, String Pwd)
     {
-        for (Admin sysAdmin : adminData.getSysAdmins()) 
-        {
-            if(sysAdmin.getUsername().equals(Username) && sysAdmin.getPassword().equals(Pwd))
-            {
-                return sysAdmin;
-            }
-        }
-            return null;
+       DB_Connection_Assem conn = new DB_Connection_Assem();
+       return conn.AdminLogin(Username, Pwd);
     }
 
     public boolean Manage_Account(Admin newchange){

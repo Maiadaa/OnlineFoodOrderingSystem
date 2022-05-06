@@ -28,8 +28,10 @@ public class CustomerMenu extends javax.swing.JFrame {
 
         if (premCheck == true) {
             PremiumCustCheck.setText("You are a premium customer.");
+            KnowMore.setVisible(false);
         } else {
             PremiumCustCheck.setText("You are not a premium customer yet.");
+            KnowMore.setVisible(true);
         }
 
     }
@@ -52,6 +54,7 @@ public class CustomerMenu extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         PremiumCustCheck = new javax.swing.JTextField();
         Notifs = new javax.swing.JButton();
+        KnowMore = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,6 +98,13 @@ public class CustomerMenu extends javax.swing.JFrame {
             }
         });
 
+        KnowMore.setText("Know More!");
+        KnowMore.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                KnowMoreActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -103,16 +113,19 @@ public class CustomerMenu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(CustID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(CustID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(KnowMore, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(PremiumCustCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                         .addComponent(jButton1)
                         .addGap(33, 33, 33))
                     .addGroup(layout.createSequentialGroup()
@@ -135,8 +148,10 @@ public class CustomerMenu extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(CustID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PremiumCustCheck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PremiumCustCheck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(KnowMore))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addComponent(OrderHistory)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Notifications)
@@ -144,7 +159,7 @@ public class CustomerMenu extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Notifs)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addGap(32, 32, 32))
         );
 
         pack();
@@ -181,6 +196,12 @@ public class CustomerMenu extends javax.swing.JFrame {
         Cust_Notifications_GUI notifs = new Cust_Notifications_GUI(tempCust);
         notifs.setVisible(true);
     }//GEN-LAST:event_NotifsActionPerformed
+
+    private void KnowMoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KnowMoreActionPerformed
+        // TODO add your handling code here:
+        KnowMore msg = new KnowMore();
+        msg.setVisible(true);
+    }//GEN-LAST:event_KnowMoreActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,6 +240,7 @@ public class CustomerMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField CustID;
+    private javax.swing.JButton KnowMore;
     private javax.swing.JButton Notifications;
     private javax.swing.JButton Notifs;
     private javax.swing.JButton OrderHistory;
