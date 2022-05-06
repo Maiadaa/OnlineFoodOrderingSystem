@@ -207,12 +207,17 @@ public class DB_Connection_Assem {
         ArrayList<Coupon> result = new ArrayList<Coupon>();
         result = getAllCoupons();
         for (int i = 0; i < result.size(); i++) {
-            if (code == result.get(i).getCoupon_Code()) {
-                try {
+            if (code == result.get(i).getCoupon_Code()) 
+            {
+                try 
+                {
                     Statement stmt = con.createStatement();
                     stmt.executeUpdate("DELETE FROM `coupon` WHERE Coupon_code = '" + code + "'");
                     System.out.println("Coupon Deleted Successfullyyyyy");
-                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Coupon Deleted Successfullyyyyyyy");
+                } 
+                catch (Exception e) 
+                {
                     System.err.println("DATABASE COUPON DELETION ERROR: " + e.toString());
                 }
             } else {
@@ -225,11 +230,14 @@ public class DB_Connection_Assem {
     }
 
     public void UpdateCoupon(int code, Coupon c) {
-        try {
+        try 
+        {
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("UPDATE `coupon` SET `Coupon_code`='" + c.getCoupon_Code() + "',`Coupon_desc`='" + c.getCoupon_Desc() + "',`Expiry_date`='" + c.getCoupon_ExpiryDate() + "',`discountVal`='" + c.getCoupon_Discount_Val() + "'");
+            stmt.executeUpdate("UPDATE `coupon` SET `Coupon_code`='" + c.getCoupon_Code() + "',`Coupon_desc`='" + c.getCoupon_Desc() + "',`Expiry_date`='" + c.getCoupon_ExpiryDate() + "',`discountVal`='" + c.getCoupon_Discount_Val() + "' WHERE `Coupon_Code` ='" + c.getCoupon_Code() + "' ");
             System.out.println("Coupon Updated");
-        } catch (Exception e) {
+        } 
+        catch (Exception e) 
+        {
             System.err.println("DATABASE COUPON UPDATE ERROR: " + e.toString());
             JOptionPane.showMessageDialog(null, "Invalid Coupon Code, please insert a valid one");
         }
@@ -237,15 +245,18 @@ public class DB_Connection_Assem {
 
     public ArrayList<Coupon> getAllCoupons() {
         ArrayList<Coupon> result = new ArrayList();
-        try {
+        try 
+        {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select * from coupon");
-            while (rs.next()) {
+            while (rs.next()) 
+            {
                 result.add(new Coupon(rs.getInt("Coupon_code"), rs.getString("Coupon_desc"), rs.getString("Expiry_date"), rs.getInt("discountVal")));
             }
             System.out.println("Coupons Read");
 
-        } catch (Exception e) {
+        } catch (Exception e) 
+        {
             System.err.println("DATABASE COUPON RETRIVAL QUERY ERROR: " + e.toString());
         }
         return result;
@@ -256,10 +267,12 @@ public class DB_Connection_Assem {
         try {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select * from admin");
-            while (rs.next()) {
+            while (rs.next()) 
+            {
                 result.add(new Admin(rs.getInt("ID"), rs.getString("Name"), rs.getString("Email"), rs.getString("Phone"), rs.getString("Address"), rs.getString("Username"), rs.getString("Password"), rs.getString("Gender").charAt(0)));
             }
-        } catch (Exception e) {
+        } catch (Exception e) 
+        {
             System.err.println("DATABASE ADMIN RETRIVAL QUERY ERROR: " + e.toString());
         }
         return result;
@@ -270,10 +283,12 @@ public class DB_Connection_Assem {
         try {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select * from customer");
-            while (rs.next()) {
+            while (rs.next()) 
+            {
                 result.add(new Customer(rs.getInt("ID"), rs.getString("Name"), rs.getString("Email"), rs.getString("Phone"), rs.getString("Address"), rs.getString("Username"), rs.getString("Password"), rs.getString("Gender").charAt(0)));
             }
-        } catch (Exception e) {
+        } catch (Exception e) 
+        {
             System.err.println("DATABASE QUERY ERROR: " + e.toString());
         }
         return result;
@@ -324,15 +339,18 @@ public class DB_Connection_Assem {
 
     }
 
-    public boolean ValidateCouponUpdate(int code) {
-        ArrayList<Coupon> array = new ArrayList<Coupon>();
+    public boolean ValidateCouponUpdate(int code)
+    {
+        ArrayList<Coupon> array = new ArrayList<>();
         array = getAllCoupons();
-        for (int i = 0; i < array.size(); i++) {
-            System.out.println(array.get(i).getCoupon_Code());
-            if (array.get(i).getCoupon_Code() == code) {
+        for (int i = 0; i <= array.size(); i++) 
+        {
+            if (array.get(i).getCoupon_Code() == code) 
+            {
                 System.out.println("Coupon found successfully");
                 return true;
-            } else {
+            } else 
+            {
                 return false;
             }
         }
