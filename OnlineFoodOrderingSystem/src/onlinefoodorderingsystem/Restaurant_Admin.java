@@ -26,10 +26,10 @@ public class Restaurant_Admin extends Person implements Feedback_Detector {
         return null;
     }
 
-    @Override
-    public String toString() {
-        return "Restaurant_Admin{" + "Rest=" + Rest.toString() + '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Restaurant_Admin{" + "Rest=" + Rest.toString() + '}';
+//    }
 
     public boolean ManageRestDetails() {
         // --- using database --- //
@@ -51,6 +51,7 @@ public class Restaurant_Admin extends Person implements Feedback_Detector {
     @Override
     public void Handle_Feedback(Feedback f) {
         if (f.getFeedback_Type().equals("rating")) {
+            System.out.println(f.getRate());
             f.setFeedback_State("Accepted from Restaurant Admin");
             DB_Connection_Hagrass db = new DB_Connection_Hagrass();
             db.EditFeedbackStatus(f);
