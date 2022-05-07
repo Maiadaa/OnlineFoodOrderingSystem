@@ -149,13 +149,16 @@ public class CreateFeedback extends javax.swing.JFrame {
 
     private void RatingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RatingActionPerformed
         // TODO add your handling code here:
-        RatingFeedback rating = new RatingFeedback();
+        RatingFeedback rating = new RatingFeedback(cust, orderID);
         rating.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_RatingActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         // TODO add your handling code here:
+        ViewOrderHistory orderHistory = new ViewOrderHistory(cust);
+        orderHistory.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_BackActionPerformed
 
     /**

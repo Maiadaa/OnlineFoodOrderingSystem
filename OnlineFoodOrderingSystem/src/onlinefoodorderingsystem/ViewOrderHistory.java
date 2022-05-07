@@ -4,18 +4,20 @@
  */
 package onlinefoodorderingsystem;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author mahmo
  */
 public class ViewOrderHistory extends javax.swing.JFrame {
+
     static public Customer tempCustomer = new Customer();
-    
+
     /**
      * Creates new form ViewOrderHistory
      */
-    public ViewOrderHistory(Customer c) 
-    {
+    public ViewOrderHistory(Customer c) {
         initComponents();
         tempCustomer = c;
         DB_Connection_Assem conn = new DB_Connection_Assem();
@@ -174,16 +176,25 @@ public class ViewOrderHistory extends javax.swing.JFrame {
 
     private void GiveFeedbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GiveFeedbackActionPerformed
         // TODO add your handling code here:
-        CreateFeedback createFeedback = new CreateFeedback(tempCustomer, Integer.parseInt(GetOrderID.getText()));
-        createFeedback.setVisible(true);
-        this.dispose();
+        if (GetOrderID.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please Enter Order ID.");
+        } else {
+            CreateFeedback createFeedback = new CreateFeedback(tempCustomer, Integer.parseInt(GetOrderID.getText()));
+            createFeedback.setVisible(true);
+            this.dispose();
+        }
+
     }//GEN-LAST:event_GiveFeedbackActionPerformed
 
     private void RatingFeedbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RatingFeedbackActionPerformed
         // TODO add your handling code here:
-        RatingFeedback rating = new RatingFeedback(tempCustomer, Integer.parseInt(GetOrderID.getText()));
-        rating.setVisible(true);
-        this.dispose();
+        if (GetOrderID.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please Enter Order ID.");
+        } else {
+            RatingFeedback rating = new RatingFeedback(tempCustomer, Integer.parseInt(GetOrderID.getText()));
+            rating.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_RatingFeedbackActionPerformed
 
     /**

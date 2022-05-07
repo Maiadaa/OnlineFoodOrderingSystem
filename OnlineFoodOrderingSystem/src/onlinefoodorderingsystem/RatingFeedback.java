@@ -40,7 +40,7 @@ public class RatingFeedback extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         Description = new java.awt.TextArea();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Feedback = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         Back = new javax.swing.JButton();
         rate1 = new javax.swing.JRadioButton();
@@ -70,11 +70,21 @@ public class RatingFeedback extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Complaint");
+        Feedback.setText("Complaint");
+        Feedback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FeedbackActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Note: for complaint your order click on complaint to switch to Feedback page");
 
         Back.setText("Back");
+        Back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(rate1);
         rate1.addActionListener(new java.awt.event.ActionListener() {
@@ -127,7 +137,7 @@ public class RatingFeedback extends javax.swing.JFrame {
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Back, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(Feedback, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(Description, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(18, Short.MAX_VALUE))
@@ -145,7 +155,7 @@ public class RatingFeedback extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
+                        .addComponent(Feedback)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Back))
                     .addComponent(Description, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -195,6 +205,20 @@ public class RatingFeedback extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_rate1ActionPerformed
 
+    private void FeedbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FeedbackActionPerformed
+        // TODO add your handling code here:
+        CreateFeedback feedback = new CreateFeedback(cust, orderID);
+        feedback.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_FeedbackActionPerformed
+
+    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+        // TODO add your handling code here:
+        ViewOrderHistory orderHistory = new ViewOrderHistory(cust);
+        orderHistory.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BackActionPerformed
+
     /**^
      * @param args the command line arguments
      */
@@ -233,9 +257,9 @@ public class RatingFeedback extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
     private java.awt.TextArea Description;
+    private javax.swing.JButton Feedback;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
