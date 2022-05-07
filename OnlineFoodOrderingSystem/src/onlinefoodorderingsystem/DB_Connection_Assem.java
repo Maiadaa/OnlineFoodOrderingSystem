@@ -226,8 +226,8 @@ public class DB_Connection_Assem {
                 {
                     Statement stmt = con.createStatement();
                     stmt.executeUpdate("DELETE FROM `coupon` WHERE Coupon_code =" + code);
-                    System.out.println("Coupon Deleted Successfullyyyyy");
-                    JOptionPane.showMessageDialog(null, "Coupon Deleted Successfullyyyyyyy");
+                    System.out.println("Coupon Deleted Successfully");
+                    JOptionPane.showMessageDialog(null, "Coupon Deleted Successfully");
                 } 
                 catch (Exception e) 
                 {

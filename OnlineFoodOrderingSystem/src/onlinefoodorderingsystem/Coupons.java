@@ -237,8 +237,8 @@ public class Coupons extends javax.swing.JFrame
         {
             tempAdmin.getM_FoodOrderingSysCoupons().Remove_Coupon(Integer.valueOf(CodeLabel.getText()));
             this.dispose();
-        Coupons newMenu = new Coupons(tempAdmin);
-        newMenu.setVisible(true);
+            Coupons newMenu = new Coupons(tempAdmin);
+            newMenu.setVisible(true);
             
         }
         
