@@ -49,6 +49,11 @@ public class CreateCoupon extends javax.swing.JFrame {
         jLabel1.setText("Create Coupon");
 
         BackButton.setText("Back");
+        BackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackButtonActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Coupon Code:");
 
@@ -159,6 +164,13 @@ public class CreateCoupon extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_CreateCouponButtonActionPerformed
+
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        Coupons menu = new Coupons(tempAdmin);
+        menu.setVisible(true);
+    }//GEN-LAST:event_BackButtonActionPerformed
 
     /**
      * @param args the command line arguments

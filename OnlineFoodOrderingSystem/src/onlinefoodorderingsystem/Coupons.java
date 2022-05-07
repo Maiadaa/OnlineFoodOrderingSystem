@@ -232,7 +232,7 @@ public class Coupons extends javax.swing.JFrame
         DB_Connection_Assem con = new DB_Connection_Assem();
         if (IdLabel.getText().isEmpty())
         {
-            JOptionPane.showMessageDialog(null, "Please select a coupon to update first");
+            JOptionPane.showMessageDialog(null, "Please select a coupon to delete first");
         } else
         {
             tempAdmin.getM_FoodOrderingSysCoupons().Remove_Coupon(Integer.valueOf(CodeLabel.getText()));

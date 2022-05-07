@@ -51,12 +51,16 @@ public class DB_Connection_Assem {
         return con;
     }
 
-    public int Add_Observer(Customer c) {
+    public int Add_Observer(Customer c) 
+    {
         ArrayList<Premium_Customer> result = new ArrayList();
         result = getAllPremCustomers();
-        try {
-            for (int i = 0; i < result.size(); i++) {
-                if (c.getUsername().equals(result.get(i).getUsername())) {
+        try 
+        {
+            for (int i = 0; i < result.size(); i++) 
+            {
+                if (c.getUsername().equals(result.get(i).getUsername())) 
+                {
                     System.out.println("This customer is already premium");
                     return 0;
                 }
@@ -64,7 +68,9 @@ public class DB_Connection_Assem {
             Statement stmt = con.createStatement();
             stmt.executeUpdate("INSERT INTO premium_customer(Name, Email, Phone  , Address , Username , Password, Gender) values('" + c.getName() + "',' " + c.getEmail() + "', '" + c.getPhone_number() + "', '" + c.getAddress() + "', '" + c.getUsername() + "', '" + c.getPassword() + "', '" + c.getGender() + "')");
             System.out.println("Customer added as a premium customer");
-        } catch (Exception e) {
+        } 
+        catch (Exception e) 
+        {
             System.err.println("DATABASE COUPON INSERTION ERROR: " + e.toString());
         }
         return 0;
@@ -177,7 +183,8 @@ public class DB_Connection_Assem {
         return result;
     }
     public JTable displayCouponMsgs(JTable tbl) {
-        try {
+        try 
+        {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT DISTINCT msg FROM couponnotifications");
 
@@ -185,19 +192,24 @@ public class DB_Connection_Assem {
             model = (DefaultTableModel) tbl.getModel();
             Object rowData[] = new Object[1];
 
-            while (rs.next()) {
+            while (rs.next()) 
+            {
                 rowData[0] = rs.getString("msg");
 
                 model.addRow(rowData);
             }
-        } catch (Exception e) {
+        } 
+        catch (Exception e) 
+        {
             System.err.println("DATABASE DISPLAY COUPONS ERROR: " + e.toString());
         }
         return tbl;
     }
 
-    public JTable displayCoupons(JTable tbl) {
-        try {
+    public JTable displayCoupons(JTable tbl) 
+    {
+        try 
+        {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select * from coupon");
 
@@ -205,7 +217,8 @@ public class DB_Connection_Assem {
             model = (DefaultTableModel) tbl.getModel();
             Object rowData[] = new Object[5];
 
-            while (rs.next()) {
+            while (rs.next()) 
+            {
                 rowData[0] = rs.getInt("Coupon_ID");
                 rowData[1] = rs.getString("Coupon_code");
                 rowData[2] = rs.getString("Coupon_desc");
@@ -214,7 +227,9 @@ public class DB_Connection_Assem {
 
                 model.addRow(rowData);
             }
-        } catch (Exception e) {
+        } 
+        catch (Exception e) 
+        {
             System.err.println("DATABASE DISPLAY COUPONS ERROR: " + e.toString());
         }
         return tbl;
@@ -237,7 +252,8 @@ public class DB_Connection_Assem {
     }
   
 
-    public void UpdateCoupon(int id, Coupon c) {
+    public void UpdateCoupon(int id, Coupon c) 
+    {
         try 
         {
             Statement stmt = con.createStatement();
