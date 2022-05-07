@@ -4,14 +4,18 @@
  */
 package onlinefoodorderingsystem;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author mahmo
  */
-public class Coupons extends javax.swing.JFrame {
+public class Coupons extends javax.swing.JFrame 
+{
+
     static public Admin tempAdmin = new Admin();
+
     /**
      * Creates new form Coupons
      */
@@ -210,28 +214,51 @@ public class Coupons extends javax.swing.JFrame {
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
         // TODO add your handling code here:
-        AdminMenu menu = new AdminMenu();
+        AdminMenu menu = new AdminMenu(tempAdmin);
         menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BackButtonActionPerformed
 
     private void AddCopounActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCopounActionPerformed
         // TODO add your handling code here:
-        CreateCoupon create =  new CreateCoupon(tempAdmin);
+        CreateCoupon create = new CreateCoupon(tempAdmin);
         create.setVisible(true);
-        
+        this.dispose();
+
     }//GEN-LAST:event_AddCopounActionPerformed
 
     private void DeleteCopounActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteCopounActionPerformed
         // TODO add your handling code here: 
-        tempAdmin.getM_FoodOrderingSysCoupons().Remove_Coupon(Integer.valueOf(CodeLabel.getText()));
+        DB_Connection_Assem con = new DB_Connection_Assem();
+        if (IdLabel.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Please select a coupon to update first");
+        } else
+        {
+            tempAdmin.getM_FoodOrderingSysCoupons().Remove_Coupon(Integer.valueOf(CodeLabel.getText()));
+            this.dispose();
+        Coupons newMenu = new Coupons(tempAdmin);
+        newMenu.setVisible(true);
+            
+        }
+        
+
     }//GEN-LAST:event_DeleteCopounActionPerformed
 
     private void UpdateCopounActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateCopounActionPerformed
         // TODO add your handling code here:
-        UpdateCoupon menu = new UpdateCoupon(tempAdmin);
-        menu.setVisible(true);
-        this.dispose();
+        DB_Connection_Assem con = new DB_Connection_Assem();
+        if (IdLabel.getText().isEmpty()) 
+        {
+            JOptionPane.showMessageDialog(null, "Please select a coupon to update first");
+        } else 
+        {
+            UpdateCouponForm form = new UpdateCouponForm(Integer.parseInt(IdLabel.getText()), tempAdmin);
+            form.setVisible(true);
+            this.dispose();
+        }
+
+
     }//GEN-LAST:event_UpdateCopounActionPerformed
 
     private void IdLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdLabelActionPerformed

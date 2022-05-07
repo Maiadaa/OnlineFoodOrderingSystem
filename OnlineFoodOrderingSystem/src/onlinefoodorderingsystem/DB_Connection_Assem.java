@@ -237,11 +237,11 @@ public class DB_Connection_Assem {
     }
   
 
-    public void UpdateCoupon(int code, Coupon c) {
+    public void UpdateCoupon(int id, Coupon c) {
         try 
         {
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("UPDATE `coupon` SET `Coupon_code`='" + c.getCoupon_Code() + "',`Coupon_desc`='" + c.getCoupon_Desc() + "',`Expiry_date`='" + c.getCoupon_ExpiryDate() + "',`discountVal`='" + c.getCoupon_Discount_Val() + "' WHERE `Coupon_code` ='" + c.getCoupon_Code() + "' ");
+            stmt.executeUpdate("UPDATE `coupon` SET `Coupon_code`='" + c.getCoupon_Code() + "',`Coupon_desc`='" + c.getCoupon_Desc() + "',`Expiry_date`='" + c.getCoupon_ExpiryDate() + "',`discountVal`='" + c.getCoupon_Discount_Val() + "' WHERE `Coupon_ID` ='" + id + "' ");
             System.out.println("Coupon Updated");
         } 
         catch (Exception e) 
