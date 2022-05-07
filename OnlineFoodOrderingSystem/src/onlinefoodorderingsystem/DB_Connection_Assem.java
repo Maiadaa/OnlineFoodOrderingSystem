@@ -157,7 +157,25 @@ public class DB_Connection_Assem {
             System.err.println("DATABASE COUPON INSERTION ERROR: " + e.toString());
         }
     }
+        public ArrayList<Coupon> getAllCoupons() 
+    {
+        ArrayList<Coupon> result = new ArrayList();
+        try 
+        {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from coupon");
+            while (rs.next()) 
+            {
+                result.add(new Coupon(rs.getInt("Coupon_code"), rs.getString("Coupon_desc"), rs.getString("Expiry_date"), rs.getInt("discountVal")));
+            }
+            System.out.println(result.toString());
 
+        } catch (Exception e) 
+        {
+            System.err.println("DATABASE COUPON RETRIVAL QUERY ERROR: " + e.toString());
+        }
+        return result;
+    }
     public JTable displayCouponMsgs(JTable tbl) {
         try {
             Statement stmt = con.createStatement();
@@ -202,38 +220,28 @@ public class DB_Connection_Assem {
         return tbl;
     }
 
-    public int DeleteCoupon(int code) {
-
-        ArrayList<Coupon> result = new ArrayList<Coupon>();
-        result = getAllCoupons();
-        for (int i = 0; i < result.size(); i++) {
-            if (code == result.get(i).getCoupon_Code()) 
-            {
+    public void DeleteCoupon(int code) 
+    {
                 try 
                 {
                     Statement stmt = con.createStatement();
-                    stmt.executeUpdate("DELETE FROM `coupon` WHERE Coupon_code = '" + code + "'");
+                    stmt.executeUpdate("DELETE FROM `coupon` WHERE Coupon_code =" + code);
                     System.out.println("Coupon Deleted Successfullyyyyy");
                     JOptionPane.showMessageDialog(null, "Coupon Deleted Successfullyyyyyyy");
                 } 
                 catch (Exception e) 
                 {
+                    JOptionPane.showMessageDialog(null, "Invalid Coupon Code, please insert a valid one");  
                     System.err.println("DATABASE COUPON DELETION ERROR: " + e.toString());
                 }
-            } else {
-                JOptionPane.showMessageDialog(null, "Invalid Coupon Code, please insert a valid one");
-                return 0;
-            }
-        }
-
-        return 0;
     }
+  
 
     public void UpdateCoupon(int code, Coupon c) {
         try 
         {
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("UPDATE `coupon` SET `Coupon_code`='" + c.getCoupon_Code() + "',`Coupon_desc`='" + c.getCoupon_Desc() + "',`Expiry_date`='" + c.getCoupon_ExpiryDate() + "',`discountVal`='" + c.getCoupon_Discount_Val() + "' WHERE `Coupon_Code` ='" + c.getCoupon_Code() + "' ");
+            stmt.executeUpdate("UPDATE `coupon` SET `Coupon_code`='" + c.getCoupon_Code() + "',`Coupon_desc`='" + c.getCoupon_Desc() + "',`Expiry_date`='" + c.getCoupon_ExpiryDate() + "',`discountVal`='" + c.getCoupon_Discount_Val() + "' WHERE `Coupon_code` ='" + c.getCoupon_Code() + "' ");
             System.out.println("Coupon Updated");
         } 
         catch (Exception e) 
@@ -243,24 +251,7 @@ public class DB_Connection_Assem {
         }
     }
 
-    public ArrayList<Coupon> getAllCoupons() {
-        ArrayList<Coupon> result = new ArrayList();
-        try 
-        {
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from coupon");
-            while (rs.next()) 
-            {
-                result.add(new Coupon(rs.getInt("Coupon_code"), rs.getString("Coupon_desc"), rs.getString("Expiry_date"), rs.getInt("discountVal")));
-            }
-            System.out.println("Coupons Read");
-
-        } catch (Exception e) 
-        {
-            System.err.println("DATABASE COUPON RETRIVAL QUERY ERROR: " + e.toString());
-        }
-        return result;
-    }
+    
 
     public ArrayList<Admin> getAllAdmins() {
         ArrayList<Admin> result = new ArrayList();

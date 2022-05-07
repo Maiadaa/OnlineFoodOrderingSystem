@@ -28,7 +28,8 @@ public class OnlineFoodOrderingSystem {
         System.out.println(db.selectOrderID());
         
         a1.viewRest();
-
+        DB_Connection_Assem conn = new DB_Connection_Assem();
+        conn.getAllCoupons();
     }
     
 }

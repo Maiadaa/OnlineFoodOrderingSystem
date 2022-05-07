@@ -4,6 +4,8 @@
  */
 package onlinefoodorderingsystem;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author mahmo
@@ -40,6 +42,11 @@ public class Coupons extends javax.swing.JFrame {
         AddCopoun = new javax.swing.JButton();
         DeleteCopoun = new javax.swing.JButton();
         UpdateCopoun = new javax.swing.JButton();
+        IdLabel = new javax.swing.JTextField();
+        CodeLabel = new javax.swing.JTextField();
+        DescLabel = new javax.swing.JTextField();
+        DateLabel = new javax.swing.JTextField();
+        DiscLabel = new javax.swing.JTextField();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -86,6 +93,11 @@ public class Coupons extends javax.swing.JFrame {
             }
         });
         CoupounsData.getTableHeader().setReorderingAllowed(false);
+        CoupounsData.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CoupounsDataMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(CoupounsData);
         if (CoupounsData.getColumnModel().getColumnCount() > 0) {
             CoupounsData.getColumnModel().getColumn(0).setResizable(false);
@@ -115,28 +127,18 @@ public class Coupons extends javax.swing.JFrame {
             }
         });
 
+        IdLabel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IdLabelActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(AddCopoun, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(DeleteCopoun, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(134, 134, 134)
-                                .addComponent(UpdateCopoun))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 712, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(330, 330, 330)
-                        .addComponent(jLabel1)))
-                .addContainerGap(35, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 346, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(BackButton)
@@ -144,6 +146,38 @@ public class Coupons extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(314, 314, 314))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 712, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(AddCopoun, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(149, 149, 149))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(IdLabel)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(CodeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(DescLabel)
+                                    .addComponent(DeleteCopoun, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(94, 94, 94)
+                                        .addComponent(UpdateCopoun))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(DateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(DiscLabel))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(330, 330, 330)
+                        .addComponent(jLabel1)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,8 +187,15 @@ public class Coupons extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(IdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CodeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DescLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DiscLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AddCopoun)
                     .addComponent(DeleteCopoun)
@@ -178,14 +219,12 @@ public class Coupons extends javax.swing.JFrame {
         // TODO add your handling code here:
         CreateCoupon create =  new CreateCoupon(tempAdmin);
         create.setVisible(true);
-        this.dispose();
+        
     }//GEN-LAST:event_AddCopounActionPerformed
 
     private void DeleteCopounActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteCopounActionPerformed
-        // TODO add your handling code here:
-        DeleteCoupon menu = new DeleteCoupon(tempAdmin);
-        menu.setVisible(true);
-        this.dispose();
+        // TODO add your handling code here: 
+        tempAdmin.getM_FoodOrderingSysCoupons().Remove_Coupon(Integer.valueOf(CodeLabel.getText()));
     }//GEN-LAST:event_DeleteCopounActionPerformed
 
     private void UpdateCopounActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateCopounActionPerformed
@@ -194,6 +233,21 @@ public class Coupons extends javax.swing.JFrame {
         menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_UpdateCopounActionPerformed
+
+    private void IdLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdLabelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_IdLabelActionPerformed
+
+    private void CoupounsDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CoupounsDataMouseClicked
+        // TODO add your handling code here:]
+        int index = CoupounsData.getSelectedRow();
+        DefaultTableModel dft = (DefaultTableModel) CoupounsData.getModel();
+        IdLabel.setText(dft.getValueAt(index, 0).toString());
+        CodeLabel.setText(dft.getValueAt(index, 1).toString());
+        DescLabel.setText(dft.getValueAt(index, 2).toString());
+        DateLabel.setText(dft.getValueAt(index, 3).toString());
+        DiscLabel.setText(dft.getValueAt(index, 4).toString());
+    }//GEN-LAST:event_CoupounsDataMouseClicked
 
     /**
      * @param args the command line arguments
@@ -233,8 +287,13 @@ public class Coupons extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddCopoun;
     private javax.swing.JButton BackButton;
+    private javax.swing.JTextField CodeLabel;
     private javax.swing.JTable CoupounsData;
+    private javax.swing.JTextField DateLabel;
     private javax.swing.JButton DeleteCopoun;
+    private javax.swing.JTextField DescLabel;
+    private javax.swing.JTextField DiscLabel;
+    private javax.swing.JTextField IdLabel;
     private javax.swing.JButton UpdateCopoun;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
