@@ -36,7 +36,7 @@ public class ManagerLogin extends javax.swing.JFrame {
         Password = new javax.swing.JPasswordField();
         SignIn = new javax.swing.JButton();
         SignUp = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        BackButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,10 +59,10 @@ public class ManagerLogin extends javax.swing.JFrame {
 
         SignUp.setText("Sign-Up");
 
-        jButton1.setText("Back");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BackButton.setText("Back");
+        BackButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BackButtonActionPerformed(evt);
             }
         });
 
@@ -74,7 +74,7 @@ public class ManagerLogin extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1))
+                        .addComponent(BackButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -123,17 +123,19 @@ public class ManagerLogin extends javax.swing.JFrame {
                     .addComponent(SignIn)
                     .addComponent(SignUp))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(BackButton)
                 .addGap(18, 18, 18))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
         // TODO add your handling code here:
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+        HomePage home = new HomePage();
+        home.setVisible(true);
+    }//GEN-LAST:event_BackButtonActionPerformed
 
     private void SignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignInActionPerformed
         // TODO add your handling code here:
@@ -193,11 +195,11 @@ public class ManagerLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BackButton;
     private javax.swing.JPasswordField Password;
     private javax.swing.JButton SignIn;
     private javax.swing.JButton SignUp;
     private javax.swing.JTextField Username;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
