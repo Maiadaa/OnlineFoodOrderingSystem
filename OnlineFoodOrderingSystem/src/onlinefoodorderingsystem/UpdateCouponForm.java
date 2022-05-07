@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
  * @author mahmo
  */
 public class UpdateCouponForm extends javax.swing.JFrame {
-    static int code;
+    static int id;
     static Admin tempAdmin = new Admin();
     /**
      * Creates new form UpdateCouponForm
@@ -20,10 +20,9 @@ public class UpdateCouponForm extends javax.swing.JFrame {
     public UpdateCouponForm(int c , Admin a) 
     {
         tempAdmin = a;
-        code = c;
+        id = c;
         initComponents();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -176,7 +175,7 @@ public class UpdateCouponForm extends javax.swing.JFrame {
             int coupDisc = Integer.parseInt(DiscountValue.getText());
             String coupExp = ExpiryDate.getText();
             Coupon tempCoupon = new Coupon(coupCode,coupDesc,coupExp,coupDisc);
-            tempAdmin.m_FoodOrderingSysCoupons.Update_Coupon(code, tempCoupon);
+            tempAdmin.m_FoodOrderingSysCoupons.Update_Coupon(id, tempCoupon);
             JOptionPane.showMessageDialog(null, "Coupon Updated Successfully");
             Coupons menu = new Coupons(tempAdmin);
             menu.setVisible(true);
@@ -215,7 +214,7 @@ public class UpdateCouponForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UpdateCouponForm(code,tempAdmin).setVisible(true);
+                new UpdateCouponForm(id,tempAdmin).setVisible(true);
             }
         });
     }

@@ -39,7 +39,8 @@ public class FoodOrderingSysCoupons implements Premium_Coupon {
 	}
 	public void Remove_Coupon(int code)
         {
-            conn.DeleteCoupon(code);
+            DB_Connection_Assem con = new DB_Connection_Assem();
+            con.DeleteCoupon(code);
 	}
         public void Update_Coupon(int code , Coupon c)
         {
