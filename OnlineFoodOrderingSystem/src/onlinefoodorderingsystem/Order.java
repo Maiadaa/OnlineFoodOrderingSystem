@@ -18,7 +18,8 @@ public class Order {
         DB_Connection_Seif db = new DB_Connection_Seif();
         
 	public Order(){
-            
+            Order_Price = 0;
+            m_Payment_Method = null;
 	}
 
     public Order(int Order_Id, Restaurant Order_Rest, ArrayList<Order_Item> Ordered_Items, String Order_Date, Coupon Order_Promo, double Order_Price, String Order_status, Order_Item m_Order_Item, Payment_Method m_Payment_Method) {

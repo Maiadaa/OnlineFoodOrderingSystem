@@ -63,9 +63,9 @@ public class Customer extends Person implements New_Rests_Observer {
 
     }
 
-    public void Create_Order(Order order) {
+    public void Create_Order(Order order,int restID) {
         DB_Connection_Hagrass db = new DB_Connection_Hagrass();
-        db.create_Order(this.getID(), order);
+        db.create_Order(this.getID(), order,restID);
     }
 
     public void Cancel_Order(Order o) {

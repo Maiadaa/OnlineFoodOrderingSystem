@@ -28,6 +28,7 @@ public class viewMenuItem extends javax.swing.JFrame {
     public viewMenuItem(int restId, Order o) {
         initComponents();
         this.restId = restId;
+        this.o = o;
         DB_Connection_Gado db = new DB_Connection_Gado();
         table = db.displayMenuItems(table, restId);
 
