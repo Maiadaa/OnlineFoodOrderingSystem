@@ -113,9 +113,9 @@ public class allRestaurants extends javax.swing.JFrame {
         cust.Create_Order(o,restId);
         
         // set the o's id and restaurant id in the instance 
-       
+       int orderId= db.selectOrderID();
         
-        viewMenuItem menu = new viewMenuItem(restId, o);
+        viewMenuItem menu = new viewMenuItem(restId,orderId);
 
         menu.setVisible(true);
         this.dispose();
