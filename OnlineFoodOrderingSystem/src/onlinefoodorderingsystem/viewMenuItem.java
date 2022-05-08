@@ -17,7 +17,7 @@ public class viewMenuItem extends javax.swing.JFrame {
     /**
      * Creates new form viewMenuItem
      */
-    Order o = new Order();
+    int orderId;
     int restId = 0;
     private String itemName;
 
@@ -25,10 +25,10 @@ public class viewMenuItem extends javax.swing.JFrame {
         initComponents();
     }
 
-    public viewMenuItem(int restId, Order o) {
+    public viewMenuItem(int restId, int id) {
         initComponents();
         this.restId = restId;
-        this.o = o;
+        orderId=id;
         DB_Connection_Gado db = new DB_Connection_Gado();
         table = db.displayMenuItems(table, restId);
 
@@ -117,7 +117,7 @@ public class viewMenuItem extends javax.swing.JFrame {
 
         item = con.getMenuITemObjByName(itemName);
 
-        con.Add_To_Cart(item, o);
+        con.Add_To_Cart(item, orderId);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
