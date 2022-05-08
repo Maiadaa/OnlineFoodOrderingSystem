@@ -78,8 +78,9 @@ public class DB_Connection_Seif {
 
     public void Remove_From_Cart(int id) {
         try {
+            System.out.println(id);
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("delete from order_item where OrderItem_ID = '" + id + "'");
+            stmt.executeUpdate("delete from `order_item` where `OrderItem_ID` = " + id + "");
         } catch (Exception e) {
             System.err.println("DATABASE INSERTION ERROR: " + e.toString());
         }

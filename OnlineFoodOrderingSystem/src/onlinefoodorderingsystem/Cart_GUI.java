@@ -243,8 +243,8 @@ public class Cart_GUI extends javax.swing.JFrame {
         DB_Connection_Seif db = new DB_Connection_Seif();
         db.Remove_From_Cart(itemId);
         JOptionPane.showMessageDialog(null, "Item Removed Successfully");
-        this.dispose();
         Cart_GUI newcart = new Cart_GUI(o,cust);
+        this.dispose();
         newcart.setVisible(true);
 
     }//GEN-LAST:event_RemoveActionPerformed
