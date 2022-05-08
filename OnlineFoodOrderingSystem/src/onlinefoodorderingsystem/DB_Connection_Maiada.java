@@ -50,17 +50,19 @@ public class DB_Connection_Maiada {
 
     // done
     public ArrayList<Customer> getAllCusts() {
-        ArrayList<Customer> result = new ArrayList();
+        
         try {
+            ArrayList<Customer> result = new ArrayList();
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select ID from customer");
+            ResultSet rs = stmt.executeQuery("select * from customer");
             while (rs.next()) {
                 result.add(new Customer(rs.getInt("ID")));
             }
+            return result;
         } catch (Exception e) {
             System.err.println("DATABASE QUERY ERROR: " + e.toString());
         }
-        return result;
+        return null;
     }
 
     // done
@@ -73,9 +75,8 @@ public class DB_Connection_Maiada {
         String msg = "We want to notify you that " + rest.getRest_Name() + " is now available on our application! \n Located at " + rest.getRest_Location()
                 + ".\n The restaurant is known for its " + rest.getRest_Categ() + ".\n Be the first to try it out and rate!";
         for (Customer c : custs) {
+            System.out.println(c);
             try {
-                System.out.println(msg);
-
                 Statement stmt = con.createStatement();
                 stmt.executeUpdate("insert into newrestnotif (`msg`, `Cust_ID`, `Rest_ID`) values('" + msg + "', " + c.getID() + ", '" + rest.getRest_Id() + "')");
                 System.out.println("Notification added successfully");
@@ -220,10 +221,10 @@ public class DB_Connection_Maiada {
         }
     }
 
-    public Restaurant SelectRestData(int restID) {
+    public Restaurant SelectRestData(int restAdminID) {
         try {
             Statement stmt = con.createStatement();
-            ResultSet d = stmt.executeQuery("SELECT * FROM `restaurant` WHERE Rest_ID = '" + restID + "'");
+            ResultSet d = stmt.executeQuery("SELECT * FROM `restaurant` WHERE RestAdmin_ID = '" + restAdminID + "'");
             if (d.first()) {
                 boolean res = false;
                 if (d.getByte("Rest_Open") == 1) {

@@ -20,10 +20,11 @@ public class RestAdmin_ManageRest_GUI extends javax.swing.JFrame {
 
     public RestAdmin_ManageRest_GUI(Restaurant_Admin ra) {
         this.ra = ra;
+        System.out.println(ra.getID());
         initComponents();
 
         DB_Connection_Maiada db = new DB_Connection_Maiada();
-        Restaurant rest = db.SelectRestData(ra.getRest().getRest_Id());
+        Restaurant rest = db.SelectRestData(ra.getID());
 
         restID.setText(String.valueOf(rest.getRest_Id()));
         restName.setText(rest.getRest_Name());
@@ -177,6 +178,10 @@ public class RestAdmin_ManageRest_GUI extends javax.swing.JFrame {
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // TODO add your handling code here:
+
+        RestaurantAdminMenu add = new RestaurantAdminMenu(ra);
+        add.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_backActionPerformed
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
@@ -189,7 +194,7 @@ public class RestAdmin_ManageRest_GUI extends javax.swing.JFrame {
         } else {
             res = true;
         }
-        
+
         ra.setRest(new Restaurant(Integer.parseInt(restID.getText()), restLoc.getText(), restCateg.getText(), restName.getText(), res));
         if (ra.ManageRestDetails()) {
             JOptionPane.showMessageDialog(null, "Restaurant details updated successfully!");

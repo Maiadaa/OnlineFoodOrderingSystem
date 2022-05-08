@@ -205,7 +205,6 @@ public class Manager_AddRest_GUI extends javax.swing.JFrame {
             ra.getRest().setRest_Name(restName);
             ra.getRest().setRest_Categ(restCateg);
             ra.getRest().setRest_Location(restLoc);
-            System.out.println(ra.toString());
 
             Manager.getTheManager().getSysRestsAdmins().Add_Rest_Admin(ra);
             Manager.getTheManager().getSysRests().Add_Rest(ra.getRest(), ra.getUsername());

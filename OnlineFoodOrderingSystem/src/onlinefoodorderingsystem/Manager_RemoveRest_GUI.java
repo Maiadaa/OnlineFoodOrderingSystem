@@ -140,7 +140,9 @@ public class Manager_RemoveRest_GUI extends javax.swing.JFrame {
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
 
-
+        ManagerMenu add = new ManagerMenu();
+        this.dispose();
+        add.setVisible(true);
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void RemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveActionPerformed
@@ -163,7 +165,7 @@ public class Manager_RemoveRest_GUI extends javax.swing.JFrame {
         Restaurant_Admin ra = new Restaurant_Admin();
         ra.setID(restAdminId);
         ra.getRest().setRest_Id(restId);
-        
+
         Manager.getTheManager().getSysRests().Remove_Rest(ra.getRest());
         Manager.getTheManager().getSysRestsAdmins().Remove_Rest_Admin(ra);
 

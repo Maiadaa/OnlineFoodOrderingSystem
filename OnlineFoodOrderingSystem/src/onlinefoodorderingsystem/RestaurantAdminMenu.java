@@ -9,14 +9,16 @@ package onlinefoodorderingsystem;
  * @author mahmo
  */
 public class RestaurantAdminMenu extends javax.swing.JFrame {
+
     static Restaurant_Admin tempRA = new Restaurant_Admin();
+
     /**
      * Creates new form RestaurantAdminMenu
+     *
      * @ temp
      */
-    
-    public RestaurantAdminMenu(Restaurant_Admin temp) 
-    {
+
+    public RestaurantAdminMenu(Restaurant_Admin temp) {
         tempRA = temp;
         initComponents();
         RAdminName.setText(tempRA.getName());
@@ -36,6 +38,7 @@ public class RestaurantAdminMenu extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         RAdminName = new javax.swing.JTextField();
         ManageAccount = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,6 +63,13 @@ public class RestaurantAdminMenu extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Manage Restaurant Details");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -78,7 +88,10 @@ public class RestaurantAdminMenu extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(ManageAccount, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(RAdminName, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton2)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,7 +105,9 @@ public class RestaurantAdminMenu extends javax.swing.JFrame {
                 .addComponent(RAdminName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(ManageAccount)
-                .addContainerGap(190, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(jButton2)
+                .addContainerGap(133, Short.MAX_VALUE))
         );
 
         pack();
@@ -111,6 +126,13 @@ public class RestaurantAdminMenu extends javax.swing.JFrame {
         manageAccount.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_ManageAccountActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        RestAdmin_ManageRest_GUI add = new RestAdmin_ManageRest_GUI(tempRA);
+        add.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -151,6 +173,7 @@ public class RestaurantAdminMenu extends javax.swing.JFrame {
     private javax.swing.JButton ManageAccount;
     private javax.swing.JTextField RAdminName;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
