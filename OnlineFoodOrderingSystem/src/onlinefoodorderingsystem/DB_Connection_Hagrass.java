@@ -179,8 +179,8 @@ public class DB_Connection_Hagrass {
     }
     
     public void create_Order(Customer cust,Order order){
-        ArrayList<Order> orders = new ArrayList<Order>();
         DB_Connection_Assem conn = new DB_Connection_Assem();
+        ArrayList<Order> orders = new ArrayList<>();
         orders = conn.getAllOrdersByCust(cust.getID());
         if(orders.size() >= 5)
         {
@@ -188,11 +188,8 @@ public class DB_Connection_Hagrass {
             tempPrem.m_FoodOrderingSysCoupons.Add_Observer(tempPrem);
             System.out.println("Customer Added to premium successfully");
         }
-        else
+        try 
         {
-            System.out.println("Customer can not be premium yet");
-        }
-         try {
             Statement stmt = con.createStatement();
             stmt.executeUpdate("INSERT INTO `order`(`Customer_ID`, `Rest_ID`, `Order_Date`, `Order_status`) VALUES ('" + cust.getID() + "','" + order.getOrder_Rest().getRest_Id() + "','" + order.getOrder_Date() + "','" + order.getOrderstatus() + "')");
             System.out.println("Order Created");

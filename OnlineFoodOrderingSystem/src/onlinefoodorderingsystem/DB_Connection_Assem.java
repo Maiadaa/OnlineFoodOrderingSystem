@@ -57,21 +57,14 @@ public class DB_Connection_Assem {
         result = getAllPremCustomers();
         try 
         {
-            for (int i = 0; i < result.size(); i++) 
-            {
-                if (c.getUsername().equals(result.get(i).getUsername())) 
-                {
-                    System.out.println("This customer is already premium");
-                    return 0;
-                }
-            }
+           
             Statement stmt = con.createStatement();
             stmt.executeUpdate("INSERT INTO premium_customer(Name, Email, Phone  , Address , Username , Password, Gender) values('" + c.getName() + "',' " + c.getEmail() + "', '" + c.getPhone_number() + "', '" + c.getAddress() + "', '" + c.getUsername() + "', '" + c.getPassword() + "', '" + c.getGender() + "')");
             System.out.println("Customer added as a premium customer");
         } 
         catch (Exception e) 
         {
-            System.err.println("DATABASE COUPON INSERTION ERROR: " + e.toString());
+            System.err.println("DATABASE PREMIUM CUSTOMER INSERTION ERROR: " + e.toString());
         }
         return 0;
     }
@@ -368,11 +361,13 @@ public class DB_Connection_Assem {
           ArrayList<Order> result = new ArrayList();
         try {
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from order where `Order_ID` = '"+ customerid +"' ");
-            while (rs.next()) {
+            ResultSet rs = stmt.executeQuery("SELECT * FROM `order` WHERE Customer_ID = '" +customerid+ "' ");
+            while (rs.next()) 
+            {
                 result.add(new Order(rs.getInt("Order_ID"), rs.getString("Order_Date"), rs.getDouble("Order_Price"), rs.getString("Order_Status")));
             }
-        } catch (Exception e) {
+        } catch (Exception e) 
+        {
             System.err.println("DATABASE QUERY ERROR: " + e.toString());
         }
         return result;
