@@ -14,7 +14,7 @@ public class allRestaurants extends javax.swing.JFrame {
      * Creates new form allRestaurants
      */
     Order o = new Order();
-    
+    Customer cust;
     public allRestaurants() {
         initComponents();
         DB_Connection_Gado db = new DB_Connection_Gado();
@@ -105,10 +105,12 @@ public class allRestaurants extends javax.swing.JFrame {
         int restId = Integer.parseInt(table.getModel().getValueAt(row, 4).toString());
         
         // create order function >> DB_Connection_Hagrass
-        
+        DB_Connection_Hagrass db = new DB_Connection_Hagrass();
+        o.setOrder_Date(java.time.LocalDate.now().toString());
+        o.setOrderstatus("Pending");
+        cust.Create_Order(o);
         
         // set the o's id and restaurant id in the instance 
-        o.setOrder_Id(1);
         o.getOrder_Rest().setRest_Id(restId);
         
         viewMenuItem menu = new viewMenuItem(restId, o);
