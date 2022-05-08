@@ -16,7 +16,6 @@ public class OrderSummary_GUI extends javax.swing.JFrame {
     public OrderSummary_GUI(Order o) {
         initComponents();
         this.o = o;
-        o.setOrder_Id(1);
         id.setText(""+o.getOrder_Id());
         price.setText(""+o.getOrder_Price());
         status.setText(o.getOrderstatus());

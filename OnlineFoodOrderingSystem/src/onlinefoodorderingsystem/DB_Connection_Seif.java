@@ -6,6 +6,7 @@ package onlinefoodorderingsystem;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -39,7 +40,7 @@ public class DB_Connection_Seif {
     public void Add_To_Cart(Order_Item item, Order o) {
         try {
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("insert into order_item (`Order_ID`, `MenuItem_ID`, `Quantity`, `Total_ItemPrice`) values('" + o.getOrder_Id() + "', '" + item.getItem().getItem_Id() + "', '1', '" + item.getItem_Total_Price() + "')");
+            stmt.executeUpdate("INSERT INTO `order_item`(`Order_ID`, `MenuItem_ID`, `Quantity`, `Total_ItemPrice`) VALUES('" + o.getOrder_Id() + "', '" + item.getItem().getItem_Id() + "', '1', '" + item.getItem_Total_Price() + "')");
         } catch (Exception e) {
             System.err.println("DATABASE INSERTION ERROR: " + e.toString());
         }
@@ -60,7 +61,7 @@ public class DB_Connection_Seif {
         double menuItemPrice = 0.0;
         try {
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT menu_item.MenuItem_ID, menu_item.Item_Price from menu_item where menu_item.Item_Name  = " + name );
+            ResultSet rs = stmt.executeQuery("SELECT * from `menu_item` where Item_Name  = '" + name + "'");
             if (rs.first()) {
                 menuItemID = rs.getInt("MenuItem_ID");
                 menuItemPrice = rs.getDouble("Item_Price");
