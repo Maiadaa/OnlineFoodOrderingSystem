@@ -91,8 +91,8 @@ public class Customer extends Person implements New_Rests_Observer {
     }
 
     // --- THUS ALTERNATIVE IS USING DATABASE WITH THIS FUNCTION: --- //
-    public JTable View_Notifications(JTable tbl) {
-        return db_mai.displayNotifs(tbl, this);
+    public JTable View_Notifications(JTable tbl, Customer c ) {
+        return db_mai.displayNotifs(tbl, c);
     }
 
     public JTable displayRestuarant (JTable tbl) {

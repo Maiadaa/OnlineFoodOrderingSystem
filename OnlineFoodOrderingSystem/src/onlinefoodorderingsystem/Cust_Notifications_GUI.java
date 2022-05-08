@@ -38,7 +38,7 @@ public class Cust_Notifications_GUI extends javax.swing.JFrame {
         initComponents();
         this.c = c;
         DB_Connection_Maiada db = new DB_Connection_Maiada();
-        NotifsTbl = c.View_Notifications(NotifsTbl);
+        NotifsTbl = c.View_Notifications(NotifsTbl, c);
     }
 
     /**

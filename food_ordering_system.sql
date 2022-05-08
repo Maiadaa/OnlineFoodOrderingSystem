@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 08, 2022 at 06:05 PM
+-- Generation Time: May 08, 2022 at 06:36 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -217,8 +217,8 @@ CREATE TABLE `order` (
   `Coupon_ID` int(11) DEFAULT NULL,
   `Rest_ID` int(11) NOT NULL,
   `Order_Date` varchar(15) DEFAULT NULL,
-  `Order_Price` double NOT NULL,
-  `Order_PayMethod` varchar(15) NOT NULL,
+  `Order_Price` double DEFAULT NULL,
+  `Order_PayMethod` varchar(15) DEFAULT NULL,
   `Order_status` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

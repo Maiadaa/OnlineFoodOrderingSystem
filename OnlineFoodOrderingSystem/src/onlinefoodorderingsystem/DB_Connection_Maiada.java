@@ -75,7 +75,6 @@ public class DB_Connection_Maiada {
         String msg = "We want to notify you that " + rest.getRest_Name() + " is now available on our application! \n Located at " + rest.getRest_Location()
                 + ".\n The restaurant is known for its " + rest.getRest_Categ() + ".\n Be the first to try it out and rate!";
         for (Customer c : custs) {
-            System.out.println(c);
             try {
                 Statement stmt = con.createStatement();
                 stmt.executeUpdate("insert into newrestnotif (`msg`, `Cust_ID`, `Rest_ID`) values('" + msg + "', " + c.getID() + ", '" + rest.getRest_Id() + "')");
@@ -121,8 +120,6 @@ public class DB_Connection_Maiada {
             System.err.println("RESTAURANT INSERTION ERROR: " + e.toString());
         }
 
-        // Upon addition of a new restaurant notify all registered customers 
-        this.notifyNewRestsObservers(rest);
     }
 
     public JTable displayRests(JTable tbl) {
@@ -175,8 +172,7 @@ public class DB_Connection_Maiada {
     public JTable displayNotifs(JTable tbl, Customer c) {
         try {
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT `msg`,`Rest_Name` FROM `newrestnotif`, "
-                    + "restaurant WHERE restaurant.Rest_ID = newrestnotif.Rest_ID and Cust_ID = '" + c.getID() + "'");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM `newrestnotif`, restaurant WHERE restaurant.Rest_ID = newrestnotif.Rest_ID and Cust_ID = '" + c.getID() + "'");
 
             DefaultTableModel model;
             model = (DefaultTableModel) tbl.getModel();
