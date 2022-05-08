@@ -17,6 +17,8 @@ public class ViewOrderHistory extends javax.swing.JFrame {
     /**
      * Creates new form ViewOrderHistory
      */
+    
+
     public ViewOrderHistory(Customer c) {
         initComponents();
         tempCustomer = c;
@@ -97,6 +99,11 @@ public class ViewOrderHistory extends javax.swing.JFrame {
         });
 
         jButton5.setText("Cancel Order");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Order History Panel for:");
 
@@ -196,6 +203,18 @@ public class ViewOrderHistory extends javax.swing.JFrame {
             this.dispose();
         }
     }//GEN-LAST:event_RatingFeedbackActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        int row = OrdersTable.getSelectedRow();
+        int orderID = Integer.parseInt(OrdersTable.getModel().getValueAt(row, 0).toString());
+        DB_Connection_Seif db = new DB_Connection_Seif();
+        db.Cancel_Order(orderID);
+        if (orderID != 0){
+        JOptionPane.showMessageDialog(null, "Order Removed Successfully");}
+        this.dispose();
+        ViewOrderHistory newOrderHistory = new ViewOrderHistory(tempCustomer);
+        newOrderHistory.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments

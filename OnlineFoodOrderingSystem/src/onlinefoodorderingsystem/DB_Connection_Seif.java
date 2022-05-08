@@ -88,7 +88,7 @@ public class DB_Connection_Seif {
     public void Cancel_Order(int id) {
         try {
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("delete from order where Order_ID = '" + id + "'");
+            stmt.executeUpdate("DELETE FROM `order` WHERE  Order_ID = '" + id + "'");
         } catch (Exception e) {
             System.err.println("DATABASE INSERTION ERROR: " + e.toString());
         }
