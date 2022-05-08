@@ -174,6 +174,10 @@ public class customer_SignUp extends javax.swing.JFrame {
          DB_Connection_Gado db = new DB_Connection_Gado();
         Customer cust = new Customer();
         cust.Manage_Account(name, email, phoneNumber, address, username, password, gender);
+        
+        CustomerLogin login = new CustomerLogin();
+        login.setVisible(true);
+        this.dispose();
        
 //        db.customerSignUp(name, email, phoneNumber, address, username, password, gender);
     }//GEN-LAST:event_jButton1ActionPerformed

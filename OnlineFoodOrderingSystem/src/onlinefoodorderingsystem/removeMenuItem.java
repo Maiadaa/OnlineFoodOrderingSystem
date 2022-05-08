@@ -17,6 +17,14 @@ public class removeMenuItem extends javax.swing.JFrame {
         initComponents();
     }
 
+    
+    static Restaurant_Admin tempRA = new Restaurant_Admin();
+    public removeMenuItem(Restaurant_Admin temp) {
+        initComponents();
+        tempRA = temp;
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

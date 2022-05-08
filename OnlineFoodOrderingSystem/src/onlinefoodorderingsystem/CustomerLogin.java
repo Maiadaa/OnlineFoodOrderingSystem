@@ -58,6 +58,11 @@ public class CustomerLogin extends javax.swing.JFrame {
         });
 
         SignUp.setText("Sign-Up");
+        SignUp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SignUpActionPerformed(evt);
+            }
+        });
 
         BackButton.setText("Back");
         BackButton.addActionListener(new java.awt.event.ActionListener() {
@@ -159,6 +164,15 @@ public class CustomerLogin extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(null, "Wrong Login Credentials");
         }
     }//GEN-LAST:event_SignInActionPerformed
+
+    private void SignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignUpActionPerformed
+        // TODO add your handling code here:
+        
+        customer_SignUp signUp = new customer_SignUp();
+        signUp.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_SignUpActionPerformed
 
     /**
      * @param args the command line arguments
