@@ -50,7 +50,7 @@ public class DB_Connection_Maiada {
 
     // done
     public ArrayList<Customer> getAllCusts() {
-        
+
         try {
             ArrayList<Customer> result = new ArrayList();
             Statement stmt = con.createStatement();
@@ -110,11 +110,21 @@ public class DB_Connection_Maiada {
             System.err.println("RESTAURANT INSERTION ERROR: " + e.toString());
         }
 
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rss = stmt.executeQuery("select * from restaurant where `RestAdmin_ID` = " + id + "");
+            if (rss.first()) {
+                rest.setRest_Id(rss.getInt("Rest_ID"));
+            }
+            System.out.println("Restaurant id retreives successfully");
+        } catch (Exception e) {
+            System.err.println("RESTAURANT INSERTION ERROR: " + e.toString());
+        }
+
         // Upon addition of a new restaurant notify all registered customers 
         this.notifyNewRestsObservers(rest);
     }
 
-    
     public JTable displayRests(JTable tbl) {
         try {
             Statement stmt = con.createStatement();
@@ -186,7 +196,6 @@ public class DB_Connection_Maiada {
         return tbl;
     }
 
-    
     //done
     public Restaurant getRestByName(String restName) {
         try {

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2022 at 07:33 AM
+-- Generation Time: May 08, 2022 at 06:05 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -54,7 +54,7 @@ INSERT INTO `admin` (`ID`, `Name`, `Email`, `Phone`, `Address`, `Username`, `Pas
 CREATE TABLE `coupon` (
   `Coupon_ID` int(11) NOT NULL,
   `Coupon_code` int(11) NOT NULL,
-  `Coupon_desc` varchar(30) DEFAULT NULL,
+  `Coupon_desc` varchar(100) DEFAULT NULL,
   `Expiry_date` varchar(15) NOT NULL,
   `discountVal` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -495,7 +495,7 @@ ALTER TABLE `menu_item`
 -- AUTO_INCREMENT for table `newrestnotif`
 --
 ALTER TABLE `newrestnotif`
-  MODIFY `Notif_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Notif_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `order`
@@ -519,13 +519,13 @@ ALTER TABLE `premium_customer`
 -- AUTO_INCREMENT for table `restaurant`
 --
 ALTER TABLE `restaurant`
-  MODIFY `Rest_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Rest_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `rest_admin`
 --
 ALTER TABLE `rest_admin`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
@@ -548,8 +548,7 @@ ALTER TABLE `menu_item`
 -- Constraints for table `newrestnotif`
 --
 ALTER TABLE `newrestnotif`
-  ADD CONSTRAINT `FK_Notif_Cust` FOREIGN KEY (`Cust_ID`) REFERENCES `customer` (`ID`),
-  ADD CONSTRAINT `FK_Notif_Rest` FOREIGN KEY (`Rest_ID`) REFERENCES `restaurant` (`Rest_ID`);
+  ADD CONSTRAINT `FK_Notif_Cust` FOREIGN KEY (`Cust_ID`) REFERENCES `customer` (`ID`);
 
 --
 -- Constraints for table `order`
