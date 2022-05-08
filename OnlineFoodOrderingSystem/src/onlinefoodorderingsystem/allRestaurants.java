@@ -22,6 +22,14 @@ public class allRestaurants extends javax.swing.JFrame {
         DB_Connection_Gado db = new DB_Connection_Gado();
         table = db.displayRestuarant(table);
     }
+    
+    public allRestaurants(Customer c) {
+        initComponents();
+        cust = c;
+        cust.setID(1);
+        DB_Connection_Gado db = new DB_Connection_Gado();
+        table = db.displayRestuarant(table);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -110,7 +118,11 @@ public class allRestaurants extends javax.swing.JFrame {
         DB_Connection_Hagrass db = new DB_Connection_Hagrass();
         o.setOrder_Date(java.time.LocalDate.now().toString());
         o.setOrderstatus("Pending");
-        cust.Create_Order(o,restId);
+        o.setOrder_Id(db.selectOrderID());
+        Restaurant rest = new Restaurant();
+        rest.setRest_Id(restId);
+        o.setOrder_Rest(rest);
+        cust.Create_Order(cust, o);
         
         // set the o's id and restaurant id in the instance 
        int orderId= db.selectOrderID();
