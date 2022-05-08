@@ -1,4 +1,4 @@
-package onlinefoodorderingsystem;
+ package onlinefoodorderingsystem;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -178,10 +178,10 @@ public class DB_Connection_Hagrass {
         }
     }
     
-    public void create_Order(int CustID,Order order){
+    public void create_Order(int CustID,Order order, int restID){
          try {
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("INSERT INTO `order`(`Order_ID`,`Customer_ID`, `Rest_ID`, `Order_Date`, `Order_status`) VALUES ('"+ order.getOrder_Id() + "','" + CustID + "','" + order.getOrder_Rest().getRest_Id() + "','" + order.getOrder_Date() + "','" + order.getOrderstatus() + "')");
+            stmt.executeUpdate("INSERT INTO `order`(`Order_ID`,`Customer_ID`, `Rest_ID`, `Order_Date`, `Order_status`) VALUES ('"+ order.getOrder_Id() + "','" + CustID + "','" + restID + "','" + order.getOrder_Date() + "','" + order.getOrderstatus() + "')");
             System.out.println("Order Created");
             //return true;
         } catch (Exception e) {
