@@ -192,9 +192,9 @@ public class DB_Connection_Hagrass {
         {
             System.out.println("Customer can not be premium yet");
         }
-        try {
+         try {
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("INSERT INTO `order`(`Order_ID`,`Customer_ID`, `Rest_ID`, `Order_Date`, `Order_status`) VALUES ('"+ order.getOrder_Id() + "','" + cust.getID() + "','" + order.getOrder_Rest().getRest_Id() + "','" + order.getOrder_Date() + "','" + order.getOrderstatus() + "')");
+            stmt.executeUpdate("INSERT INTO `order`(`Customer_ID`, `Rest_ID`, `Order_Date`, `Order_status`) VALUES ('" + cust.getID() + "','" + order.getOrder_Rest().getRest_Id() + "','" + order.getOrder_Date() + "','" + order.getOrderstatus() + "')");
             System.out.println("Order Created");
             //return true;
         } catch (Exception e) {

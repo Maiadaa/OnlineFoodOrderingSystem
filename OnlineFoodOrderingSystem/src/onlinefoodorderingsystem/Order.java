@@ -55,8 +55,8 @@ public class Order {
 
 	}
         
-	public void Add_To_Cart(Order_Item item, int o){
-            db.Add_To_Cart(item, o);
+	public void Add_To_Cart(Order_Item item, Order order){
+            db.Add_To_Cart(item, order);
 	}
 
 	/**

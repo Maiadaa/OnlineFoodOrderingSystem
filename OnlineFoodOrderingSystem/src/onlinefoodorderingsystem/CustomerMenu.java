@@ -255,7 +255,7 @@ public class CustomerMenu extends javax.swing.JFrame {
 
     private void restActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restActionPerformed
         this.dispose();
-        allRestaurants rest = new allRestaurants();
+        allRestaurants rest = new allRestaurants(tempCust);
         rest.setVisible(true);
     }//GEN-LAST:event_restActionPerformed
 

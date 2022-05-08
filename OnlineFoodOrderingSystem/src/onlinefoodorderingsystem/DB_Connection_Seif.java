@@ -37,10 +37,10 @@ public class DB_Connection_Seif {
         }
     }
 
-    public void Add_To_Cart(Order_Item item, int id) {
+    public void Add_To_Cart(Order_Item item, Order order) {
         try {
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("INSERT INTO `order_item`(`Order_ID`, `MenuItem_ID`, `Quantity`, `Total_ItemPrice`) VALUES('" + id + "', '" + item.getItem().getItem_Id() + "', '1', '" + item.getItem_Total_Price() + "')");
+            stmt.executeUpdate("INSERT INTO `order_item`(`Order_ID`, `MenuItem_ID`, `Quantity`, `Total_ItemPrice`) VALUES('" + order.getOrder_Id() + "', '" + item.getItem().getItem_Id() + "', '1', '" + item.getItem_Total_Price() + "')");
         } catch (Exception e) {
             System.err.println("DATABASE INSERTION ERROR: " + e.toString());
         }

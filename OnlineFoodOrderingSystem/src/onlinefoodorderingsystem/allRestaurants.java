@@ -18,7 +18,6 @@ public class allRestaurants extends javax.swing.JFrame {
     
     public allRestaurants() {
         initComponents();
-        cust.setID(1);
         DB_Connection_Gado db = new DB_Connection_Gado();
         table = db.displayRestuarant(table);
     }
@@ -26,7 +25,6 @@ public class allRestaurants extends javax.swing.JFrame {
     public allRestaurants(Customer c) {
         initComponents();
         cust = c;
-        cust.setID(1);
         DB_Connection_Gado db = new DB_Connection_Gado();
         table = db.displayRestuarant(table);
     }
@@ -118,16 +116,15 @@ public class allRestaurants extends javax.swing.JFrame {
         DB_Connection_Hagrass db = new DB_Connection_Hagrass();
         o.setOrder_Date(java.time.LocalDate.now().toString());
         o.setOrderstatus("Pending");
-        o.setOrder_Id(db.selectOrderID());
         Restaurant rest = new Restaurant();
         rest.setRest_Id(restId);
         o.setOrder_Rest(rest);
         cust.Create_Order(cust, o);
-        
+        o.setOrder_Id(db.selectOrderID());
         // set the o's id and restaurant id in the instance 
        int orderId= db.selectOrderID();
         
-        viewMenuItem menu = new viewMenuItem(restId,orderId);
+        viewMenuItem menu = new viewMenuItem(o, cust);
 
         menu.setVisible(true);
         this.dispose();

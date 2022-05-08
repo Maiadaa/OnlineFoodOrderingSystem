@@ -164,15 +164,17 @@ public class Cust_Notifications_GUI extends javax.swing.JFrame {
         Restaurant rest = db.getRestByName(restName);
 
         /* !!!!!!!!!!!! OPTION: Open selected restaurant!!!!!!!!!!!!! */
-        // create order function >> DB_Connection_Hagrass
         Order o = new Order();
+        DB_Connection_Hagrass db2 = new DB_Connection_Hagrass();
         o.setOrder_Date(java.time.LocalDate.now().toString());
         o.setOrderstatus("Pending");
-        // error c.Create_Order(o, rest.getRest_Id());
+        o.setOrder_Rest(rest);
+        c.Create_Order(c, o);
+        o.setOrder_Id(db2.selectOrderID());
         
-        // error viewMenuItem menu = new viewMenuItem(rest.getRest_Id(), o);
+        viewMenuItem menu = new viewMenuItem(o, c);
         this.dispose();
-        // error menu.setVisible(true);
+        menu.setVisible(true);
 
     }//GEN-LAST:event_NotifsTblMousePressed
 
