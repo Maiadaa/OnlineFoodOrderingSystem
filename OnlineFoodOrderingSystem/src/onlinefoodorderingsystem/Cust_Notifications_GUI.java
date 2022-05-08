@@ -168,11 +168,11 @@ public class Cust_Notifications_GUI extends javax.swing.JFrame {
         Order o = new Order();
         o.setOrder_Date(java.time.LocalDate.now().toString());
         o.setOrderstatus("Pending");
-        c.Create_Order(o, rest.getRest_Id());
+        // error c.Create_Order(o, rest.getRest_Id());
         
-        viewMenuItem menu = new viewMenuItem(rest.getRest_Id(), o);
+        // error viewMenuItem menu = new viewMenuItem(rest.getRest_Id(), o);
         this.dispose();
-        menu.setVisible(true);
+        // error menu.setVisible(true);
 
     }//GEN-LAST:event_NotifsTblMousePressed
 
