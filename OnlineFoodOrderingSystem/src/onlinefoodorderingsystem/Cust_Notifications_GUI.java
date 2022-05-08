@@ -161,10 +161,18 @@ public class Cust_Notifications_GUI extends javax.swing.JFrame {
 
         DB_Connection_Maiada db = new DB_Connection_Maiada();
 
-        Restaurant rest = new Restaurant();
-        rest = db.getRestByName(restName);
+        Restaurant rest = db.getRestByName(restName);
 
-        /* !!!!!!!!!!!!Open selected restaurant!!!!!!!!!!!!! */
+        /* !!!!!!!!!!!! OPTION: Open selected restaurant!!!!!!!!!!!!! */
+        // create order function >> DB_Connection_Hagrass
+        Order o = new Order();
+        o.setOrder_Date(java.time.LocalDate.now().toString());
+        o.setOrderstatus("Pending");
+        c.Create_Order(o, rest.getRest_Id());
+        
+        viewMenuItem menu = new viewMenuItem(rest.getRest_Id(), o);
+        this.dispose();
+        menu.setVisible(true);
 
     }//GEN-LAST:event_NotifsTblMousePressed
 
