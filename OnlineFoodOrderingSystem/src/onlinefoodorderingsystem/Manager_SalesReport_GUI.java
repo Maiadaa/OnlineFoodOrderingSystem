@@ -15,14 +15,14 @@ public class Manager_SalesReport_GUI extends javax.swing.JFrame {
         DB_Connection_Maiada db = new DB_Connection_Maiada();
 
         jTable1 = Manager.getTheManager().getSysRests().View_Sales_Report(jTable1);
-        
+
         // calculating all restaurant's total revenue 
         double restsRevenue = 0;
-        for (int i = 0; i < jTable1.getRowCount() ; i++) {
+        for (int i = 0; i < jTable1.getRowCount(); i++) {
             restsRevenue += Double.parseDouble(jTable1.getModel().getValueAt(i, 2).toString());
         }
         this.restsRevenue.setText(String.valueOf(restsRevenue));
-        
+
         // calculating the application's revenue share of the rests revenue 
         // 25% of the total restaurant's revenue 
         double res = restsRevenue * 0.25;
@@ -158,6 +158,10 @@ public class Manager_SalesReport_GUI extends javax.swing.JFrame {
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // TODO add your handling code here:
+
+        ManagerMenu add = new ManagerMenu();
+        this.dispose();
+        add.setVisible(true);
     }//GEN-LAST:event_backActionPerformed
 
     /**
