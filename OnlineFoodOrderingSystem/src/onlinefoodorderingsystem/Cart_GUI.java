@@ -244,7 +244,7 @@ public class Cart_GUI extends javax.swing.JFrame {
         db.Remove_From_Cart(itemId);
         JOptionPane.showMessageDialog(null, "Item Removed Successfully");
         this.dispose();
-        Cart_GUI newcart = new Cart_GUI();
+        Cart_GUI newcart = new Cart_GUI(o,cust);
         newcart.setVisible(true);
 
     }//GEN-LAST:event_RemoveActionPerformed
@@ -262,7 +262,7 @@ public class Cart_GUI extends javax.swing.JFrame {
             db.Modify_Cart_Item(itemId, newquan, sum);
             JOptionPane.showMessageDialog(null, "Item Updated Successfully");
             this.dispose();
-            Cart_GUI newcart = new Cart_GUI();
+            Cart_GUI newcart = new Cart_GUI(o,cust);
             newcart.setVisible(true);
         } catch (Exception e) {
             System.out.println("Didnt work");
