@@ -194,7 +194,7 @@ public class Manager_AddRest_GUI extends javax.swing.JFrame {
         String restName = RestName.getText();
         String restLoc = RestLoc.getText();
         String restCateg = RestCateg.getText();
-        
+
         Restaurant_Admin ra = new Restaurant_Admin();
 
         if (uname.equals("") || pwd.equals("") || restName.equals("")) {
@@ -216,6 +216,9 @@ public class Manager_AddRest_GUI extends javax.swing.JFrame {
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
+        ManagerMenu add = new ManagerMenu();
+        this.dispose();
+        add.setVisible(true);
     }//GEN-LAST:event_backBtnActionPerformed
 
     /**
