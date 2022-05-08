@@ -363,4 +363,18 @@ public class DB_Connection_Assem {
         }
         return false;
     }
+    public ArrayList<Order> getAllOrdersByCust(int orderid)
+    {
+          ArrayList<Order> result = new ArrayList();
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from order where `Order_ID` = '"+ orderid +"' ");
+            while (rs.next()) {
+                result.add(new Order(rs.getInt("Order_ID"), rs.getString("Order_Date"), rs.getDouble("Order_Price"), rs.getString("Order_Status")));
+            }
+        } catch (Exception e) {
+            System.err.println("DATABASE QUERY ERROR: " + e.toString());
+        }
+        return result;
+    }
 }
